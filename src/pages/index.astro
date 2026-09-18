@@ -1,0 +1,221 @@
+---
+import '../styles/global.css';
+
+const skills = [
+  ['☕', 'Java', 'backend'],
+  ['🐘', 'PHP', 'backend'],
+  ['◈', 'Symfony', 'framework'],
+  ['✦', 'Laravel', 'framework'],
+  ['▦', 'JavaScript', 'frontend'],
+  ['◎', 'React', 'frontend'],
+  ['△', 'Angular', 'frontend'],
+  ['◌', 'HTML5', 'frontend'],
+  ['▧', 'CSS3', 'frontend'],
+  ['⌘', 'SQL', 'database'],
+  ['◍', 'MongoDB', 'database'],
+  ['⌁', 'Git', 'tooling'],
+  ['◉', 'GitHub', 'tooling'],
+  ['▣', 'VS Code', 'tooling'],
+  ['▤', 'NetBeans', 'IDE']
+];
+
+const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', 'MySQL', 'Git'];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Portfolio de Àlex Barrera, estudiante de DAW y desarrollador web full-stack en Barcelona." />
+    <link rel="icon" href="data:," />
+    <title>Àlex Barrera — Web Developer</title>
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <nav class="nav" aria-label="Navegación principal">
+        <a class="logo" href="#hero">Àlex<span>.</span>Barrera</a>
+        <ul class="nav-links">
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">2º DAW · Stucom Barcelona · 2026</p>
+            <h1>Ideas que se vuelven <em>interfaz.</em></h1>
+            <p class="hero-copy">Soy Àlex, desarrollador web en formación. Me gusta conectar la lógica del backend con interfaces claras, expresivas y hechas para ser usadas.</p>
+            <div class="actions">
+              <a class="button primary" href="#projects">Ver mi trabajo <span>↗</span></a>
+              <a class="button text" href="mailto:salexbarrera@gmail.com">Hablemos <span>→</span></a>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-label="Foto de perfil de Àlex Barrera">
+            <div class="orbit"></div>
+            <div class="profile-shape"></div>
+            <div class="profile-photo-wrap">
+              <img class="profile-photo" src="/images/profile.jpg" alt="Foto de perfil de Àlex Barrera" />
+              <span class="profile-fallback">AB</span>
+            </div>
+            <div class="art-note"><strong>Disponible</strong>para nuevas oportunidades</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-label="Tecnologías utilizadas">
+        <div class="marquee-track">
+          {[0, 1].map((group) => (
+            <div class="marquee-group" aria-hidden={group === 1}>
+              {marqueeItems.map((item) => <><span>{item}</span><i></i></>)}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <section class="section" id="stack">
+        <div class="container">
+          <div class="section-heading reveal"><span class="number">01</span><h2>Mi caja de herramientas</h2></div>
+          <p class="section-intro reveal">Tecnologías que uso para pensar, construir y llevar una idea desde la base de datos hasta el navegador.</p>
+          <div class="skills reveal">
+            {skills.map(([icon, name, type]) => (
+              <article class="skill">
+                <span class="skill-icon" aria-hidden="true">{icon}</span>
+                <strong class="skill-name">{name}</strong>
+                <span class="skill-type">{type}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="container">
+          <div class="section-heading reveal"><span class="number">02</span><h2>Un proyecto destacado</h2></div>
+          <article class="project reveal">
+            <div class="project-copy">
+              <span class="project-label">Featured build · 2026</span>
+              <h3>EventSportsBCN</h3>
+              <p>Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.</p>
+              <ul class="feature-list">
+                <li>Autenticación para usuarios y gestores.</li>
+                <li>Control de aforo e inscripciones.</li>
+                <li>Panel de administración de eventos.</li>
+                <li>MySQL, PHP, JavaScript y diseño responsive.</li>
+              </ul>
+              <div class="actions">
+                <a class="button" href="https://github.com/alexBarrera457/ProjectEventSportsBCN" target="_blank" rel="noopener noreferrer">Ver en GitHub ↗</a>
+              </div>
+            </div>
+            <div class="project-visual">
+              <img class="project-photo" src="/images/eventsportsbcn.jpg" alt="EventSportsBCN, plataforma de eventos deportivos" />
+              <div class="project-screen" aria-hidden="true">
+                <div class="screen-bar"><i></i><i></i><i></i></div>
+                <div class="screen-title">Events<span style="color:var(--coral-dark)">BCN</span></div>
+                <div class="screen-line"></div><div class="screen-line short"></div>
+                <div class="screen-pills"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-heading reveal"><span class="number">03</span><h2>Un poco sobre mí</h2></div>
+          <div class="about-grid reveal">
+            <div class="about-copy">
+              <p>Soy estudiante de <strong>Desarrollo de Aplicaciones Web (DAW)</strong> en Stucom Barcelona. Me interesa entender cómo funciona cada capa de un producto digital y hacer que todas encajen.</p>
+              <p>He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL y MongoDB</strong>, aplicando los conocimientos en proyectos reales y colaborativos.</p>
+              <p>Busco seguir aprendiendo mientras construyo soluciones que sean robustas por dentro y agradables por fuera.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-row"><span>Ubicación</span><span>Barcelona, España</span></div>
+              <div class="info-row"><span>Estudios</span><span>DAW · Stucom · 2º</span></div>
+              <div class="info-row"><span>Enfoque</span><span>Full-stack web</span></div>
+              <div class="info-row"><span>Estado</span><span class="status">Abierto a oportunidades</span></div>
+              <div class="info-row"><span>Email</span><span>salexbarrera@gmail.com</span></div>
+              <div class="info-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">Ver perfil ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="container">
+          <div class="contact-card reveal">
+            <h2>Hagamos algo <em>interesante.</em></h2>
+            <p>¿Tienes una idea, una oportunidad o simplemente quieres saludar? Mi bandeja de entrada está abierta.</p>
+            <div class="actions contact-actions">
+              <a class="button primary" href="mailto:salexbarrera@gmail.com">Escríbeme →</a>
+              <a class="button" href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container">
+      <span class="footer-name">Àlex Barrera</span>
+      <span>Hecho con Astro · Barcelona</span>
+    </footer>
+
+    <script>
+      const header = document.querySelector('[data-header]');
+      const revealItems = document.querySelectorAll('.reveal');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const profilePhoto = document.querySelector<HTMLImageElement>('.profile-photo');
+      const profileFallback = document.querySelector<HTMLElement>('.profile-fallback');
+      const projectPhoto = document.querySelector<HTMLImageElement>('.project-photo');
+      const projectScreen = document.querySelector<HTMLElement>('.project-screen');
+
+      const showProfileFallback = () => {
+        if (profilePhoto) profilePhoto.style.display = 'none';
+        if (profileFallback) profileFallback.style.display = 'grid';
+      };
+      if (profilePhoto && profileFallback) {
+        profilePhoto.addEventListener('load', () => {
+          profileFallback.style.display = 'none';
+          profilePhoto.style.display = 'block';
+        });
+        profilePhoto.addEventListener('error', showProfileFallback);
+        if (profilePhoto.complete && profilePhoto.naturalWidth === 0) showProfileFallback();
+      }
+      if (projectPhoto && projectScreen) {
+        projectPhoto.addEventListener('load', () => {
+          projectPhoto.style.opacity = '.8';
+          projectScreen.style.opacity = '.94';
+        });
+        projectPhoto.addEventListener('error', () => {
+          projectPhoto.style.display = 'none';
+        });
+      }
+
+      window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`));
+        });
+      }, { rootMargin: '-35% 0px -55%' });
+      sections.forEach((section) => navObserver.observe(section));
+    </script>
+  </body>
+</html>
