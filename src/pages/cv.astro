@@ -1,0 +1,153 @@
+---
+import '../styles/global.css';
+
+const skills = ['Interfaces web responsive', 'Bases de datos', 'VS Code', 'Herramientas colaborativas', 'Sistemas operativos', 'Programación backend', 'Depuración de código'];
+const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestión del tiempo'];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Currículum de Àlex Barrera Sardà." />
+    <title>Currículum · Àlex Barrera Sardà</title>
+  </head>
+  <body class="cv-page">
+    <main class="cv-sheet">
+      <header class="cv-header">
+        <div class="cv-identity">
+          <img class="cv-photo" src="/images/profile.jpg" alt="Foto de Àlex Barrera Sardà" />
+          <div>
+            <a class="cv-back" href="/">← Volver al portfolio</a>
+            <h1><span class="cv-name-line">Àlex Barrera</span><em>Sardà</em></h1>
+            <p class="cv-role">Desarrollador de Aplicaciones Web</p>
+          </div>
+        </div>
+        <div class="cv-contact">
+          <span>Barcelona, España</span>
+          <span>+34 605 16 70 05</span>
+          <a href="mailto:salexbarrera@gmail.com">salexbarrera@gmail.com</a>
+          <a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        </div>
+      </header>
+
+      <section class="cv-section cv-intro">
+        <span class="cv-label">Objetivo profesional</span>
+        <p>Estudiante de Desarrollo de Aplicaciones Web con motivación por aprender y crecer en el ámbito tecnológico. Busco una oportunidad de prácticas para aplicar mis conocimientos, trabajar en equipo y seguir mejorando mis competencias digitales y profesionales.</p>
+      </section>
+
+      <div class="cv-columns">
+        <div>
+          <section class="cv-section">
+            <span class="cv-label">Experiencia laboral</span>
+            <article class="cv-entry"><div class="cv-entry-meta">2025 · 6 meses</div><h2>Canguro</h2><p>Cuidador de niños</p></article>
+            <article class="cv-entry"><div class="cv-entry-meta">2024 · 5 meses</div><h2>Cal Sardà</h2><p>Dependiente</p></article>
+          </section>
+          <section class="cv-section">
+            <span class="cv-label">Formación académica</span>
+            <article class="cv-entry"><div class="cv-entry-meta">2025 — 2027</div><h2>Desarrollo de Aplicaciones Web</h2><p>Stucom · Barcelona · Segundo curso</p></article>
+            <article class="cv-entry"><div class="cv-entry-meta">2023 — 2025</div><h2>Bachillerato Tecnológico</h2><p>Dominiques Barcelona</p></article>
+          </section>
+          <section class="cv-section">
+            <span class="cv-label">Certificaciones</span>
+            <p>Masterclass: Prompting y cartografía de herramientas de Inteligencia Artificial · Cibernarium, 2025.</p>
+            <p>Inteligencia Artificial con Python y Hugging Face Transformers · Cibernarium, 2025.</p>
+          </section>
+        </div>
+        <aside>
+          <section class="cv-section"><span class="cv-label">Competencias técnicas</span><div class="cv-skills">{skills.map((skill) => <span>{skill}</span>)}</div></section>
+          <section class="cv-section"><span class="cv-label">Habilidades personales</span><div class="cv-skills">{softSkills.map((skill) => <span>{skill}</span>)}</div></section>
+          <section class="cv-section"><span class="cv-label">Idiomas</span><p><strong>Catalán:</strong> Nativo (C1)</p><p><strong>Castellano:</strong> Nativo</p><p><strong>Inglés:</strong> B1</p></section>
+          <section class="cv-section"><span class="cv-label">Otros datos</span><p>Entusiasta del fútbol, aficionado a la música y a los videojuegos.</p></section>
+        </aside>
+      </div>
+
+      <footer class="cv-footer">
+        <span>Àlex Barrera Sardà · 2026</span>
+        <div class="cv-actions">
+          <button type="button" data-download-cv>Descargar CV ↓</button>
+          <button type="button" onclick="window.print()">Imprimir</button>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  const downloadButton = document.querySelector<HTMLButtonElement>('[data-download-cv]');
+  downloadButton?.addEventListener('click', () => {
+    const pdfGenerator = (window as Window & {
+      html2pdf?: (element: HTMLElement, options: Record<string, unknown>) => { save: () => Promise<void> };
+    }).html2pdf;
+    if (!pdfGenerator) return;
+    const actions = document.querySelector<HTMLElement>('.cv-actions');
+    if (actions) actions.style.display = 'none';
+    pdfGenerator(document.querySelector<HTMLElement>('.cv-sheet')!, {
+      margin: 0,
+      filename: 'curriculum-alex-barrera-sarda.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).save().finally(() => {
+      if (actions) actions.style.display = 'flex';
+    });
+  });
+</script>
+
+<style>
+  .cv-page { background: var(--paper-deep); }
+  .cv-sheet { width: min(920px, calc(100% - 2rem)); margin: 2rem auto; padding: 2.2rem; background: var(--paper); border-top: 8px solid var(--coral); box-shadow: 0 20px 60px rgba(19,34,56,.12); }
+  .cv-header { display: grid; grid-template-columns: minmax(0, 1fr) 190px; align-items: end; gap: 2.5rem; padding: 1.4rem 1.4rem 2rem; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, rgba(52,120,246,.08), rgba(143,211,182,.13)); }
+  .cv-identity { display: flex; align-items: center; gap: 1.5rem; min-width: 0; }
+  .cv-identity > div { order: 1; }
+  .cv-photo { order: 2; width: 190px; height: 190px; flex: 0 0 190px; object-fit: cover; border: 6px solid var(--paper); outline: 1px solid var(--line); border-radius: 50%; }
+  .cv-back { color: var(--coral-dark); font: .68rem var(--mono); text-decoration: none; }
+  .cv-header h1 { margin: 1.2rem 0 .3rem; font-size: clamp(2.7rem, 5vw, 4.8rem); }
+  .cv-name-line { display: block; white-space: nowrap; }
+  .cv-header h1 em { color: var(--coral); font-style: italic; }
+  .cv-role { display: block; margin-top: 1.1rem; padding: .2rem 0 .2rem .8rem; border-left: 4px solid var(--coral); color: var(--coral-dark); font: 600 1.2rem var(--sans); letter-spacing: .01em; }
+  .cv-contact { display: grid; align-content: end; justify-items: end; gap: .35rem; min-width: 0; padding: .9rem 0 .9rem 1.25rem; border-left: 1px solid var(--line); color: var(--muted); font-size: .78rem; overflow-wrap: anywhere; }
+  .cv-contact a { color: var(--coral-dark); text-decoration: none; font-weight: 600; }
+  .cv-section { padding: 2rem 0; border-bottom: 1px solid var(--line); }
+  .cv-label { display: block; margin-bottom: 1rem; color: var(--coral-dark); font: .68rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+  .cv-intro p, .cv-section > p { max-width: 44rem; color: var(--muted); line-height: 1.75; }
+  .cv-columns { display: grid; grid-template-columns: 1.25fr .75fr; gap: 3rem; }
+  .cv-entry { margin-bottom: 1.25rem; padding-left: 1rem; border-left: 2px solid var(--sage); }
+  .cv-entry-meta { color: var(--coral-dark); font: .68rem var(--mono); }
+  .cv-entry h2 { margin: .35rem 0 .1rem; font: 400 1.55rem var(--serif); }
+  .cv-entry p { color: var(--muted); line-height: 1.55; }
+  .cv-section > p + p { margin-top: .8rem; }
+  .cv-skills { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .cv-skills span { padding: .4rem .65rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font: .68rem var(--mono); line-height: 1.35; }
+  .cv-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; color: var(--muted); font-size: .75rem; }
+  .cv-actions { display: flex; gap: .55rem; }
+  .cv-footer button { border: 1px solid var(--ink); border-radius: 999px; padding: .65rem .9rem; background: transparent; color: var(--ink); cursor: pointer; font: .7rem var(--mono); }
+  .cv-footer button:first-child { background: var(--coral); border-color: var(--coral); color: white; }
+  .cv-footer button:hover { background: var(--ink); color: var(--paper); }
+  @media (max-width: 650px) { .cv-sheet { padding: 1.2rem; border-top-width: 6px; } .cv-header, .cv-columns { display: grid; grid-template-columns: 1fr; } .cv-header { padding: 1rem; } .cv-identity { align-items: flex-start; flex-direction: column; gap: 1rem; } .cv-photo { width: 150px; height: 150px; flex-basis: 150px; } .cv-role { font-size: 1rem; } .cv-contact { justify-items: start; padding: .9rem 0 0; border-left: 0; border-top: 1px solid var(--line); } .cv-footer { align-items: flex-start; flex-direction: column; gap: .8rem; } .cv-actions { flex-wrap: wrap; } }
+  @page { size: A4; margin: 0; }
+  @media print {
+    .cv-page { background: white; font-size: 11.8px; }
+    .cv-sheet { width: 100%; min-height: 0; margin: 0; padding: 12.5mm 12mm 9.5mm; border-top-width: 5px; box-shadow: none; }
+    .cv-header { gap: 1.8rem; padding: 1.3rem 1.3rem 1.55rem; border-radius: 12px; }
+    .cv-photo { width: 164px; height: 164px; flex-basis: 164px; border-width: 5px; }
+    .cv-header h1 { margin: .8rem 0 .2rem; font-size: 3.95rem; }
+    .cv-role { margin-top: .75rem; padding: .2rem 0 .2rem .7rem; font-size: 1.02rem; }
+    .cv-contact { gap: .3rem; padding-left: 1rem; font-size: .74rem; }
+    .cv-section { padding: 1.35rem 0; }
+    .cv-label { margin-bottom: .7rem; font-size: .63rem; }
+    .cv-intro p, .cv-section > p, .cv-entry p { line-height: 1.58; }
+    .cv-entry { margin-bottom: 1rem; padding-left: .85rem; }
+    .cv-entry-meta { font-size: .63rem; }
+    .cv-entry h2 { margin: .22rem 0 .05rem; font-size: 1.32rem; }
+    .cv-columns { gap: 2rem; }
+    .cv-skills { gap: .38rem; }
+    .cv-skills span { padding: .32rem .52rem; font-size: .61rem; }
+    .cv-section > p + p { margin-top: .65rem; }
+    .cv-footer { padding-top: 1.05rem; font-size: .66rem; }
+    .cv-back, .cv-actions { display: none; }
+    .cv-section, .cv-entry, .cv-header { break-inside: avoid; }
+    * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>

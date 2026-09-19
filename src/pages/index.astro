@@ -26,32 +26,42 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Portfolio de Àlex Barrera, estudiante de DAW y desarrollador web full-stack en Barcelona." />
+    <meta name="description" content="Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona." />
+    <meta property="og:title" content="Àlex Barrera Sardà · Portfolio" />
+    <meta property="og:description" content="Estudiante de segundo de DAW y desarrollador web en formación, abierto a oportunidades de prácticas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alexbarrera457.github.io/" />
+    <meta property="og:image" content="https://alexbarrera457.github.io/images/profile.jpg" />
+    <link rel="canonical" href="https://alexbarrera457.github.io/" />
     <link rel="icon" href="data:," />
-    <title>Àlex Barrera — Web Developer</title>
+    <title>Àlex Barrera — Desarrollador web</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <header class="site-header" data-header>
       <nav class="nav" aria-label="Navegación principal">
         <a class="logo" href="#hero">Àlex<span>.</span>Barrera</a>
-        <ul class="nav-links">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú <span>+</span></button>
+        <ul class="nav-links" id="main-menu">
           <li><a href="#stack">Stack</a></li>
           <li><a href="#projects">Proyectos</a></li>
           <li><a href="#about">Sobre mí</a></li>
           <li><a href="#contact">Contacto</a></li>
         </ul>
       </nav>
+      <div class="scroll-progress" data-progress></div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="hero" id="hero">
         <div class="container hero-grid">
           <div>
             <p class="eyebrow">2º DAW · Stucom Barcelona · 2026</p>
             <h1>Ideas que se vuelven <em>interfaz.</em></h1>
-            <p class="hero-copy">Soy Àlex, desarrollador web en formación. Me gusta conectar la lógica del backend con interfaces claras, expresivas y hechas para ser usadas.</p>
+            <p class="hero-copy">Soy Àlex, estudiante de segundo de DAW y desarrollador de aplicaciones web en formación. Busco una oportunidad de prácticas para aplicar mis conocimientos, trabajar en equipo y seguir creciendo.</p>
             <div class="actions">
               <a class="button primary" href="#projects">Ver mi trabajo <span>↗</span></a>
+              <a class="button" href="/cv" target="_blank" rel="noopener noreferrer">Ver currículum <span>↗</span></a>
               <a class="button text" href="mailto:salexbarrera@gmail.com">Hablemos <span>→</span></a>
             </div>
           </div>
@@ -131,17 +141,46 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
           <div class="about-grid reveal">
             <div class="about-copy">
               <p>Soy estudiante de <strong>Desarrollo de Aplicaciones Web (DAW)</strong> en Stucom Barcelona. Me interesa entender cómo funciona cada capa de un producto digital y hacer que todas encajen.</p>
-              <p>He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL y MongoDB</strong>, aplicando los conocimientos en proyectos reales y colaborativos.</p>
-              <p>Busco seguir aprendiendo mientras construyo soluciones que sean robustas por dentro y agradables por fuera.</p>
+              <p>He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB y VS Code</strong>, además de diseño responsive, bases de datos y depuración básica de código.</p>
+              <p>Busco una oportunidad de <strong>prácticas</strong> donde pueda aportar responsabilidad, empatía y capacidad de trabajo en equipo mientras sigo desarrollando mis competencias digitales.</p>
             </div>
             <div class="info-card">
               <div class="info-row"><span>Ubicación</span><span>Barcelona, España</span></div>
               <div class="info-row"><span>Estudios</span><span>DAW · Stucom · 2º</span></div>
               <div class="info-row"><span>Enfoque</span><span>Full-stack web</span></div>
-              <div class="info-row"><span>Estado</span><span class="status">Abierto a oportunidades</span></div>
+              <div class="info-row"><span>Estado</span><span class="status">Buscando prácticas</span></div>
+              <div class="info-row"><span>Idiomas</span><span>Catalán C1 · Castellano · Inglés B1</span></div>
               <div class="info-row"><span>Email</span><span>salexbarrera@gmail.com</span></div>
               <div class="info-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">Ver perfil ↗</a></div>
             </div>
+          </div>
+          <div class="cv-callout reveal">
+            <div>
+              <span class="project-label">Perfil profesional</span>
+              <h3>¿Quieres conocer mi recorrido?</h3>
+              <p>Consulta mi formación, tecnologías y proyecto destacado en una versión preparada para imprimir.</p>
+            </div>
+            <a class="button primary" href="/cv" target="_blank" rel="noopener noreferrer">Ver currículum ↗</a>
+          </div>
+          <div class="cv-highlights reveal">
+            <article>
+              <span class="cv-highlight-label">Experiencia</span>
+              <h3>Canguro · 2025</h3>
+              <p>6 meses como cuidador de niños.</p>
+              <h3>Cal Sardà · 2024</h3>
+              <p>5 meses como dependiente.</p>
+            </article>
+            <article>
+              <span class="cv-highlight-label">Certificaciones</span>
+              <h3>Inteligencia Artificial</h3>
+              <p>Python y Hugging Face Transformers · Cibernarium, 2025.</p>
+              <p>Prompting y cartografía de herramientas de IA · Cibernarium, 2025.</p>
+            </article>
+            <article>
+              <span class="cv-highlight-label">Fortalezas</span>
+              <h3>Cómo trabajo</h3>
+              <p>Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -170,6 +209,21 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
       const revealItems = document.querySelectorAll('.reveal');
       const sections = document.querySelectorAll('main section[id]');
       const navLinks = document.querySelectorAll('.nav-links a');
+      const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const nav = document.querySelector<HTMLElement>('.nav');
+      const progress = document.querySelector<HTMLElement>('[data-progress]');
+      menuToggle?.addEventListener('click', () => {
+        const isOpen = nav?.classList.toggle('menu-open') ?? false;
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        const icon = menuToggle.querySelector('span');
+        if (icon) icon.textContent = isOpen ? '×' : '+';
+      });
+      navLinks.forEach((link) => link.addEventListener('click', () => {
+        nav?.classList.remove('menu-open');
+        menuToggle?.setAttribute('aria-expanded', 'false');
+        const icon = menuToggle?.querySelector('span');
+        if (icon) icon.textContent = '+';
+      }));
       const profilePhoto = document.querySelector<HTMLImageElement>('.profile-photo');
       const profileFallback = document.querySelector<HTMLElement>('.profile-fallback');
       const projectPhoto = document.querySelector<HTMLImageElement>('.project-photo');
@@ -188,16 +242,22 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         if (profilePhoto.complete && profilePhoto.naturalWidth === 0) showProfileFallback();
       }
       if (projectPhoto && projectScreen) {
-        projectPhoto.addEventListener('load', () => {
-          projectPhoto.style.opacity = '.8';
-          projectScreen.style.opacity = '.94';
-        });
+        const showProjectPhoto = () => {
+          projectPhoto.style.opacity = '1';
+          projectScreen.style.display = 'none';
+        };
+        projectPhoto.addEventListener('load', showProjectPhoto);
         projectPhoto.addEventListener('error', () => {
           projectPhoto.style.display = 'none';
         });
+        if (projectPhoto.complete && projectPhoto.naturalWidth > 0) showProjectPhoto();
       }
 
-      window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+      window.addEventListener('scroll', () => {
+        header?.classList.toggle('scrolled', window.scrollY > 20);
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress && scrollableHeight > 0) progress.style.transform = `scaleX(${window.scrollY / scrollableHeight})`;
+      }, { passive: true });
 
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
