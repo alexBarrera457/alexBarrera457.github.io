@@ -45,9 +45,15 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         <ul class="nav-links" id="main-menu">
           <li><a href="#stack">Stack</a></li>
           <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#experience">Experiencia</a></li>
           <li><a href="#about">Sobre mí</a></li>
           <li><a href="#contact">Contacto</a></li>
         </ul>
+        <div class="language-switcher" aria-label="Idioma">
+          <button type="button" data-language="es" aria-pressed="true">ES</button>
+          <button type="button" data-language="ca" aria-pressed="false">CA</button>
+          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
       </nav>
       <div class="scroll-progress" data-progress></div>
     </header>
@@ -172,9 +178,22 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         </div>
       </section>
 
+      <section class="section github-section" id="experience">
+        <div class="container">
+          <div class="section-heading reveal"><span class="number">03</span><h2>Experiencia y actividad</h2></div>
+          <div class="github-intro reveal">
+            <p>Una selección de mi actividad pública en GitHub: proyectos, tecnologías y trabajo reciente.</p>
+            <a class="button" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer">Ver perfil en GitHub ↗</a>
+          </div>
+          <div class="github-repositories reveal" data-github-repositories>
+            <article class="github-repository github-loading">Cargando actividad de GitHub...</article>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="about">
         <div class="container">
-          <div class="section-heading reveal"><span class="number">03</span><h2>Un poco sobre mí</h2></div>
+          <div class="section-heading reveal"><span class="number">04</span><h2>Un poco sobre mí</h2></div>
           <div class="about-grid reveal">
             <div class="about-copy">
               <p>Estoy cursando <strong>Desarrollo de Aplicaciones Web</strong> en Stucom Barcelona y me apasiona construir soluciones completas, desde la lógica de negocio hasta la experiencia final del usuario.</p>
@@ -242,6 +261,148 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
     </footer>
 
     <script>
+      const translations = {
+        es: {
+          navStack: 'Stack', navProjects: 'Proyectos', navExperience: 'Experiencia', navAbout: 'Sobre mí', navContact: 'Contacto', menu: 'Menú', skip: 'Saltar al contenido',
+          eyebrow: '2º DAW · Stucom Barcelona · 2026', heroTitle: 'Ideas que se vuelven <em>interfaz.</em>',
+          heroCopy: 'Soy Àlex, estudiante de DAW y desarrollador web en formación. Me interesa crear productos digitales funcionales, bien diseñados y pensados para resolver problemas reales con una base técnica sólida.',
+          work: 'Ver mi trabajo ↗', cv: 'Ver currículum ↗', talk: 'Hablemos →', available: '<strong>Disponible</strong>para nuevas oportunidades',
+          stackTitle: 'Mi caja de herramientas', stackIntro: 'Tecnologías que uso para pensar, construir y llevar una idea desde la base de datos hasta el navegador.',
+          projectsTitle: 'Proyectos en curso', eventLabel: 'Proyecto destacado · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.',
+          nexusLabel: 'En curso · 2026', nexusCopy: 'Proyecto experimental de chat inteligente local que combina una interfaz web con historial de conversaciones, memoria opcional y herramientas de búsqueda, cálculo y respuesta contextual. Está en desarrollo y me permite explorar la integración entre IA, backend y experiencia de usuario.',
+          experienceTitle: 'Experiencia y actividad', experienceIntro: 'Una selección de mi actividad pública en GitHub: proyectos, tecnologías y trabajo reciente.', experienceButton: 'Ver perfil en GitHub ↗', loadingGithub: 'Cargando actividad de GitHub...', aboutTitle: 'Un poco sobre mí', about1: 'Estoy cursando <strong>Desarrollo de Aplicaciones Web</strong> en Stucom Barcelona y me apasiona construir soluciones completas, desde la lógica de negocio hasta la experiencia final del usuario.',
+          about2: 'He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB y VS Code</strong>, además de diseño responsive, gestión de bases de datos y resolución de problemas en proyectos web reales.',
+          about3: 'Actualmente estoy buscando una oportunidad de <strong>prácticas</strong> para seguir creciendo como desarrollador, aportar valor en un equipo y aprender de proyectos profesionales reales.',
+          profileLabel: 'Perfil profesional', profileTitle: '¿Quieres conocer mi recorrido?', profileCopy: 'Consulta mi formación, tecnologías y proyecto destacado en una versión preparada para imprimir.', profileButton: 'Ver currículum ↗',
+          contactTitle: 'Hagamos algo <em>interesante.</em>', contactCopy: '¿Tienes una idea, una oportunidad o simplemente quieres saludar? Estoy abierto a proyectos, prácticas y conversaciones sobre desarrollo web.', write: 'Escríbeme →', footer: 'Hecho con Astro · Barcelona'
+        },
+        ca: {
+          navStack: 'Tecnologies', navProjects: 'Projectes', navExperience: 'Experiència', navAbout: 'Sobre mi', navContact: 'Contacte', menu: 'Menú', skip: 'Saltar al contingut',
+          eyebrow: '2n DAW · Stucom Barcelona · 2026', heroTitle: 'Idees que es tornen <em>interfície.</em>',
+          heroCopy: 'Soc l’Àlex, estudiant de DAW i desenvolupador web en formació. M’interessa crear productes digitals funcionals, ben dissenyats i pensats per resoldre problemes reals amb una base tècnica sòlida.',
+          work: 'Veure la meva feina ↗', cv: 'Veure currículum ↗', talk: 'Parlem →', available: '<strong>Disponible</strong>per a noves oportunitats',
+          stackTitle: 'La meva caixa d’eines', stackIntro: 'Tecnologies que faig servir per pensar, construir i portar una idea des de la base de dades fins al navegador.',
+          projectsTitle: 'Projectes en curs', eventLabel: 'Projecte destacat · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack per descobrir i gestionar esdeveniments esportius a Barcelona, construïda amb arquitectura MVC i rols d’usuari diferenciats.',
+          nexusLabel: 'En curs · 2026', nexusCopy: 'Projecte experimental de xat intel·ligent local que combina una interfície web amb historial de converses, memòria opcional i eines de cerca, càlcul i resposta contextual. Està en desenvolupament i em permet explorar la integració entre IA, backend i experiència d’usuari.',
+          experienceTitle: 'Experiència i activitat', experienceIntro: 'Una selecció de la meva activitat pública a GitHub: projectes, tecnologies i treball recent.', experienceButton: 'Veure el perfil a GitHub ↗', loadingGithub: 'Carregant activitat de GitHub...', aboutTitle: 'Una mica sobre mi', about1: 'Estic cursant <strong>Desenvolupament d’Aplicacions Web</strong> a Stucom Barcelona i m’apassiona construir solucions completes, des de la lògica de negoci fins a l’experiència final de l’usuari.',
+          about2: 'He treballat amb <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB i VS Code</strong>, a més de disseny responsive, gestió de bases de dades i resolució de problemes en projectes web reals.',
+          about3: 'Actualment busco una oportunitat de <strong>pràctiques</strong> per continuar creixent com a desenvolupador, aportar valor a un equip i aprendre de projectes professionals reals.',
+          profileLabel: 'Perfil professional', profileTitle: 'Vols conèixer el meu recorregut?', profileCopy: 'Consulta la meva formació, tecnologies i projecte destacat en una versió preparada per imprimir.', profileButton: 'Veure currículum ↗',
+          contactTitle: 'Fem alguna cosa <em>interessant.</em>', contactCopy: 'Tens una idea, una oportunitat o simplement vols saludar? Estic obert a projectes, pràctiques i converses sobre desenvolupament web.', write: 'Escriu-me →', footer: 'Fet amb Astro · Barcelona'
+        },
+        en: {
+          navStack: 'Stack', navProjects: 'Projects', navExperience: 'Experience', navAbout: 'About me', navContact: 'Contact', menu: 'Menu', skip: 'Skip to content',
+          eyebrow: '2nd Web Development · Stucom Barcelona · 2026', heroTitle: 'Ideas that become <em>interfaces.</em>',
+          heroCopy: 'I’m Àlex, a web development student and developer in training. I enjoy creating functional, well-designed digital products built to solve real problems on a solid technical foundation.',
+          work: 'See my work ↗', cv: 'View résumé ↗', talk: 'Let’s talk →', available: '<strong>Available</strong>for new opportunities',
+          stackTitle: 'My toolbox', stackIntro: 'Technologies I use to think, build and take an idea from the database to the browser.',
+          projectsTitle: 'Projects in progress', eventLabel: 'Featured build · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'A full-stack platform for discovering and managing sports events in Barcelona, built with MVC architecture and differentiated user roles.',
+          nexusLabel: 'In progress · 2026', nexusCopy: 'An experimental local intelligent chat project combining a web interface with conversation history, optional memory, and search, calculation and contextual response tools. It is in development and lets me explore the integration of AI, backend and user experience.',
+          experienceTitle: 'Experience and activity', experienceIntro: 'A selection of my public GitHub activity: projects, technologies and recent work.', experienceButton: 'View GitHub profile ↗', loadingGithub: 'Loading GitHub activity...', aboutTitle: 'A little about me', about1: 'I’m studying <strong>Web Application Development</strong> at Stucom Barcelona and I enjoy building complete solutions, from business logic to the final user experience.',
+          about2: 'I have worked with <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB and VS Code</strong>, as well as responsive design, database management and problem-solving in real web projects.',
+          about3: 'I’m currently looking for an <strong>internship</strong> opportunity to keep growing as a developer, contribute to a team and learn from real professional projects.',
+          profileLabel: 'Professional profile', profileTitle: 'Want to know my journey?', profileCopy: 'Explore my education, technologies and featured project in a print-ready version.', profileButton: 'View résumé ↗',
+          contactTitle: 'Let’s make something <em>interesting.</em>', contactCopy: 'Have an idea, an opportunity or simply want to say hello? I’m open to projects, internships and conversations about web development.', write: 'Write to me →', footer: 'Built with Astro · Barcelona'
+        }
+      };
+      const portfolioDetails = {
+        es: { eventFeatures: ['Autenticación para usuarios y gestores.', 'Control de aforo e inscripciones.', 'Panel de administración de eventos.', 'MySQL, PHP, JavaScript y diseño responsive.'], nexusFeatures: ['Backend Express con API REST y SQLite.', 'Diseño visual de panel de control y feedback de estado.', 'Integración con proveedores compatibles con OpenAI.', 'Desarrollo continuo con IA, lógica propia y enfoque práctico.'], eventButton: 'Ver en GitHub ↗', nexusButton: 'Más información ↗', infoLabels: ['Ubicación', 'Estudios', 'Enfoque', 'Estado', 'Idiomas', 'Email', 'LinkedIn'], infoValues: ['Barcelona, España', 'DAW · Stucom · 2º', 'Full-stack web', 'Buscando prácticas', 'Catalán C1 · Castellano · Inglés B1', 'salexbarrera@gmail.com', 'Ver perfil ↗'], highlights: ['Experiencia', 'Canguro · 2025', '6 meses como cuidador de niños.', 'Cal Sardà · 2024', '5 meses como dependiente.', 'Certificaciones', 'Inteligencia Artificial', 'Python y Hugging Face Transformers · Cibernarium, 2025.', 'Prompting y cartografía de herramientas de IA · Cibernarium, 2025.', 'Fortalezas', 'Cómo trabajo', 'Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.'], nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'] },
+        ca: { eventFeatures: ['Autenticació per a usuaris i gestors.', 'Control d’aforament i inscripcions.', 'Panell d’administració d’esdeveniments.', 'MySQL, PHP, JavaScript i disseny responsive.'], nexusFeatures: ['Backend Express amb API REST i SQLite.', 'Disseny visual de panell de control i feedback d’estat.', 'Integració amb proveïdors compatibles amb OpenAI.', 'Desenvolupament continu amb IA, lògica pròpia i enfocament pràctic.'], eventButton: 'Veure a GitHub ↗', nexusButton: 'Més informació ↗', infoLabels: ['Ubicació', 'Estudis', 'Enfocament', 'Estat', 'Idiomes', 'Email', 'LinkedIn'], infoValues: ['Barcelona, Espanya', 'DAW · Stucom · 2n', 'Full-stack web', 'Buscant pràctiques', 'Català C1 · Castellà · Anglès B1', 'salexbarrera@gmail.com', 'Veure perfil ↗'], highlights: ['Experiència', 'Cangur · 2025', '6 mesos com a cuidador d’infants.', 'Cal Sardà · 2024', '5 mesos com a dependent.', 'Certificacions', 'Intel·ligència Artificial', 'Python i Hugging Face Transformers · Cibernarium, 2025.', 'Prompting i cartografia d’eines d’IA · Cibernarium, 2025.', 'Punts forts', 'Com treballo', 'Treball en equip, empatia, responsabilitat i bona gestió del temps.'], nexusKicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', nexusTitle: 'Pensa en <em>sistemes.</em>', nexusPills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA'] },
+        en: { eventFeatures: ['Authentication for users and managers.', 'Capacity and registration management.', 'Event administration panel.', 'MySQL, PHP, JavaScript and responsive design.'], nexusFeatures: ['Express backend with REST API and SQLite.', 'Visual control-panel design and status feedback.', 'Integration with OpenAI-compatible providers.', 'Ongoing development with AI, custom logic and a practical focus.'], eventButton: 'View on GitHub ↗', nexusButton: 'More information ↗', infoLabels: ['Location', 'Education', 'Focus', 'Status', 'Languages', 'Email', 'LinkedIn'], infoValues: ['Barcelona, Spain', 'Web Development · Stucom · 2nd year', 'Full-stack web', 'Looking for an internship', 'Catalan C1 · Spanish · English', 'salexbarrera@gmail.com', 'View profile ↗'], highlights: ['Experience', 'Childcare · 2025', '6 months in childcare.', 'Cal Sardà · 2024', '5 months as a shop assistant.', 'Certifications', 'Artificial Intelligence', 'Python and Hugging Face Transformers · Cibernarium, 2025.', 'Prompting and mapping AI tools · Cibernarium, 2025.', 'Strengths', 'How I work', 'Teamwork, empathy, responsibility and good time management.'], nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'] }
+      };
+      type Language = keyof typeof translations;
+      type TranslationKey = Exclude<keyof typeof translations.es, 'menu' | 'loadingGithub'>;
+      const languageSelectors: Record<TranslationKey, string> = {
+        navStack: '.nav-links a[href="#stack"]', navProjects: '.nav-links a[href="#projects"]', navExperience: '.nav-links a[href="#experience"]', navAbout: '.nav-links a[href="#about"]', navContact: '.nav-links a[href="#contact"]', skip: '.skip-link',
+        eyebrow: '.hero .eyebrow', heroTitle: '.hero h1', heroCopy: '.hero-copy', work: '.hero .button.primary', cv: '.hero .button:not(.primary)', talk: '.hero .button.text', available: '.art-note',
+        stackTitle: '#stack h2', stackIntro: '#stack .section-intro', projectsTitle: '#projects h2', eventLabel: '.project:not(.project-secondary) .project-label', eventTitle: '.project:not(.project-secondary) h3', eventCopy: '.project:not(.project-secondary) .project-copy > p', experienceTitle: '#experience h2', experienceIntro: '#experience .github-intro p', experienceButton: '#experience .github-intro .button',
+        nexusLabel: '.project-secondary .project-label', nexusCopy: '.project-secondary .project-copy > p', aboutTitle: '#about h2', about1: '.about-copy p:nth-child(1)', about2: '.about-copy p:nth-child(2)', about3: '.about-copy p:nth-child(3)',
+        profileLabel: '.cv-callout .project-label', profileTitle: '.cv-callout h3', profileCopy: '.cv-callout p', profileButton: '.cv-callout .button', contactTitle: '.contact h2', contactCopy: '.contact p', write: '.contact .button.primary', footer: 'footer span:last-child'
+      };
+      type GithubRepository = { name: string; html_url: string; description: string | null; language: string | null; stargazers_count: number; updated_at: string; fork: boolean };
+      let githubRepositories: GithubRepository[] = [];
+      const githubLabels = {
+        es: { repository: 'Repositorio', updated: 'Actualizado', view: 'Ver repositorio ↗', empty: 'No se ha podido cargar la actividad de GitHub.' },
+        ca: { repository: 'Repositori', updated: 'Actualitzat', view: 'Veure repositori ↗', empty: 'No s’ha pogut carregar l’activitat de GitHub.' },
+        en: { repository: 'Repository', updated: 'Updated', view: 'View repository ↗', empty: 'GitHub activity could not be loaded.' }
+      };
+      const renderGithubRepositories = (language: Language) => {
+        const container = document.querySelector<HTMLElement>('[data-github-repositories]');
+        if (!container) return;
+        const labels = githubLabels[language];
+        container.replaceChildren();
+        if (!githubRepositories.length) {
+          const empty = document.createElement('article');
+          empty.className = 'github-repository github-loading';
+          empty.textContent = labels.empty;
+          container.append(empty);
+          return;
+        }
+        githubRepositories.forEach((repository) => {
+          const card = document.createElement('article');
+          card.className = 'github-repository';
+          const label = document.createElement('span');
+          label.className = 'github-repository-label';
+          label.textContent = labels.repository;
+          const title = document.createElement('h3');
+          title.textContent = repository.name;
+          const description = document.createElement('p');
+          description.textContent = repository.description || '';
+          const meta = document.createElement('div');
+          meta.className = 'github-repository-meta';
+          meta.textContent = `${repository.language || 'Web'} · ${labels.updated} ${new Date(repository.updated_at).toLocaleDateString(language === 'en' ? 'en-GB' : language === 'ca' ? 'ca-ES' : 'es-ES')}`;
+          const link = document.createElement('a');
+          link.className = 'button';
+          link.href = repository.html_url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = labels.view;
+          card.append(label, title, description, meta, link);
+          container.append(card);
+        });
+      };
+      const setLanguage = (language: Language) => {
+        const copy = translations[language] || translations.es;
+        const detail = portfolioDetails[language];
+        (Object.entries(languageSelectors) as [TranslationKey, string][]).forEach(([key, selector]) => {
+          const element = document.querySelector(selector);
+          if (element && copy[key]) element.innerHTML = copy[key];
+        });
+        const menuToggleLabel = language === 'en' ? 'Menu' : language === 'ca' ? 'Menú' : 'Menú';
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle?.firstChild) menuToggle.firstChild.textContent = `${menuToggleLabel} `;
+        const pageTitles = { es: 'Àlex Barrera — Desarrollador web', ca: 'Àlex Barrera — Desenvolupador web', en: 'Àlex Barrera — Web developer' };
+        const pageDescriptions = { es: 'Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona.', ca: 'Portfoli d’Àlex Barrera Sardà, estudiant de segon de DAW i desenvolupador d’aplicacions web a Barcelona.', en: 'Portfolio of Àlex Barrera Sardà, second-year web development student and web developer in Barcelona.' };
+        document.title = pageTitles[language];
+        document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescriptions[language]);
+        document.querySelectorAll('.project:not(.project-secondary) .feature-list li').forEach((item, index) => { item.textContent = detail.eventFeatures[index]; });
+        document.querySelectorAll('.project-secondary .feature-list li').forEach((item, index) => { item.textContent = detail.nexusFeatures[index]; });
+        document.querySelector('.project:not(.project-secondary) .project-copy .button')!.textContent = detail.eventButton;
+        document.querySelector('.project-secondary .project-copy .button')!.textContent = detail.nexusButton;
+        document.querySelectorAll('.info-row').forEach((row, index) => { row.querySelector('span:first-child')!.textContent = detail.infoLabels[index]; const value = row.querySelector('span:last-child, a'); if (value) value.textContent = detail.infoValues[index]; });
+        document.querySelectorAll('.cv-highlights article .cv-highlight-label, .cv-highlights article h3, .cv-highlights article p').forEach((element, index) => { if (detail.highlights[index]) element.textContent = detail.highlights[index]; });
+        document.querySelector('.nexus-kicker')!.textContent = detail.nexusKicker;
+        document.querySelector('.nexus-title-block h4')!.innerHTML = detail.nexusTitle;
+        document.querySelectorAll('.nexus-row span').forEach((item, index) => { item.textContent = detail.nexusPills[index]; });
+        const githubLoading = document.querySelector('[data-github-repositories] .github-loading');
+        if (githubLoading) githubLoading.textContent = copy.loadingGithub;
+        renderGithubRepositories(language);
+        document.documentElement.lang = language;
+        document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.getAttribute('data-language') === language)));
+        localStorage.setItem('portfolio-language', language);
+      };
+      const getLanguage = (value: string | null): Language => value === 'ca' || value === 'en' ? value : 'es';
+      document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((button) => button.addEventListener('click', () => setLanguage(getLanguage(button.dataset.language || null))));
+      setLanguage(getLanguage(localStorage.getItem('portfolio-language')));
+
+      fetch('https://api.github.com/users/alexBarrera457/repos?sort=updated&per_page=8')
+        .then((response) => response.ok ? response.json() as Promise<GithubRepository[]> : Promise.reject(new Error('GitHub request failed')))
+        .then((repositories) => {
+          githubRepositories = repositories.filter((repository) => !repository.fork).slice(0, 4);
+          renderGithubRepositories(getLanguage(localStorage.getItem('portfolio-language')));
+        })
+        .catch(() => renderGithubRepositories(getLanguage(localStorage.getItem('portfolio-language'))));
+
       const header = document.querySelector('[data-header]');
       const revealItems = document.querySelectorAll('.reveal');
       const sections = document.querySelectorAll('main section[id]');

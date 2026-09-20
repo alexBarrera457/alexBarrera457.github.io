@@ -25,6 +25,11 @@ const stack = ['Express', 'SQLite', 'Astro', 'OpenAI', 'Node.js', 'JavaScript'];
         <div class="stack-list">
           {stack.map((item) => <span>{item}</span>)}
         </div>
+        <div class="language-switcher" aria-label="Idioma">
+          <button type="button" data-language="es" aria-pressed="true">ES</button>
+          <button type="button" data-language="ca" aria-pressed="false">CA</button>
+          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </header>
 
@@ -205,13 +210,13 @@ NEXUS_DB_PATH=./nexus-memory.db</pre>
       </section>
 
       <section class="project-panel contact-panel">
-        <h2>¿Quieres hablar de este proyecto?</h2>
-        <p>
+        <h2 data-nexus-contact-title>¿Quieres hablar de este proyecto?</h2>
+        <p data-nexus-contact-description>
           Estoy abierto a oportunidades de prácticas, proyectos colaborativos y crecimiento profesional en
           desarrollo web. Este proyecto sigue evolucionando como una forma de explorar IA, arquitectura de
           software y experiencia de usuario en un contexto real y práctico.
         </p>
-        <a class="button primary" href="/">Volver al portfolio</a>
+        <a class="button primary" data-nexus-contact-button href="/">Volver al portfolio</a>
       </section>
     </main>
 
@@ -223,6 +228,81 @@ NEXUS_DB_PATH=./nexus-memory.db</pre>
     </footer>
   </body>
 </html>
+
+<script>
+  const nexusTranslations = {
+    es: { back: '← Volver al portfolio', eyebrow: 'Proyecto en curso', lead: 'Aplicación local de chat inteligente con interfaz web, almacenamiento de conversaciones, memoria opcional, búsqueda web, calculadora y routing de herramientas para un backend compatible con OmniRoute/OpenAI.', headings: ['Estado actual', 'Objetivo del proyecto', 'Arquitectura general', 'Cómo arrancar', 'Variables de entorno', 'API REST', 'Flujo interno', 'Qué tiene funcionando', 'Qué falta por mejorar', 'Conclusión', '¿Quieres hablar de este proyecto?'], footer: 'Volver al portfolio' },
+    ca: { back: '← Tornar al portfoli', eyebrow: 'Projecte en curs', lead: 'Aplicació local de xat intel·ligent amb interfície web, emmagatzematge de converses, memòria opcional, cerca web, calculadora i routing d’eines per a un backend compatible amb OmniRoute/OpenAI.', headings: ['Estat actual', 'Objectiu del projecte', 'Arquitectura general', 'Com iniciar-lo', 'Variables d’entorn', 'API REST', 'Flux intern', 'Què funciona', 'Què falta per millorar', 'Conclusió', 'Vols parlar d’aquest projecte?'], footer: 'Tornar al portfoli' },
+    en: { back: '← Back to portfolio', eyebrow: 'Project in progress', lead: 'Local intelligent chat application with a web interface, conversation storage, optional memory, web search, calculator and tool routing for an OmniRoute/OpenAI-compatible backend.', headings: ['Current status', 'Project goal', 'General architecture', 'How to start', 'Environment variables', 'REST API', 'Internal flow', 'What is working', 'What remains to improve', 'Conclusion', 'Want to talk about this project?'], footer: 'Back to portfolio' }
+  };
+  const nexusButtons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
+  const nexusConclusion = {
+    es: 'OMNI // NEXUS ya tiene una base sólida, estructura clara, UI funcional y APIs definidas. Lo que falta para que el chat real funcione no es más código “de app”, sino un proveedor activo y autenticado con un endpoint válido. El repo está listo para seguir avanzando, mantener y ampliar, siempre con documentación clara del estado real del proyecto.',
+    ca: 'OMNI // NEXUS ja té una base sòlida, una estructura clara, una UI funcional i APIs definides. El que falta perquè el xat real funcioni no és més codi “d’app”, sinó un proveïdor actiu i autenticat amb un endpoint vàlid. El repositori està preparat per continuar avançant, mantenir-se i ampliar-se, sempre amb documentació clara del seu estat real.',
+    en: 'OMNI // NEXUS already has a solid foundation, clear structure, functional UI and defined APIs. What is missing for real chat is not more app code, but an active, authenticated provider with a valid endpoint. The repository is ready to keep evolving, be maintained and expanded with clear documentation of its actual state.'
+  };
+  const nexusDetails = {
+    es: { status: 'El proyecto está preparado para continuar iterando, depurando y ampliando sin perder contexto. La base funcional ya existe: backend Express, SQLite, API REST, lógica de cálculo, validación de entrada y una interfaz visual con estilo cinematográfico.', goal: 'OMNI // NEXUS quiere ser una interfaz local para:', start: 'La web se sirve en <strong>http://127.0.0.1:4321</strong> durante desarrollo y el backend continúa en <strong>http://127.0.0.1:3000</strong>.', contact: 'Estoy abierto a oportunidades de prácticas, proyectos colaborativos y crecimiento profesional en desarrollo web. Este proyecto sigue evolucionando como una forma de explorar IA, arquitectura de software y experiencia de usuario en un contexto real y práctico.', statusHeadings: ['✔️ Funciona', '⚠️ Bloqueado'] },
+    ca: { status: 'El projecte està preparat per continuar iterant, depurant i ampliant sense perdre context. La base funcional ja existeix: backend Express, SQLite, API REST, lògica de càlcul, validació d’entrada i una interfície visual amb estil cinematogràfic.', goal: 'OMNI // NEXUS vol ser una interfície local per a:', start: 'La web s’ofereix a <strong>http://127.0.0.1:4321</strong> durant el desenvolupament i el backend continua a <strong>http://127.0.0.1:3000</strong>.', contact: 'Estic obert a oportunitats de pràctiques, projectes col·laboratius i creixement professional en desenvolupament web. Aquest projecte continua evolucionant com una manera d’explorar la IA, l’arquitectura de programari i l’experiència d’usuari en un context real i pràctic.', statusHeadings: ['✔️ Funciona', '⚠️ Bloquejat'] },
+    en: { status: 'The project is ready to keep iterating, debugging and expanding without losing context. The functional foundation already exists: Express backend, SQLite, REST API, calculation logic, input validation and a visual interface with a cinematic style.', goal: 'OMNI // NEXUS aims to be a local interface for:', start: 'The web is served at <strong>http://127.0.0.1:4321</strong> during development and the backend continues at <strong>http://127.0.0.1:3000</strong>.', contact: 'I am open to internship opportunities, collaborative projects and professional growth in web development. This project keeps evolving as a way to explore AI, software architecture and user experience in a real, practical context.', statusHeadings: ['✔️ Working', '⚠️ Blocked'] }
+  };
+  const nexusCoverTranslations = {
+    es: { status: 'runtime online', kicker: 'TU CAPA DE INTELIGENCIA LOCAL', title: 'Piensa en <em>sistemas.</em>', pills: ['BÚSQUEDA WEB', 'MEMORIA', 'CALCULADORA'], env: 'tu_clave_omniroute' },
+    ca: { status: 'runtime online', kicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', title: 'Pensa en <em>sistemes.</em>', pills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA'], env: 'la_teva_clau_omniroute' },
+    en: { status: 'runtime online', kicker: 'YOUR LOCAL INTELLIGENCE LAYER', title: 'Think in <em>systems.</em>', pills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'], env: 'your_omniroute_key' }
+  };
+  const nexusArchitecture = {
+    es: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistencia\n  SQLite con better-sqlite3\n\nProveedor IA\n  compatible con OmniRoute/OpenAI',
+    ca: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistència\n  SQLite amb better-sqlite3\n\nProveïdor d’IA\n  compatible amb OmniRoute/OpenAI',
+    en: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistence\n  SQLite with better-sqlite3\n\nAI provider\n  compatible with OmniRoute/OpenAI'
+  };
+  const nexusLists = {
+    es: ['Servidor Express arrancando correctamente', 'API REST estructurada', 'Persistencia SQLite', 'Validación de peticiones del chat', 'UI web con flujo básico de conversaciones', 'Suite de pruebas automatizadas', 'El chat real depende de credenciales activas del proveedor', 'Error verificado: 401 No active credentials for provider: openai', 'El problema es externo al frontend: falta autenticación válida', 'chatear con un agente inteligente', 'guardar conversaciones en SQLite', 'listar, buscar y borrar conversaciones', 'responder con herramientas como WEB, CALCULATOR, CLOCK y CHAT', 'habilitar memoria opcional de usuario', 'ofrecer una UI web ligera y usable', 'El usuario envía un mensaje desde la web o la API.', 'El backend valida la petición con la lógica de chat.', 'Se crea o reutiliza la conversación activa.', 'Se decide qué herramientas usar según la intención del usuario.', 'Se construye el contexto con memoria e historial.', 'Se llama al proveedor de IA con el prompt final.', 'La respuesta se persiste y se devuelve al cliente.', 'validación de entrada del chat', 'cálculo matemático', 'repositorio de conversaciones', 'repositorio de memoria', 'web search con validación de JSON', 'servicio NEXUS con guardado persistente', 'servidor Express arrancando', 'UI web cargando', 'tests automatizados pasando', 'validar la autenticación real del proveedor externo antes de cada arranque', 'añadir fallback si el modelo no está disponible', 'mejorar mensajes de error del backend', 'añadir logs estructurados', 'soportar más modelos y proveedores', 'gestionar mejor memoria automática y semántica'],
+    ca: ['Servidor Express iniciat correctament', 'API REST estructurada', 'Persistència SQLite', 'Validació de peticions del xat', 'UI web amb flux bàsic de converses', 'Suite de proves automatitzades', 'El xat real depèn de credencials actives del proveïdor', 'Error verificat: 401 No active credentials for provider: openai', 'El problema és extern al frontend: falta autenticació vàlida', 'xatejar amb un agent intel·ligent', 'desar converses a SQLite', 'llistar, cercar i eliminar converses', 'respondre amb eines com WEB, CALCULATOR, CLOCK i CHAT', 'activar memòria d’usuari opcional', 'oferir una UI web lleugera i usable', 'L’usuari envia un missatge des de la web o l’API.', 'El backend valida la petició amb la lògica del xat.', 'Es crea o reutilitza la conversa activa.', 'Es decideix quines eines utilitzar segons la intenció.', 'Es construeix el context amb memòria i historial.', 'Es crida el proveïdor d’IA amb el prompt final.', 'La resposta es desa i es retorna al client.', 'validació d’entrada del xat', 'càlcul matemàtic', 'repositori de converses', 'repositori de memòria', 'cerca web amb validació de JSON', 'servei NEXUS amb desament persistent', 'servidor Express iniciat', 'UI web carregant', 'tests automatitzats superats', 'validar l’autenticació real del proveïdor abans de cada inici', 'afegir un fallback si el model no està disponible', 'millorar els missatges d’error del backend', 'afegir logs estructurats', 'admetre més models i proveïdors', 'gestionar millor la memòria automàtica i semàntica'],
+    en: ['Express server starting correctly', 'Structured REST API', 'SQLite persistence', 'Chat request validation', 'Web UI with a basic conversation flow', 'Automated test suite', 'Real chat depends on active provider credentials', 'Verified error: 401 No active credentials for provider: openai', 'The issue is external to the frontend: valid authentication is missing', 'chat with an intelligent agent', 'save conversations in SQLite', 'list, search and delete conversations', 'respond with tools such as WEB, CALCULATOR, CLOCK and CHAT', 'enable optional user memory', 'offer a lightweight, usable web UI', 'The user sends a message from the web or API.', 'The backend validates the request with chat logic.', 'The active conversation is created or reused.', 'Tools are selected according to the user’s intent.', 'Context is built from memory and history.', 'The AI provider is called with the final prompt.', 'The response is saved and returned to the client.', 'chat input validation', 'mathematical calculation', 'conversation repository', 'memory repository', 'web search with JSON validation', 'NEXUS service with persistent storage', 'Express server starting', 'Web UI loading', 'automated tests passing', 'validate the provider’s real authentication before each start', 'add a fallback when the model is unavailable', 'improve backend error messages', 'add structured logs', 'support more models and providers', 'handle automatic and semantic memory better']
+  };
+  const nexusSetLanguage = (language: 'es' | 'ca' | 'en') => {
+    nexusButtons.forEach((button) => { const active = button.dataset.language === language; button.setAttribute('aria-pressed', String(active)); button.classList.toggle('is-active', active); });
+    const copy = nexusTranslations[language];
+    const detail = nexusDetails[language];
+    const cover = nexusCoverTranslations[language];
+    document.querySelector('.back-link')!.textContent = copy.back;
+    document.querySelector('.project-eyebrow')!.textContent = copy.eyebrow;
+    document.querySelector('.lead')!.textContent = copy.lead;
+    document.querySelectorAll('.project-panel h2').forEach((heading, index) => { heading.textContent = copy.headings[index]; });
+    const contactHeading = document.querySelector('[data-nexus-contact-title]');
+    if (contactHeading) contactHeading.textContent = copy.headings[10];
+    document.querySelector('.project-panel p')!.textContent = detail.status;
+    document.querySelector('.status-grid > div:first-child h3')!.textContent = detail.statusHeadings[0];
+    document.querySelector('.status-grid > div:last-child h3')!.textContent = detail.statusHeadings[1];
+    document.querySelector('.project-panel:nth-child(2) p')!.textContent = detail.goal;
+    document.querySelector('.project-panel:nth-child(4) > p')!.innerHTML = detail.start;
+    document.querySelector('.project-panel:nth-child(3) .code-block pre')!.textContent = nexusArchitecture[language];
+    document.querySelector('[data-nexus-contact-description]')!.textContent = detail.contact;
+    document.querySelector('[data-nexus-contact-button]')!.textContent = copy.footer;
+    document.querySelector('.project-panel:nth-last-child(2) > p')!.textContent = nexusConclusion[language];
+    document.querySelectorAll('.project-panel li').forEach((item, index) => { if (nexusLists[language][index]) item.textContent = nexusLists[language][index]; });
+    document.querySelector('.project-footer a')!.textContent = copy.footer;
+    document.querySelector('.nexus-cover-kicker')!.textContent = cover.kicker;
+    document.querySelector('.nexus-cover')!.setAttribute('aria-label', language === 'en' ? 'Representative view of the OMNI // NEXUS project' : language === 'ca' ? 'Vista representativa del projecte OMNI // NEXUS' : 'Vista representativa del proyecto OMNI // NEXUS');
+    document.querySelector('.nexus-cover-body h2')!.innerHTML = cover.title;
+    document.querySelector('.nexus-cover-status')!.textContent = cover.status;
+    document.querySelectorAll('.nexus-cover-pill-row span').forEach((pill, index) => { pill.textContent = cover.pills[index]; });
+    const envBlock = document.querySelector('.project-panel:nth-child(5) .code-block pre');
+    if (envBlock) envBlock.textContent = envBlock.textContent.replace(/tu_clave_omniroute|la_teva_clau_omniroute|your_omniroute_key/g, cover.env);
+    const nexusTitles = { es: 'OMNI // NEXUS · Proyecto', ca: 'OMNI // NEXUS · Projecte', en: 'OMNI // NEXUS · Project' };
+    const nexusDescriptions = { es: 'OMNI // NEXUS — proyecto experimental de chat inteligente con backend Express, SQLite y herramientas de IA.', ca: 'OMNI // NEXUS — projecte experimental de xat intel·ligent amb backend Express, SQLite i eines d’IA.', en: 'OMNI // NEXUS — experimental intelligent chat project with an Express, SQLite and AI tools backend.' };
+    document.title = nexusTitles[language];
+    document.querySelector('meta[name="description"]')?.setAttribute('content', nexusDescriptions[language]);
+    document.documentElement.lang = language;
+    nexusButtons.forEach((button) => { const active = button.dataset.language === language; button.setAttribute('aria-pressed', String(active)); button.classList.toggle('is-active', active); });
+    localStorage.setItem('portfolio-language', language);
+  };
+  const nexusStoredLanguage = localStorage.getItem('portfolio-language');
+  const nexusInitialLanguage = nexusStoredLanguage === 'ca' || nexusStoredLanguage === 'en' ? nexusStoredLanguage : 'es';
+  nexusButtons.forEach((button) => button.addEventListener('click', () => nexusSetLanguage((button.dataset.language || 'es') as 'es' | 'ca' | 'en')));
+  nexusSetLanguage(nexusInitialLanguage);
+</script>
 
 <style>
   body.project-page {

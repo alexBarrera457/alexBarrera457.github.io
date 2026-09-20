@@ -65,8 +65,13 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
       <footer class="cv-footer">
         <span>Àlex Barrera Sardà · 2026</span>
         <div class="cv-actions">
+          <div class="language-switcher" aria-label="Idioma">
+            <button type="button" data-language="es" aria-pressed="true">ES</button>
+            <button type="button" data-language="ca" aria-pressed="false">CA</button>
+            <button type="button" data-language="en" aria-pressed="false">EN</button>
+          </div>
           <button type="button" data-download-cv>Descargar CV ↓</button>
-          <button type="button" onclick="window.print()">Imprimir</button>
+          <button type="button" data-print-cv onclick="window.print()">Imprimir</button>
         </div>
       </footer>
     </main>
@@ -87,6 +92,52 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+  const cvTranslations = {
+    es: ['← Volver al portfolio', 'Desarrollador de Aplicaciones Web', 'Objetivo profesional', 'Estudiante de Desarrollo de Aplicaciones Web con motivación por aprender y crecer en el ámbito tecnológico. Busco una oportunidad de prácticas para aplicar mis conocimientos, trabajar en equipo y seguir mejorando mis competencias digitales y profesionales.', 'Experiencia laboral', 'Formación académica', 'Certificaciones', 'Competencias técnicas', 'Habilidades personales', 'Idiomas', 'Otros datos', 'Descargar CV ↓', 'Imprimir', 'Vista previa del CV', 'Cerrar vista previa', 'Vista previa del currículum', 'Volver', 'Descargar PDF ↓'],
+    ca: ['← Tornar al portfoli', 'Desenvolupador d’Aplicacions Web', 'Objectiu professional', 'Estudiant de Desenvolupament d’Aplicacions Web amb motivació per aprendre i créixer en l’àmbit tecnològic. Busco una oportunitat de pràctiques per aplicar els meus coneixements, treballar en equip i continuar millorant les meves competències digitals i professionals.', 'Experiència laboral', 'Formació acadèmica', 'Certificacions', 'Competències tècniques', 'Habilitats personals', 'Idiomes', 'Altres dades', 'Descarregar CV ↓', 'Imprimir', 'Vista prèvia del CV', 'Tancar la vista prèvia', 'Vista prèvia del currículum', 'Tornar', 'Descarregar PDF ↓'],
+    en: ['← Back to portfolio', 'Web Application Developer', 'Professional objective', 'Web Application Development student motivated to learn and grow in technology. I am looking for an internship opportunity to apply my knowledge, work in a team and continue improving my digital and professional skills.', 'Work experience', 'Education', 'Certifications', 'Technical skills', 'Soft skills', 'Languages', 'Additional information', 'Download résumé ↓', 'Print', 'Résumé preview', 'Close preview', 'Résumé preview', 'Back', 'Download PDF ↓']
+  };
+  const cvLanguageButtons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
+  const cvDetailedTranslations = {
+    es: { titles: ['Canguro', 'Cal Sardà', 'Desarrollo de Aplicaciones Web', 'Bachillerato Tecnológico'], entries: ['Cuidador de niños', 'Dependiente', 'Stucom · Barcelona · Segundo curso', 'Dominiques Barcelona'], certifications: ['Masterclass: Prompting y cartografía de herramientas de Inteligencia Artificial · Cibernarium, 2025.', 'Inteligencia Artificial con Python y Hugging Face Transformers · Cibernarium, 2025.'], languages: ['Catalán: Nativo (C1)', 'Castellano: Nativo', 'Inglés: B1'], other: 'Entusiasta del fútbol, aficionado a la música y a los videojuegos.', skills: ['Interfaces web responsive', 'Bases de datos', 'VS Code', 'Herramientas colaborativas', 'Sistemas operativos', 'Programación backend', 'Depuración de código', 'Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestión del tiempo'] },
+    ca: { titles: ['Cangur', 'Cal Sardà', 'Desenvolupament d’Aplicacions Web', 'Batxillerat Tecnològic'], entries: ['Cuidador d’infants', 'Dependent', 'Stucom · Barcelona · Segon curs', 'Dominiques Barcelona'], certifications: ['Masterclass: Prompting i cartografia d’eines d’Intel·ligència Artificial · Cibernarium, 2025.', 'Intel·ligència Artificial amb Python i Hugging Face Transformers · Cibernarium, 2025.'], languages: ['Català: Natiu (C1)', 'Castellà: Natiu', 'Anglès: B1'], other: 'Entusiasta del futbol, aficionat a la música i als videojocs.', skills: ['Interfícies web responsive', 'Bases de dades', 'VS Code', 'Eines col·laboratives', 'Sistemes operatius', 'Programació backend', 'Depuració de codi', 'Treball en equip', 'Empatia', 'Responsabilitat', 'Gestió del temps'] },
+    en: { titles: ['Childcare', 'Cal Sardà', 'Web Application Development', 'Technological Baccalaureate'], entries: ['Childcare worker', 'Shop assistant', 'Stucom · Barcelona · Second year', 'Dominiques Barcelona'], certifications: ['Masterclass: Prompting and mapping Artificial Intelligence tools · Cibernarium, 2025.', 'Artificial Intelligence with Python and Hugging Face Transformers · Cibernarium, 2025.'], languages: ['Catalan: Native (C1)', 'Spanish: Native', 'English: B1'], other: 'Football enthusiast, music lover and videogame fan.', skills: ['Responsive web interfaces', 'Databases', 'VS Code', 'Collaboration tools', 'Operating systems', 'Backend programming', 'Code debugging', 'Teamwork', 'Empathy', 'Responsibility', 'Time management'] }
+  };
+  const cvSetLanguage = (language: 'es' | 'ca' | 'en') => {
+    const copy = cvTranslations[language];
+    const detail = cvDetailedTranslations[language];
+    document.querySelector('.cv-back')!.textContent = copy[0];
+    document.querySelector('.cv-role')!.textContent = copy[1];
+    document.querySelector('.cv-intro .cv-label')!.textContent = copy[2];
+    document.querySelector('.cv-intro p')!.textContent = copy[3];
+    document.querySelectorAll('.cv-label').forEach((label, index) => { if (index > 0) label.textContent = copy[index + 3]; });
+    document.querySelectorAll('.cv-entry p').forEach((paragraph, index) => { if (detail.entries[index]) paragraph.textContent = detail.entries[index]; });
+    document.querySelectorAll('.cv-entry h2').forEach((heading, index) => { if (detail.titles[index]) heading.textContent = detail.titles[index]; });
+    document.querySelectorAll('.cv-columns > div > .cv-section:nth-child(3) > p').forEach((paragraph, index) => { if (detail.certifications[index]) paragraph.textContent = detail.certifications[index]; });
+    document.querySelectorAll('.cv-skills span').forEach((skill, index) => { if (detail.skills[index]) skill.textContent = detail.skills[index]; });
+    const languageParagraphs = document.querySelectorAll('.cv-columns aside .cv-section:nth-child(3) p');
+    languageParagraphs.forEach((paragraph, index) => { if (detail.languages[index]) paragraph.textContent = detail.languages[index]; });
+    const otherDetails = document.querySelector('.cv-columns aside .cv-section:last-child p');
+    if (otherDetails) otherDetails.textContent = detail.other;
+    document.querySelector('[data-download-cv]')!.textContent = copy[11];
+    document.querySelector('[data-print-cv]')!.textContent = copy[12];
+    document.querySelector('.cv-preview-header h2')!.textContent = copy[13];
+    document.querySelector('[data-close-preview]')!.setAttribute('aria-label', copy[14]);
+    document.querySelector('[data-preview-frame]')!.setAttribute('title', copy[15]);
+    document.querySelector('.cv-preview-actions [data-close-preview]')!.textContent = copy[16];
+    document.querySelector('[data-confirm-download]')!.textContent = copy[17];
+    document.title = language === 'en' ? 'Résumé · Àlex Barrera Sardà' : language === 'ca' ? 'Currículum · Àlex Barrera Sardà' : 'Currículum · Àlex Barrera Sardà';
+    const cvDescriptions = { es: 'Currículum de Àlex Barrera Sardà.', ca: 'Currículum d’Àlex Barrera Sardà.', en: 'Résumé of Àlex Barrera Sardà.' };
+    document.querySelector('meta[name="description"]')?.setAttribute('content', cvDescriptions[language]);
+    document.documentElement.lang = language;
+    cvLanguageButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
+    localStorage.setItem('portfolio-language', language);
+  };
+  const cvStoredLanguage = localStorage.getItem('portfolio-language');
+  const cvInitialLanguage = cvStoredLanguage === 'ca' || cvStoredLanguage === 'en' ? cvStoredLanguage : 'es';
+  cvLanguageButtons.forEach((button) => button.addEventListener('click', () => cvSetLanguage((button.dataset.language || 'es') as 'es' | 'ca' | 'en')));
+  cvSetLanguage(cvInitialLanguage);
+
   const downloadButton = document.querySelector<HTMLButtonElement>('[data-download-cv]');
   const previewDialog = document.querySelector<HTMLDialogElement>('[data-cv-preview]');
   const previewFrame = document.querySelector<HTMLIFrameElement>('[data-preview-frame]');
@@ -225,6 +276,7 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
   @media (max-width: 650px) {
     .cv-page { min-width: 960px; overflow-x: auto; }
     .cv-sheet { width: 920px; margin: 2rem auto; padding: 2.2rem; border-top-width: 8px; }
+    .cv-page .cv-pdf-mode { width: 794px; margin: 0; padding: 40px 38px 30px; }
     .cv-header { grid-template-columns: minmax(0, 1fr) 190px; gap: 2.5rem; padding: 1.4rem 1.4rem 2rem; }
     .cv-identity { align-items: center; flex-direction: row; gap: 1.5rem; }
     .cv-identity > div { width: auto; order: 1; }
