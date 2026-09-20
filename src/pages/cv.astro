@@ -223,20 +223,21 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
   .cv-preview-actions button { border: 1px solid var(--ink); border-radius: 999px; padding: .65rem .9rem; background: transparent; color: var(--ink); cursor: pointer; font: .7rem var(--mono); }
   .cv-preview-actions .cv-preview-download { border-color: var(--coral); background: var(--coral); color: white; }
   @media (max-width: 650px) {
-    .cv-sheet { width: calc(100% - 1rem); margin: .5rem auto; padding: 1rem; border-top-width: 5px; }
-    .cv-header { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; }
-    .cv-identity { align-items: flex-start; flex-direction: column; gap: .9rem; }
-    .cv-identity > div { width: 100%; order: 2; }
-    .cv-photo { order: 1; width: 128px; height: 128px; flex-basis: 128px; }
-    .cv-header h1 { margin: .7rem 0 .25rem; font-size: clamp(2.5rem, 13vw, 4rem); line-height: .9; }
-    .cv-name-line { white-space: normal; }
-    .cv-role { margin-top: .7rem; font-size: 1rem; }
-    .cv-contact { justify-items: start; padding: .9rem 0 0; border-top: 1px solid var(--line); border-left: 0; font-size: .75rem; }
-    .cv-columns { grid-template-columns: 1fr; gap: 0; }
-    .cv-section { padding: 1.35rem 0; }
-    .cv-footer { align-items: flex-start; flex-direction: column; gap: .9rem; }
-    .cv-actions { width: 100%; flex-wrap: wrap; }
-    .cv-footer button { flex: 1 1 140px; }
+    .cv-page { min-width: 960px; overflow-x: auto; }
+    .cv-sheet { width: 920px; margin: 2rem auto; padding: 2.2rem; border-top-width: 8px; }
+    .cv-header { grid-template-columns: minmax(0, 1fr) 190px; gap: 2.5rem; padding: 1.4rem 1.4rem 2rem; }
+    .cv-identity { align-items: center; flex-direction: row; gap: 1.5rem; }
+    .cv-identity > div { width: auto; order: 1; }
+    .cv-photo { order: 2; width: 190px; height: 190px; flex-basis: 190px; border-width: 6px; }
+    .cv-header h1 { margin: 1.2rem 0 .3rem; font-size: 4.8rem; line-height: normal; }
+    .cv-name-line { white-space: nowrap; }
+    .cv-role { margin-top: 1.1rem; font-size: 1.2rem; }
+    .cv-contact { justify-items: end; padding: .9rem 0 .9rem 1.25rem; border-top: 0; border-left: 1px solid var(--line); font-size: .78rem; }
+    .cv-columns { grid-template-columns: 1.25fr .75fr; gap: 3rem; }
+    .cv-section { padding: 2rem 0; }
+    .cv-footer { align-items: center; flex-direction: row; gap: 0; }
+    .cv-actions { width: auto; flex-wrap: nowrap; }
+    .cv-footer button { flex: none; }
     .cv-preview { width: calc(100% - 1rem); height: calc(100% - 1rem); max-height: none; border-radius: 10px; }
     .cv-preview-header { padding: .75rem; }
     .cv-preview-header h2 { font-size: 1rem; }
