@@ -1,0 +1,551 @@
+---
+import '../styles/global.css';
+
+const stack = ['Express', 'SQLite', 'Astro', 'OpenAI', 'Node.js', 'JavaScript'];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="OMNI // NEXUS — proyecto experimental de chat inteligente con backend Express, SQLite y herramientas de IA." />
+    <title>OMNI // NEXUS · Proyecto</title>
+  </head>
+  <body class="project-page">
+    <header class="project-header">
+      <div class="container project-header-inner">
+        <a class="back-link" href="/">← Volver al portfolio</a>
+        <p class="eyebrow project-eyebrow">Proyecto en curso</p>
+        <h1>OMNI // NEXUS</h1>
+        <p class="lead">
+          Aplicación local de chat inteligente con interfaz web, almacenamiento de conversaciones,
+          memoria opcional, búsqueda web, calculadora y routing de herramientas para un backend
+          compatible con OmniRoute/OpenAI.
+        </p>
+        <div class="stack-list">
+          {stack.map((item) => <span>{item}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <div class="container cover-wrap">
+      <div class="project-cover nexus-cover" aria-label="Vista representativa del proyecto OMNI // NEXUS">
+        <div class="nexus-cover-ui">
+          <div class="nexus-cover-header">
+            <span class="nexus-cover-brand">NEXUS</span>
+            <span class="nexus-cover-status">runtime online</span>
+          </div>
+          <div class="nexus-cover-body">
+            <div class="nexus-cover-orbit"></div>
+            <span class="nexus-cover-kicker">YOUR LOCAL INTELLIGENCE LAYER</span>
+            <h2>Think in <em>systems.</em></h2>
+            <div class="nexus-cover-pill-row">
+              <span>WEB SEARCH</span>
+              <span>MEMORY</span>
+              <span>CALCULATOR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="container project-content">
+      <section class="project-panel">
+        <h2>Estado actual</h2>
+        <p>
+          El proyecto está preparado para continuar iterando, depurando y ampliando sin perder
+          contexto. La base funcional ya existe: backend Express, SQLite, API REST, lógica de
+          cálculo, validación de entrada y una interfaz visual con estilo cinematográfico.
+        </p>
+        <div class="status-grid">
+          <div>
+            <h3>✔️ Funciona</h3>
+            <ul>
+              <li>Servidor Express arrancando correctamente</li>
+              <li>API REST estructurada</li>
+              <li>Persistencia SQLite</li>
+              <li>Validación de peticiones del chat</li>
+              <li>UI web con flujo básico de conversaciones</li>
+              <li>Suite de pruebas automatizadas</li>
+            </ul>
+          </div>
+          <div>
+            <h3>⚠️ Bloqueado</h3>
+            <ul>
+              <li>El chat real depende de credenciales activas del proveedor</li>
+              <li>Error verificado: 401 No active credentials for provider: openai</li>
+              <li>El problema es externo al frontend: falta autenticación válida</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <h2>Objetivo del proyecto</h2>
+        <p>OMNI // NEXUS quiere ser una interfaz local para:</p>
+        <ul class="bullet-list">
+          <li>chatear con un agente inteligente</li>
+          <li>guardar conversaciones en SQLite</li>
+          <li>listar, buscar y borrar conversaciones</li>
+          <li>responder con herramientas como WEB, CALCULATOR, CLOCK y CHAT</li>
+          <li>habilitar memoria opcional de usuario</li>
+          <li>ofrecer una UI web ligera y usable</li>
+        </ul>
+      </section>
+
+      <section class="project-panel">
+        <h2>Arquitectura general</h2>
+        <div class="code-block">
+          <pre>
+Frontend
+  src/pages/index.astro
+  src/styles/global.css
+
+Backend
+  server.js
+  routes/
+  services/
+  lib/
+
+Persistencia
+  SQLite con better-sqlite3
+
+Proveedor IA
+  compatible con OmniRoute/OpenAI</pre>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <h2>Cómo arrancar</h2>
+        <div class="code-block">
+          <pre>
+npm install
+cp .env.example .env
+npm run dev</pre>
+        </div>
+        <p>La web se sirve en <strong>http://127.0.0.1:4321</strong> durante desarrollo y el backend continúa en <strong>http://127.0.0.1:3000</strong>.</p>
+      </section>
+
+      <section class="project-panel">
+        <h2>Variables de entorno</h2>
+        <div class="code-block">
+          <pre>
+OMNIROUTE_API_KEY=tu_clave_omniroute
+OMNIROUTE_BASE_URL=http://localhost:20128/v1
+OMNIROUTE_MODEL=gpt-4.1
+PORT=3000
+HOST=127.0.0.1
+ENABLE_MEMORY=false
+NEXUS_DB_PATH=./nexus-memory.db</pre>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <h2>API REST</h2>
+        <div class="api-box">
+          <p><strong>GET /api/health</strong></p>
+          <p><strong>POST /api/chat</strong></p>
+          <p><strong>GET /api/conversations</strong></p>
+          <p><strong>POST /api/conversations</strong></p>
+          <p><strong>GET /api/conversations/:id</strong></p>
+          <p><strong>DELETE /api/conversations/:id</strong></p>
+          <p><strong>GET /api/memory</strong></p>
+          <p><strong>DELETE /api/memory</strong></p>
+        </div>
+      </section>
+
+      <section class="project-panel">
+        <h2>Flujo interno</h2>
+        <ol class="number-list">
+          <li>El usuario envía un mensaje desde la web o la API.</li>
+          <li>El backend valida la petición con la lógica de chat.</li>
+          <li>Se crea o reutiliza la conversación activa.</li>
+          <li>Se decide qué herramientas usar según la intención del usuario.</li>
+          <li>Se construye el contexto con memoria e historial.</li>
+          <li>Se llama al proveedor de IA con el prompt final.</li>
+          <li>La respuesta se persiste y se devuelve al cliente.</li>
+        </ol>
+      </section>
+
+      <section class="project-panel">
+        <h2>Qué tiene funcionando</h2>
+        <ul class="bullet-list">
+          <li>validación de entrada del chat</li>
+          <li>cálculo matemático</li>
+          <li>repositorio de conversaciones</li>
+          <li>repositorio de memoria</li>
+          <li>web search con validación de JSON</li>
+          <li>servicio NEXUS con guardado persistente</li>
+          <li>servidor Express arrancando</li>
+          <li>UI web cargando</li>
+          <li>tests automatizados pasando</li>
+        </ul>
+      </section>
+
+      <section class="project-panel">
+        <h2>Qué falta por mejorar</h2>
+        <ul class="bullet-list">
+          <li>validar la autenticación real del proveedor externo antes de cada arranque</li>
+          <li>añadir fallback si el modelo no está disponible</li>
+          <li>mejorar mensajes de error del backend</li>
+          <li>añadir logs estructurados</li>
+          <li>soportar más modelos y proveedores</li>
+          <li>gestionar mejor memoria automática y semántica</li>
+        </ul>
+      </section>
+
+      <section class="project-panel">
+        <h2>Conclusión</h2>
+        <p>
+          OMNI // NEXUS ya tiene una base sólida, estructura clara, UI funcional y APIs definidas.
+          Lo que falta para que el chat real funcione no es más código “de app”, sino un proveedor
+          activo y autenticado con un endpoint válido. El repo está listo para seguir avanzando,
+          mantener y ampliar, siempre con documentación clara del estado real del proyecto.
+        </p>
+      </section>
+
+      <section class="project-panel contact-panel">
+        <h2>¿Quieres hablar de este proyecto?</h2>
+        <p>
+          Estoy abierto a oportunidades de prácticas, proyectos colaborativos y crecimiento profesional en
+          desarrollo web. Este proyecto sigue evolucionando como una forma de explorar IA, arquitectura de
+          software y experiencia de usuario en un contexto real y práctico.
+        </p>
+        <a class="button primary" href="/">Volver al portfolio</a>
+      </section>
+    </main>
+
+    <footer class="project-footer">
+      <div class="container project-footer-inner">
+        <span>OMNI // NEXUS</span>
+        <a href="/">Volver al portfolio</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  body.project-page {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+
+  .project-header {
+    padding: 6rem 0 2rem;
+    background: linear-gradient(135deg, rgba(52, 120, 246, 0.08), rgba(143, 211, 182, 0.12));
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cover-wrap {
+    padding: 1.5rem 0 0;
+  }
+
+  .project-cover {
+    width: 100%;
+    display: block;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    object-fit: cover;
+    height: 420px;
+    box-shadow: 0 18px 40px rgba(19,34,56,0.08);
+  }
+
+  .nexus-cover {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 25%, rgba(34, 211, 238, 0.32), transparent 18%),
+      radial-gradient(circle at 72% 38%, rgba(96, 165, 250, 0.26), transparent 22%),
+      radial-gradient(circle at 50% 60%, rgba(45, 212, 191, 0.1), transparent 28%),
+      linear-gradient(135deg, #010a13 0%, #081b2d 20%, #0b1c36 45%, #101f43 100%);
+    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.08), 0 0 30px rgba(14, 165, 233, 0.09);
+  }
+
+  .nexus-cover::before,
+  .nexus-cover::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.08);
+  }
+
+  .nexus-cover::before {
+    width: 46rem;
+    height: 22rem;
+    left: 52%;
+    top: 28%;
+    transform: translateX(-50%) rotate(-18deg);
+    box-shadow: 0 0 50px rgba(34, 211, 238, 0.14), inset 0 0 18px rgba(125, 211, 252, 0.08);
+  }
+
+  .nexus-cover::after {
+    width: 58rem;
+    height: 24rem;
+    left: 50%;
+    top: 42%;
+    transform: translateX(-50%) rotate(20deg);
+    border-color: rgba(125, 211, 252, 0.22);
+    box-shadow: inset 0 0 38px rgba(59, 130, 246, 0.08), 0 0 50px rgba(14, 165, 233, 0.08);
+  }
+
+  .nexus-cover-ui {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.96);
+    text-shadow: 0 0 18px rgba(125, 211, 252, 0.18);
+  }
+
+  .nexus-cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 0.7rem var(--mono);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(224, 242, 254, 0.9);
+  }
+
+  .nexus-cover-status::before {
+    content: '';
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background: #ff6b5d;
+    margin-right: .45rem;
+    box-shadow: 0 0 12px rgba(255, 107, 93, 0.8);
+  }
+
+  .nexus-cover-body {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding-bottom: 1.2rem;
+  }
+
+  .nexus-cover-orbit {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.12);
+    background: rgba(15, 23, 42, 0.18);
+  }
+
+  .nexus-cover-kicker {
+    color: rgba(191, 219, 254, 0.8);
+    font: 0.7rem var(--mono);
+    letter-spacing: 0.22em;
+  }
+
+  .nexus-cover-body h2 {
+    font: 800 clamp(2.5rem, 5vw, 6rem)/0.9 var(--serif);
+    letter-spacing: -0.06em;
+  }
+
+  .nexus-cover-body h2 em {
+    font-style: normal;
+    color: #ff7e65;
+    text-shadow: 0 0 18px rgba(255, 126, 101, 0.35);
+  }
+
+  .nexus-cover-pill-row {
+    display: flex;
+    gap: .7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nexus-cover-pill-row span {
+    padding: .5rem .75rem;
+    border: 1px solid rgba(191, 219, 254, 0.25);
+    border-radius: 999px;
+    color: rgba(224, 242, 254, 0.8);
+    font: 0.58rem var(--mono);
+    letter-spacing: 0.17em;
+  }
+
+  .project-header-inner {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .back-link {
+    color: var(--coral-dark);
+    text-decoration: none;
+    font: 0.7rem var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .project-eyebrow {
+    margin: 0;
+  }
+
+  .project-header h1 {
+    font: 400 clamp(2.8rem, 7vw, 6rem)/0.9 var(--serif);
+    letter-spacing: -0.06em;
+  }
+
+  .stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .stack-list span {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.24);
+    color: var(--ink);
+    font: 0.66rem var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .lead {
+    max-width: 52rem;
+    color: var(--muted);
+    font-size: 1.08rem;
+  }
+
+  .project-content {
+    padding: 2.5rem 0 5rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-panel {
+    background: rgba(255,255,255,0.28);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(19,34,56,0.04);
+  }
+
+  .project-panel h2 {
+    margin-bottom: 1rem;
+    font: 400 clamp(1.8rem, 4vw, 2.8rem)/1.05 var(--serif);
+  }
+
+  .project-panel p,
+  .project-panel li {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .status-grid h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.15rem;
+  }
+
+  .bullet-list,
+  .number-list {
+    margin-left: 1.2rem;
+  }
+
+  .code-block {
+    background: #0f172a;
+    color: #e5eefc;
+    border-radius: 16px;
+    padding: 1.1rem 1.2rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .code-block pre {
+    margin: 0;
+    font: 0.8rem/1.6 var(--mono);
+    white-space: pre-wrap;
+  }
+
+  .api-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .api-box p {
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(52, 120, 246, 0.03);
+    margin: 0;
+  }
+
+  .contact-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .button.primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.8rem 1.2rem;
+    text-decoration: none;
+    font-size: 0.88rem;
+  }
+
+  .project-footer {
+    border-top: 1px solid var(--line);
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .project-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .project-footer span {
+    font: 600 1rem var(--serif);
+  }
+
+  .project-footer a {
+    color: var(--coral-dark);
+    text-decoration: none;
+  }
+
+  @media (max-width: 700px) {
+    .status-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-panel {
+      padding: 1.25rem;
+    }
+
+    .project-footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
