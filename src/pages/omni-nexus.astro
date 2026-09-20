@@ -518,6 +518,44 @@ NEXUS_DB_PATH=./nexus-memory.db</pre>
     padding: 1.5rem 0 2.5rem;
   }
 
+  @media (max-width: 850px) {
+    .project-header { padding: 5rem 0 1.5rem; }
+    .project-cover { height: 340px; }
+    .nexus-cover::before { width: 36rem; height: 18rem; }
+    .nexus-cover::after { width: 44rem; height: 20rem; }
+    .status-grid { gap: 1rem; }
+  }
+
+  @media (max-width: 560px) {
+    .project-header { padding: 5rem 0 1rem; }
+    .project-header-inner { gap: .8rem; }
+    .project-header h1 { font-size: clamp(2.7rem, 14vw, 4.5rem); overflow-wrap: anywhere; }
+    .lead { font-size: .95rem; line-height: 1.55; }
+    .stack-list { gap: .4rem; }
+    .stack-list span { padding: .4rem .55rem; font-size: .56rem; }
+    .cover-wrap { padding-top: 1rem; }
+    .project-cover { height: 300px; border-radius: 16px; }
+    .nexus-cover-ui { padding: 1rem; }
+    .nexus-cover-header { gap: .7rem; font-size: .58rem; letter-spacing: .1em; }
+    .nexus-cover-status { text-align: right; }
+    .nexus-cover-body { gap: .7rem; padding-bottom: .4rem; }
+    .nexus-cover-orbit { width: 5rem; height: 5rem; }
+    .nexus-cover-kicker { font-size: .5rem; letter-spacing: .12em; }
+    .nexus-cover-body h2 { font-size: clamp(2.2rem, 13vw, 4rem); }
+    .nexus-cover-pill-row { gap: .35rem; }
+    .nexus-cover-pill-row span { padding: .4rem .5rem; font-size: .45rem; letter-spacing: .1em; }
+    .project-content { padding: 2rem 0 3rem; gap: 1rem; }
+    .project-panel { padding: 1.25rem; border-radius: 16px; }
+    .project-panel h2 { font-size: clamp(1.8rem, 10vw, 2.5rem); }
+    .project-panel p, .project-panel li { line-height: 1.55; }
+    .status-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .bullet-list, .number-list { margin-left: 1rem; padding-left: .25rem; }
+    .code-block { padding: .85rem; border-radius: 10px; }
+    .code-block pre { font-size: .68rem; line-height: 1.5; overflow-wrap: anywhere; }
+    .api-box { grid-template-columns: 1fr; }
+    .project-footer-inner { display: flex; flex-direction: column; gap: .5rem; }
+  }
+
   .project-footer-inner {
     display: flex;
     justify-content: space-between;

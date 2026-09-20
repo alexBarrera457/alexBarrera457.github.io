@@ -70,28 +70,89 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
         </div>
       </footer>
     </main>
+    <dialog class="cv-preview" data-cv-preview>
+      <div class="cv-preview-header">
+        <h2>Vista previa del CV</h2>
+        <button type="button" class="cv-preview-close" data-close-preview aria-label="Cerrar vista previa">×</button>
+      </div>
+      <iframe title="Vista previa del currículum" data-preview-frame></iframe>
+      <div class="cv-preview-actions">
+        <button type="button" data-close-preview>Volver</button>
+        <button type="button" class="cv-preview-download" data-confirm-download>Descargar PDF ↓</button>
+      </div>
+    </dialog>
   </body>
 </html>
 
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   const downloadButton = document.querySelector<HTMLButtonElement>('[data-download-cv]');
-  downloadButton?.addEventListener('click', () => {
-    const pdfGenerator = (window as Window & {
-      html2pdf?: (element: HTMLElement, options: Record<string, unknown>) => { save: () => Promise<void> };
-    }).html2pdf;
-    if (!pdfGenerator) return;
-    const actions = document.querySelector<HTMLElement>('.cv-actions');
-    if (actions) actions.style.display = 'none';
-    pdfGenerator(document.querySelector<HTMLElement>('.cv-sheet')!, {
-      margin: 0,
-      filename: 'curriculum-alex-barrera-sarda.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    }).save().finally(() => {
-      if (actions) actions.style.display = 'flex';
+  const previewDialog = document.querySelector<HTMLDialogElement>('[data-cv-preview]');
+  const previewFrame = document.querySelector<HTMLIFrameElement>('[data-preview-frame]');
+  const confirmDownload = document.querySelector<HTMLButtonElement>('[data-confirm-download]');
+  let previewUrl = '';
+
+  document.querySelectorAll<HTMLButtonElement>('[data-close-preview]').forEach((button) => {
+    button.addEventListener('click', () => {
+      previewDialog?.close();
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = '';
+      if (previewFrame) previewFrame.removeAttribute('src');
     });
+  });
+
+  confirmDownload?.addEventListener('click', () => {
+    if (!previewUrl) return;
+    const link = document.createElement('a');
+    link.href = previewUrl;
+    link.download = 'curriculum-alex-barrera-sarda.pdf';
+    link.click();
+  });
+
+  downloadButton?.addEventListener('click', async () => {
+    const browserWindow = window as Window & {
+      html2canvas?: (element: HTMLElement, options: Record<string, unknown>) => Promise<HTMLCanvasElement>;
+      jspdf?: { jsPDF: new (options: Record<string, unknown>) => { addImage: (...args: unknown[]) => void; output: (type: string) => Blob } };
+    };
+    const canvasGenerator = browserWindow.html2canvas;
+    const jsPDF = browserWindow.jspdf?.jsPDF;
+    if (!canvasGenerator || !jsPDF) {
+      window.alert('No se ha podido cargar el generador del PDF. Recarga la página e inténtalo de nuevo.');
+      return;
+    }
+    const actions = document.querySelector<HTMLElement>('.cv-actions');
+    const sheet = document.querySelector<HTMLElement>('.cv-sheet');
+    if (!sheet) return;
+    downloadButton.disabled = true;
+    if (actions) actions.style.display = 'none';
+    sheet.classList.add('cv-pdf-mode');
+    try {
+      await document.fonts.ready;
+      const canvas = await canvasGenerator(sheet, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+      const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const scale = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+      const imageWidth = canvas.width * scale;
+      const imageHeight = canvas.height * scale;
+      pdf.addImage(
+        canvas.toDataURL('image/jpeg', 0.98),
+        'JPEG',
+        (pageWidth - imageWidth) / 2,
+        (pageHeight - imageHeight) / 2,
+        imageWidth,
+        imageHeight
+      );
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = URL.createObjectURL(pdf.output('blob'));
+      if (previewFrame) previewFrame.src = previewUrl;
+      previewDialog?.showModal();
+    } finally {
+      sheet.classList.remove('cv-pdf-mode');
+      if (actions) actions.style.display = 'flex';
+      downloadButton.disabled = false;
+    }
   });
 </script>
 
@@ -115,7 +176,7 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
   .cv-columns { display: grid; grid-template-columns: 1.25fr .75fr; gap: 3rem; }
   .cv-entry { margin-bottom: 1.25rem; padding-left: 1rem; border-left: 2px solid var(--sage); }
   .cv-entry-meta { color: var(--coral-dark); font: .68rem var(--mono); }
-  .cv-entry h2 { margin: .35rem 0 .1rem; font: 400 1.55rem var(--serif); }
+  .cv-entry h2 { margin: .35rem 0 .1rem; color: var(--ink); font: 400 1.55rem var(--serif); }
   .cv-entry p { color: var(--muted); line-height: 1.55; }
   .cv-section > p + p { margin-top: .8rem; }
   .cv-skills { display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -127,6 +188,62 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
   .cv-footer button:hover { background: var(--ink); color: var(--paper); }
   @media (max-width: 650px) { .cv-sheet { padding: 1.2rem; border-top-width: 6px; } .cv-header, .cv-columns { display: grid; grid-template-columns: 1fr; } .cv-header { padding: 1rem; } .cv-identity { align-items: flex-start; flex-direction: column; gap: 1rem; } .cv-photo { width: 150px; height: 150px; flex-basis: 150px; } .cv-role { font-size: 1rem; } .cv-contact { justify-items: start; padding: .9rem 0 0; border-left: 0; border-top: 1px solid var(--line); } .cv-footer { align-items: flex-start; flex-direction: column; gap: .8rem; } .cv-actions { flex-wrap: wrap; } }
   @page { size: A4; margin: 0; }
+  .cv-pdf-mode { width: 794px; min-height: 0; margin: 0; padding: 40px 38px 30px; border-top-width: 5px; box-shadow: none; }
+  .cv-pdf-mode .cv-header { grid-template-columns: minmax(0, 1fr) 150px; gap: 1rem; padding: 1.1rem 1.1rem 1.3rem; border-radius: 12px; }
+  .cv-pdf-mode .cv-identity { gap: .85rem; }
+  .cv-pdf-mode .cv-photo { width: 132px; height: 132px; flex-basis: 132px; border-width: 4px; }
+  .cv-pdf-mode .cv-header h1 { margin: .55rem 0 .15rem; font-size: 2.75rem; line-height: .9; }
+  .cv-pdf-mode .cv-name-line { white-space: normal; }
+  .cv-pdf-mode .cv-role { margin-top: .6rem; padding: .15rem 0 .15rem .55rem; font-size: .86rem; }
+  .cv-pdf-mode .cv-contact { gap: .25rem; padding-left: .7rem; font-size: .61rem; }
+  .cv-pdf-mode .cv-section { padding: 1.35rem 0; }
+  .cv-pdf-mode .cv-label { margin-bottom: .7rem; font-size: .63rem; }
+  .cv-pdf-mode .cv-intro p, .cv-pdf-mode .cv-section > p, .cv-pdf-mode .cv-entry p { line-height: 1.58; }
+  .cv-pdf-mode .cv-entry { margin-bottom: 1rem; padding-left: .85rem; }
+  .cv-pdf-mode .cv-entry-meta { font-size: .63rem; }
+  .cv-pdf-mode .cv-entry h2 { margin: .22rem 0 .05rem; color: var(--ink); font-size: 1.32rem; }
+  .cv-pdf-mode .cv-columns { gap: 2rem; }
+  .cv-pdf-mode .cv-skills { gap: .38rem; }
+  .cv-pdf-mode .cv-skills span { padding: .32rem .52rem; font-size: .61rem; }
+  .cv-pdf-mode .cv-section > p + p { margin-top: .65rem; }
+  .cv-pdf-mode .cv-footer { padding-top: 1.05rem; font-size: .66rem; }
+  .cv-pdf-mode .cv-back, .cv-pdf-mode .cv-actions { display: none; }
+  .cv-pdf-mode h1 { color: var(--ink); opacity: 1; transform: none; animation: none !important; }
+  .cv-pdf-mode h1 em { color: var(--coral); }
+  .cv-pdf-mode * { transition: none !important; }
+  .cv-pdf-mode .cv-section, .cv-pdf-mode .cv-entry, .cv-pdf-mode .cv-header { break-inside: avoid; }
+  .cv-preview { width: min(900px, calc(100% - 2rem)); height: min(92vh, 900px); padding: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); color: var(--ink); box-shadow: 0 24px 80px rgba(19,34,56,.3); }
+  .cv-preview::backdrop { background: rgba(19,34,56,.72); }
+  .cv-preview-header, .cv-preview-actions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; }
+  .cv-preview-header { border-bottom: 1px solid var(--line); }
+  .cv-preview-header h2 { font: 400 1.2rem var(--serif); }
+  .cv-preview-close { border: 0; background: transparent; color: var(--ink); cursor: pointer; font-size: 1.6rem; line-height: 1; }
+  .cv-preview iframe { display: block; width: 100%; height: calc(100% - 116px); border: 0; background: #525659; }
+  .cv-preview-actions { justify-content: flex-end; border-top: 1px solid var(--line); }
+  .cv-preview-actions button { border: 1px solid var(--ink); border-radius: 999px; padding: .65rem .9rem; background: transparent; color: var(--ink); cursor: pointer; font: .7rem var(--mono); }
+  .cv-preview-actions .cv-preview-download { border-color: var(--coral); background: var(--coral); color: white; }
+  @media (max-width: 650px) {
+    .cv-sheet { width: calc(100% - 1rem); margin: .5rem auto; padding: 1rem; border-top-width: 5px; }
+    .cv-header { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; }
+    .cv-identity { align-items: flex-start; flex-direction: column; gap: .9rem; }
+    .cv-identity > div { width: 100%; order: 2; }
+    .cv-photo { order: 1; width: 128px; height: 128px; flex-basis: 128px; }
+    .cv-header h1 { margin: .7rem 0 .25rem; font-size: clamp(2.5rem, 13vw, 4rem); line-height: .9; }
+    .cv-name-line { white-space: normal; }
+    .cv-role { margin-top: .7rem; font-size: 1rem; }
+    .cv-contact { justify-items: start; padding: .9rem 0 0; border-top: 1px solid var(--line); border-left: 0; font-size: .75rem; }
+    .cv-columns { grid-template-columns: 1fr; gap: 0; }
+    .cv-section { padding: 1.35rem 0; }
+    .cv-footer { align-items: flex-start; flex-direction: column; gap: .9rem; }
+    .cv-actions { width: 100%; flex-wrap: wrap; }
+    .cv-footer button { flex: 1 1 140px; }
+    .cv-preview { width: calc(100% - 1rem); height: calc(100% - 1rem); max-height: none; border-radius: 10px; }
+    .cv-preview-header { padding: .75rem; }
+    .cv-preview-header h2 { font-size: 1rem; }
+    .cv-preview iframe { height: calc(100% - 124px); }
+    .cv-preview-actions { flex-wrap: wrap; padding: .75rem; }
+    .cv-preview-actions button { flex: 1 1 130px; }
+  }
   @media print {
     html, body { background: #fff !important; }
     body::before { display: none !important; }
@@ -148,7 +265,7 @@ const softSkills = ['Trabajo en equipo', 'Empatía', 'Responsabilidad', 'Gestió
     .cv-skills span { padding: .32rem .52rem; font-size: .61rem; }
     .cv-section > p + p { margin-top: .65rem; }
     .cv-footer { padding-top: 1.05rem; font-size: .66rem; }
-    .cv-back, .cv-actions { display: none; }
+    .cv-back, .cv-actions, .cv-actions button, .cv-preview { display: none !important; }
     .cv-section, .cv-entry, .cv-header { break-inside: avoid; }
     * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   }
