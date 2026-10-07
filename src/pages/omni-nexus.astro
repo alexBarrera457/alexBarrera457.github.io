@@ -1,669 +1,1315 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
-const stack = ['Express', 'SQLite', 'Astro', 'OpenAI', 'Node.js', 'JavaScript'];
+const stack = ['Node.js 24', 'Express 5', 'SQLite (WAL)', 'Astro 5', 'OpenAI SDK', 'Deep Modules', 'Helmet & Security', '27 Tests Unitarios'];
+
+const appViews = [
+  {
+    id: 'home',
+    title: 'Dashboard Principal & Ambient Canvas',
+    badge: 'UI & Quick Prompts',
+    desc: 'Entorno de chat local con fondo procedural de partículas, panel lateral de inicio rápido (Aprender, Crear, Resolver, Mejorar) e indicador dinámico de runtime.',
+    img: '/images/nexus-home.jpg'
+  },
+  {
+    id: 'chat',
+    title: 'Sesión de Chat & Memoria Persistente',
+    badge: 'Interacción & Diálogo',
+    desc: 'Conversación activa sobre arquitectura de Deep Modules con formateo de respuestas, persistencia relacional en SQLite con WAL mode y resaltado en el historial.',
+    img: '/images/nexus-chat.jpg'
+  },
+  {
+    id: 'tools',
+    title: 'Orquestación & Routing de Herramientas',
+    badge: 'Tools: Calculator & Clock',
+    desc: 'Plan de ejecución coordinado por OMNI con activación de herramientas de cálculo de expresiones complejas y consulta horaria de sistema sin latencia externa.',
+    img: '/images/nexus-tools.jpg'
+  }
+];
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="OMNI // NEXUS — proyecto experimental de chat inteligente con backend Express, SQLite y herramientas de IA." />
-    <title>OMNI // NEXUS · Proyecto</title>
-  </head>
-  <body class="project-page">
-    <header class="project-header">
-      <div class="container project-header-inner">
+<BaseLayout
+  title="OMNI // NEXUS · Capa Local de Inteligencia y Chat con IA"
+  description="OMNI // NEXUS — Aplicación local de chat inteligente con backend Express, persistencia en SQLite, herramientas modulares (WEB, CALCULATOR, CLOCK) e interfaz en Astro."
+  ogImage="https://alexbarrera457.github.io/images/nexus-home.jpg"
+  canonicalUrl="https://alexbarrera457.github.io/omni-nexus"
+  bodyClass="project-page"
+>
+  <header class="project-header">
+    <div class="container project-header-inner">
+      <div class="header-nav-bar">
         <a class="back-link" href="/">← Volver al portfolio</a>
-        <p class="eyebrow project-eyebrow">Proyecto en curso</p>
-        <h1>OMNI // NEXUS</h1>
+        <LanguageSwitcher />
+      </div>
+
+      <div class="header-hero">
+        <span class="eyebrow project-eyebrow">Proyecto experimental · Aplicación real · 2026</span>
+        <h1 class="project-title">OMNI // NEXUS</h1>
         <p class="lead">
-          Aplicación local de chat inteligente con interfaz web, almacenamiento de conversaciones,
-          memoria opcional, búsqueda web, calculadora y routing de herramientas para un backend
-          compatible con OmniRoute/OpenAI.
+          Capa local de inteligencia y asistente conversacional avanzado diseñado bajo principios de <strong>Deep Modules</strong>.
+          Combina un backend modular en <strong>Express 5</strong>, base de datos relacional <strong>SQLite con WAL</strong>,
+          routing de herramientas locales (cálculo, reloj, búsqueda web) y una interfaz cinematográfica construida en <strong>Astro 5</strong>.
         </p>
         <div class="stack-list">
-          {stack.map((item) => <span>{item}</span>)}
+          {stack.map((item) => <span class="stack-pill">{item}</span>)}
         </div>
-        <div class="language-switcher" aria-label="Idioma">
-          <button type="button" data-language="es" aria-pressed="true">ES</button>
-          <button type="button" data-language="ca" aria-pressed="false">CA</button>
-          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        <div class="header-actions">
+          <a class="button primary" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer" data-header-repo-btn>
+            Ver repositorio en GitHub ↗
+          </a>
+          <a class="button" href="#capturas-reales" data-header-gallery-btn>
+            Explorar capturas reales ↓
+          </a>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div class="container cover-wrap">
-      <div class="project-cover nexus-cover" aria-label="Vista representativa del proyecto OMNI // NEXUS">
-        <div class="nexus-cover-ui">
-          <div class="nexus-cover-header">
-            <span class="nexus-cover-brand">NEXUS</span>
-            <span class="nexus-cover-status">runtime online</span>
-          </div>
-          <div class="nexus-cover-body">
-            <div class="nexus-cover-orbit"></div>
-            <span class="nexus-cover-kicker">YOUR LOCAL INTELLIGENCE LAYER</span>
-            <h2>Think in <em>systems.</em></h2>
-            <div class="nexus-cover-pill-row">
-              <span>WEB SEARCH</span>
-              <span>MEMORY</span>
-              <span>CALCULATOR</span>
-            </div>
+  <!-- Real Web Application Hero Showcase -->
+  <div class="container cover-wrap" id="capturas-reales">
+    <div class="browser-showcase">
+      <div class="browser-bar">
+        <div class="browser-controls">
+          <span class="dot close"></span>
+          <span class="dot min"></span>
+          <span class="dot max"></span>
+        </div>
+        <div class="browser-url">
+          <span class="url-lock">🔒</span>
+          <span class="url-text">http://127.0.0.1:3080/</span>
+          <span class="url-badge">Node.js · Express 5 · SQLite WAL</span>
+        </div>
+        <div class="browser-actions">
+          <span class="live-dot"></span>
+          <span class="live-text">Captura real de la app</span>
+        </div>
+      </div>
+      <div class="browser-screen">
+        <img
+          id="main-showcase-img"
+          src="/images/nexus-home.jpg"
+          alt="Captura real del entorno local OMNI // NEXUS"
+          class="showcase-img"
+          width="1440"
+          height="900"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="showcase-floating-badge">
+          <span class="floating-icon">✦</span>
+          <div>
+            <strong>NEXUS Runtime Online</strong>
+            <span>Local Intelligence Layer · Provider: gpt-4.1</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <main class="container project-content">
-      <section class="project-panel">
-        <h2>Estado actual</h2>
-        <p>
-          El proyecto está preparado para continuar iterando, depurando y ampliando sin perder
-          contexto. La base funcional ya existe: backend Express, SQLite, API REST, lógica de
-          cálculo, validación de entrada y una interfaz visual con estilo cinematográfico.
-        </p>
-        <div class="status-grid">
-          <div>
-            <h3>✔️ Funciona</h3>
-            <ul>
-              <li>Servidor Express arrancando correctamente</li>
-              <li>API REST estructurada</li>
-              <li>Persistencia SQLite</li>
-              <li>Validación de peticiones del chat</li>
-              <li>UI web con flujo básico de conversaciones</li>
-              <li>Suite de pruebas automatizadas</li>
-            </ul>
-          </div>
-          <div>
-            <h3>⚠️ Bloqueado</h3>
-            <ul>
-              <li>El chat real depende de credenciales activas del proveedor</li>
-              <li>Error verificado: 401 No active credentials for provider: openai</li>
-              <li>El problema es externo al frontend: falta autenticación válida</li>
-            </ul>
-          </div>
+  <main class="container project-content">
+    <!-- Real Views Tabs & Gallery Section -->
+    <section class="project-panel gallery-panel">
+      <div class="panel-header-row">
+        <div>
+          <h2 data-gallery-title>Capturas reales de la aplicación</h2>
+          <p data-gallery-subtitle>
+            Vistas reales de la plataforma capturadas en ejecución local con persistencia SQLite y fondo procedural en canvas:
+          </p>
         </div>
-      </section>
-
-      <section class="project-panel">
-        <h2>Objetivo del proyecto</h2>
-        <p>OMNI // NEXUS quiere ser una interfaz local para:</p>
-        <ul class="bullet-list">
-          <li>chatear con un agente inteligente</li>
-          <li>guardar conversaciones en SQLite</li>
-          <li>listar, buscar y borrar conversaciones</li>
-          <li>responder con herramientas como WEB, CALCULATOR, CLOCK y CHAT</li>
-          <li>habilitar memoria opcional de usuario</li>
-          <li>ofrecer una UI web ligera y usable</li>
-        </ul>
-      </section>
-
-      <section class="project-panel">
-        <h2>Arquitectura general</h2>
-        <div class="code-block">
-          <pre>
-Frontend
-  src/pages/index.astro
-  src/styles/global.css
-
-Backend
-  server.js
-  routes/
-  services/
-  lib/
-
-Persistencia
-  SQLite con better-sqlite3
-
-Proveedor IA
-  compatible con OmniRoute/OpenAI</pre>
-        </div>
-      </section>
-
-      <section class="project-panel">
-        <h2>Cómo arrancar</h2>
-        <div class="code-block">
-          <pre>
-npm install
-cp .env.example .env
-npm run dev</pre>
-        </div>
-        <p>La web se sirve en <strong>http://127.0.0.1:4321</strong> durante desarrollo y el backend continúa en <strong>http://127.0.0.1:3000</strong>.</p>
-      </section>
-
-      <section class="project-panel">
-        <h2>Variables de entorno</h2>
-        <div class="code-block">
-          <pre>
-OMNIROUTE_API_KEY=tu_clave_omniroute
-OMNIROUTE_BASE_URL=http://localhost:20128/v1
-OMNIROUTE_MODEL=gpt-4.1
-PORT=3000
-HOST=127.0.0.1
-ENABLE_MEMORY=false
-NEXUS_DB_PATH=./nexus-memory.db</pre>
-        </div>
-      </section>
-
-      <section class="project-panel">
-        <h2>API REST</h2>
-        <div class="api-box">
-          <p><strong>GET /api/health</strong></p>
-          <p><strong>POST /api/chat</strong></p>
-          <p><strong>GET /api/conversations</strong></p>
-          <p><strong>POST /api/conversations</strong></p>
-          <p><strong>GET /api/conversations/:id</strong></p>
-          <p><strong>DELETE /api/conversations/:id</strong></p>
-          <p><strong>GET /api/memory</strong></p>
-          <p><strong>DELETE /api/memory</strong></p>
-        </div>
-      </section>
-
-      <section class="project-panel">
-        <h2>Flujo interno</h2>
-        <ol class="number-list">
-          <li>El usuario envía un mensaje desde la web o la API.</li>
-          <li>El backend valida la petición con la lógica de chat.</li>
-          <li>Se crea o reutiliza la conversación activa.</li>
-          <li>Se decide qué herramientas usar según la intención del usuario.</li>
-          <li>Se construye el contexto con memoria e historial.</li>
-          <li>Se llama al proveedor de IA con el prompt final.</li>
-          <li>La respuesta se persiste y se devuelve al cliente.</li>
-        </ol>
-      </section>
-
-      <section class="project-panel">
-        <h2>Qué tiene funcionando</h2>
-        <ul class="bullet-list">
-          <li>validación de entrada del chat</li>
-          <li>cálculo matemático</li>
-          <li>repositorio de conversaciones</li>
-          <li>repositorio de memoria</li>
-          <li>web search con validación de JSON</li>
-          <li>servicio NEXUS con guardado persistente</li>
-          <li>servidor Express arrancando</li>
-          <li>UI web cargando</li>
-          <li>tests automatizados pasando</li>
-        </ul>
-      </section>
-
-      <section class="project-panel">
-        <h2>Qué falta por mejorar</h2>
-        <ul class="bullet-list">
-          <li>validar la autenticación real del proveedor externo antes de cada arranque</li>
-          <li>añadir fallback si el modelo no está disponible</li>
-          <li>mejorar mensajes de error del backend</li>
-          <li>añadir logs estructurados</li>
-          <li>soportar más modelos y proveedores</li>
-          <li>gestionar mejor memoria automática y semántica</li>
-        </ul>
-      </section>
-
-      <section class="project-panel">
-        <h2>Conclusión</h2>
-        <p>
-          OMNI // NEXUS ya tiene una base sólida, estructura clara, UI funcional y APIs definidas.
-          Lo que falta para que el chat real funcione no es más código “de app”, sino un proveedor
-          activo y autenticado con un endpoint válido. El repo está listo para seguir avanzando,
-          mantener y ampliar, siempre con documentación clara del estado real del proyecto.
-        </p>
-      </section>
-
-      <section class="project-panel contact-panel">
-        <h2 data-nexus-contact-title>¿Quieres hablar de este proyecto?</h2>
-        <p data-nexus-contact-description>
-          Estoy abierto a oportunidades de prácticas, proyectos colaborativos y crecimiento profesional en
-          desarrollo web. Este proyecto sigue evolucionando como una forma de explorar IA, arquitectura de
-          software y experiencia de usuario en un contexto real y práctico.
-        </p>
-        <a class="button primary" data-nexus-contact-button href="/">Volver al portfolio</a>
-      </section>
-    </main>
-
-    <footer class="project-footer">
-      <div class="container project-footer-inner">
-        <span>OMNI // NEXUS</span>
-        <a href="/">Volver al portfolio</a>
       </div>
-    </footer>
-  </body>
-</html>
 
-<script>
-  const nexusTranslations = {
-    es: { back: '← Volver al portfolio', eyebrow: 'Proyecto en curso', lead: 'Aplicación local de chat inteligente con interfaz web, almacenamiento de conversaciones, memoria opcional, búsqueda web, calculadora y routing de herramientas para un backend compatible con OmniRoute/OpenAI.', headings: ['Estado actual', 'Objetivo del proyecto', 'Arquitectura general', 'Cómo arrancar', 'Variables de entorno', 'API REST', 'Flujo interno', 'Qué tiene funcionando', 'Qué falta por mejorar', 'Conclusión', '¿Quieres hablar de este proyecto?'], footer: 'Volver al portfolio' },
-    ca: { back: '← Tornar al portfoli', eyebrow: 'Projecte en curs', lead: 'Aplicació local de xat intel·ligent amb interfície web, emmagatzematge de converses, memòria opcional, cerca web, calculadora i routing d’eines per a un backend compatible amb OmniRoute/OpenAI.', headings: ['Estat actual', 'Objectiu del projecte', 'Arquitectura general', 'Com iniciar-lo', 'Variables d’entorn', 'API REST', 'Flux intern', 'Què funciona', 'Què falta per millorar', 'Conclusió', 'Vols parlar d’aquest projecte?'], footer: 'Tornar al portfoli' },
-    en: { back: '← Back to portfolio', eyebrow: 'Project in progress', lead: 'Local intelligent chat application with a web interface, conversation storage, optional memory, web search, calculator and tool routing for an OmniRoute/OpenAI-compatible backend.', headings: ['Current status', 'Project goal', 'General architecture', 'How to start', 'Environment variables', 'REST API', 'Internal flow', 'What is working', 'What remains to improve', 'Conclusion', 'Want to talk about this project?'], footer: 'Back to portfolio' }
-  };
-  const nexusButtons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
-  const nexusConclusion = {
-    es: 'OMNI // NEXUS ya tiene una base sólida, estructura clara, UI funcional y APIs definidas. Lo que falta para que el chat real funcione no es más código “de app”, sino un proveedor activo y autenticado con un endpoint válido. El repo está listo para seguir avanzando, mantener y ampliar, siempre con documentación clara del estado real del proyecto.',
-    ca: 'OMNI // NEXUS ja té una base sòlida, una estructura clara, una UI funcional i APIs definides. El que falta perquè el xat real funcioni no és més codi “d’app”, sinó un proveïdor actiu i autenticat amb un endpoint vàlid. El repositori està preparat per continuar avançant, mantenir-se i ampliar-se, sempre amb documentació clara del seu estat real.',
-    en: 'OMNI // NEXUS already has a solid foundation, clear structure, functional UI and defined APIs. What is missing for real chat is not more app code, but an active, authenticated provider with a valid endpoint. The repository is ready to keep evolving, be maintained and expanded with clear documentation of its actual state.'
-  };
-  const nexusDetails = {
-    es: { status: 'El proyecto está preparado para continuar iterando, depurando y ampliando sin perder contexto. La base funcional ya existe: backend Express, SQLite, API REST, lógica de cálculo, validación de entrada y una interfaz visual con estilo cinematográfico.', goal: 'OMNI // NEXUS quiere ser una interfaz local para:', start: 'La web se sirve en <strong>http://127.0.0.1:4321</strong> durante desarrollo y el backend continúa en <strong>http://127.0.0.1:3000</strong>.', contact: 'Estoy abierto a oportunidades de prácticas, proyectos colaborativos y crecimiento profesional en desarrollo web. Este proyecto sigue evolucionando como una forma de explorar IA, arquitectura de software y experiencia de usuario en un contexto real y práctico.', statusHeadings: ['✔️ Funciona', '⚠️ Bloqueado'] },
-    ca: { status: 'El projecte està preparat per continuar iterant, depurant i ampliant sense perdre context. La base funcional ja existeix: backend Express, SQLite, API REST, lògica de càlcul, validació d’entrada i una interfície visual amb estil cinematogràfic.', goal: 'OMNI // NEXUS vol ser una interfície local per a:', start: 'La web s’ofereix a <strong>http://127.0.0.1:4321</strong> durant el desenvolupament i el backend continua a <strong>http://127.0.0.1:3000</strong>.', contact: 'Estic obert a oportunitats de pràctiques, projectes col·laboratius i creixement professional en desenvolupament web. Aquest projecte continua evolucionant com una manera d’explorar la IA, l’arquitectura de programari i l’experiència d’usuari en un context real i pràctic.', statusHeadings: ['✔️ Funciona', '⚠️ Bloquejat'] },
-    en: { status: 'The project is ready to keep iterating, debugging and expanding without losing context. The functional foundation already exists: Express backend, SQLite, REST API, calculation logic, input validation and a visual interface with a cinematic style.', goal: 'OMNI // NEXUS aims to be a local interface for:', start: 'The web is served at <strong>http://127.0.0.1:4321</strong> during development and the backend continues at <strong>http://127.0.0.1:3000</strong>.', contact: 'I am open to internship opportunities, collaborative projects and professional growth in web development. This project keeps evolving as a way to explore AI, software architecture and user experience in a real, practical context.', statusHeadings: ['✔️ Working', '⚠️ Blocked'] }
-  };
-  const nexusCoverTranslations = {
-    es: { status: 'runtime online', kicker: 'TU CAPA DE INTELIGENCIA LOCAL', title: 'Piensa en <em>sistemas.</em>', pills: ['BÚSQUEDA WEB', 'MEMORIA', 'CALCULADORA'], env: 'tu_clave_omniroute' },
-    ca: { status: 'runtime online', kicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', title: 'Pensa en <em>sistemes.</em>', pills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA'], env: 'la_teva_clau_omniroute' },
-    en: { status: 'runtime online', kicker: 'YOUR LOCAL INTELLIGENCE LAYER', title: 'Think in <em>systems.</em>', pills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'], env: 'your_omniroute_key' }
-  };
-  const nexusArchitecture = {
-    es: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistencia\n  SQLite con better-sqlite3\n\nProveedor IA\n  compatible con OmniRoute/OpenAI',
-    ca: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistència\n  SQLite amb better-sqlite3\n\nProveïdor d’IA\n  compatible amb OmniRoute/OpenAI',
-    en: 'Frontend\n  src/pages/index.astro\n  src/styles/global.css\n\nBackend\n  server.js\n  routes/\n  services/\n  lib/\n\nPersistence\n  SQLite with better-sqlite3\n\nAI provider\n  compatible with OmniRoute/OpenAI'
-  };
-  const nexusLists = {
-    es: ['Servidor Express arrancando correctamente', 'API REST estructurada', 'Persistencia SQLite', 'Validación de peticiones del chat', 'UI web con flujo básico de conversaciones', 'Suite de pruebas automatizadas', 'El chat real depende de credenciales activas del proveedor', 'Error verificado: 401 No active credentials for provider: openai', 'El problema es externo al frontend: falta autenticación válida', 'chatear con un agente inteligente', 'guardar conversaciones en SQLite', 'listar, buscar y borrar conversaciones', 'responder con herramientas como WEB, CALCULATOR, CLOCK y CHAT', 'habilitar memoria opcional de usuario', 'ofrecer una UI web ligera y usable', 'El usuario envía un mensaje desde la web o la API.', 'El backend valida la petición con la lógica de chat.', 'Se crea o reutiliza la conversación activa.', 'Se decide qué herramientas usar según la intención del usuario.', 'Se construye el contexto con memoria e historial.', 'Se llama al proveedor de IA con el prompt final.', 'La respuesta se persiste y se devuelve al cliente.', 'validación de entrada del chat', 'cálculo matemático', 'repositorio de conversaciones', 'repositorio de memoria', 'web search con validación de JSON', 'servicio NEXUS con guardado persistente', 'servidor Express arrancando', 'UI web cargando', 'tests automatizados pasando', 'validar la autenticación real del proveedor externo antes de cada arranque', 'añadir fallback si el modelo no está disponible', 'mejorar mensajes de error del backend', 'añadir logs estructurados', 'soportar más modelos y proveedores', 'gestionar mejor memoria automática y semántica'],
-    ca: ['Servidor Express iniciat correctament', 'API REST estructurada', 'Persistència SQLite', 'Validació de peticions del xat', 'UI web amb flux bàsic de converses', 'Suite de proves automatitzades', 'El xat real depèn de credencials actives del proveïdor', 'Error verificat: 401 No active credentials for provider: openai', 'El problema és extern al frontend: falta autenticació vàlida', 'xatejar amb un agent intel·ligent', 'desar converses a SQLite', 'llistar, cercar i eliminar converses', 'respondre amb eines com WEB, CALCULATOR, CLOCK i CHAT', 'activar memòria d’usuari opcional', 'oferir una UI web lleugera i usable', 'L’usuari envia un missatge des de la web o l’API.', 'El backend valida la petició amb la lògica del xat.', 'Es crea o reutilitza la conversa activa.', 'Es decideix quines eines utilitzar segons la intenció.', 'Es construeix el context amb memòria i historial.', 'Es crida el proveïdor d’IA amb el prompt final.', 'La resposta es desa i es retorna al client.', 'validació d’entrada del xat', 'càlcul matemàtic', 'repositori de converses', 'repositori de memòria', 'cerca web amb validació de JSON', 'servei NEXUS amb desament persistent', 'servidor Express iniciat', 'UI web carregant', 'tests automatitzats superats', 'validar l’autenticació real del proveïdor abans de cada inici', 'afegir un fallback si el model no està disponible', 'millorar els missatges d’error del backend', 'afegir logs estructurats', 'admetre més models i proveïdors', 'gestionar millor la memòria automàtica i semàntica'],
-    en: ['Express server starting correctly', 'Structured REST API', 'SQLite persistence', 'Chat request validation', 'Web UI with a basic conversation flow', 'Automated test suite', 'Real chat depends on active provider credentials', 'Verified error: 401 No active credentials for provider: openai', 'The issue is external to the frontend: valid authentication is missing', 'chat with an intelligent agent', 'save conversations in SQLite', 'list, search and delete conversations', 'respond with tools such as WEB, CALCULATOR, CLOCK and CHAT', 'enable optional user memory', 'offer a lightweight, usable web UI', 'The user sends a message from the web or API.', 'The backend validates the request with chat logic.', 'The active conversation is created or reused.', 'Tools are selected according to the user’s intent.', 'Context is built from memory and history.', 'The AI provider is called with the final prompt.', 'The response is saved and returned to the client.', 'chat input validation', 'mathematical calculation', 'conversation repository', 'memory repository', 'web search with JSON validation', 'NEXUS service with persistent storage', 'Express server starting', 'Web UI loading', 'automated tests passing', 'validate the provider’s real authentication before each start', 'add a fallback when the model is unavailable', 'improve backend error messages', 'add structured logs', 'support more models and providers', 'handle automatic and semantic memory better']
-  };
-  const nexusSetLanguage = (language: 'es' | 'ca' | 'en') => {
-    nexusButtons.forEach((button) => { const active = button.dataset.language === language; button.setAttribute('aria-pressed', String(active)); button.classList.toggle('is-active', active); });
-    const copy = nexusTranslations[language];
-    const detail = nexusDetails[language];
-    const cover = nexusCoverTranslations[language];
-    document.querySelector('.back-link')!.textContent = copy.back;
-    document.querySelector('.project-eyebrow')!.textContent = copy.eyebrow;
-    document.querySelector('.lead')!.textContent = copy.lead;
-    document.querySelectorAll('.project-panel h2').forEach((heading, index) => { heading.textContent = copy.headings[index]; });
-    const contactHeading = document.querySelector('[data-nexus-contact-title]');
-    if (contactHeading) contactHeading.textContent = copy.headings[10];
-    document.querySelector('.project-panel p')!.textContent = detail.status;
-    document.querySelector('.status-grid > div:first-child h3')!.textContent = detail.statusHeadings[0];
-    document.querySelector('.status-grid > div:last-child h3')!.textContent = detail.statusHeadings[1];
-    document.querySelector('.project-panel:nth-child(2) p')!.textContent = detail.goal;
-    document.querySelector('.project-panel:nth-child(4) > p')!.innerHTML = detail.start;
-    document.querySelector('.project-panel:nth-child(3) .code-block pre')!.textContent = nexusArchitecture[language];
-    document.querySelector('[data-nexus-contact-description]')!.textContent = detail.contact;
-    document.querySelector('[data-nexus-contact-button]')!.textContent = copy.footer;
-    document.querySelector('.project-panel:nth-last-child(2) > p')!.textContent = nexusConclusion[language];
-    document.querySelectorAll('.project-panel li').forEach((item, index) => { if (nexusLists[language][index]) item.textContent = nexusLists[language][index]; });
-    document.querySelector('.project-footer a')!.textContent = copy.footer;
-    document.querySelector('.nexus-cover-kicker')!.textContent = cover.kicker;
-    document.querySelector('.nexus-cover')!.setAttribute('aria-label', language === 'en' ? 'Representative view of the OMNI // NEXUS project' : language === 'ca' ? 'Vista representativa del projecte OMNI // NEXUS' : 'Vista representativa del proyecto OMNI // NEXUS');
-    document.querySelector('.nexus-cover-body h2')!.innerHTML = cover.title;
-    document.querySelector('.nexus-cover-status')!.textContent = cover.status;
-    document.querySelectorAll('.nexus-cover-pill-row span').forEach((pill, index) => { pill.textContent = cover.pills[index]; });
-    const envBlock = document.querySelector('.project-panel:nth-child(5) .code-block pre');
-    if (envBlock) envBlock.textContent = envBlock.textContent.replace(/tu_clave_omniroute|la_teva_clau_omniroute|your_omniroute_key/g, cover.env);
-    const nexusTitles = { es: 'OMNI // NEXUS · Proyecto', ca: 'OMNI // NEXUS · Projecte', en: 'OMNI // NEXUS · Project' };
-    const nexusDescriptions = { es: 'OMNI // NEXUS — proyecto experimental de chat inteligente con backend Express, SQLite y herramientas de IA.', ca: 'OMNI // NEXUS — projecte experimental de xat intel·ligent amb backend Express, SQLite i eines d’IA.', en: 'OMNI // NEXUS — experimental intelligent chat project with an Express, SQLite and AI tools backend.' };
-    document.title = nexusTitles[language];
-    document.querySelector('meta[name="description"]')?.setAttribute('content', nexusDescriptions[language]);
-    document.documentElement.lang = language;
-    nexusButtons.forEach((button) => { const active = button.dataset.language === language; button.setAttribute('aria-pressed', String(active)); button.classList.toggle('is-active', active); });
-    localStorage.setItem('portfolio-language', language);
-  };
-  const nexusStoredLanguage = localStorage.getItem('portfolio-language');
-  const nexusInitialLanguage = nexusStoredLanguage === 'ca' || nexusStoredLanguage === 'en' ? nexusStoredLanguage : 'es';
-  nexusButtons.forEach((button) => button.addEventListener('click', () => nexusSetLanguage((button.dataset.language || 'es') as 'es' | 'ca' | 'en')));
-  nexusSetLanguage(nexusInitialLanguage);
-</script>
+      <div class="views-grid">
+        {appViews.map((view) => (
+          <article class="view-card" data-view-id={view.id}>
+            <div class="view-image-wrap">
+              <span class="view-badge">{view.badge}</span>
+              <img src={view.img} alt={view.title} loading="lazy" decoding="async" width="800" height="500" />
+            </div>
+            <div class="view-info">
+              <h4>{view.title}</h4>
+              <p>{view.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
 
-<style>
-  body.project-page {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--sans);
-  }
+    <!-- Key Impact Metrics -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-num">27 Tests</span>
+        <span class="metric-label" data-metric-1-label>Suite Automatizada</span>
+        <p class="metric-desc" data-metric-1-desc>100% tests superados en pruebas unitarias y de integración con supertest y node:test.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">4 Tools</span>
+        <span class="metric-label" data-metric-2-label>Routing de Herramientas</span>
+        <p class="metric-desc" data-metric-2-desc>Orquestación inteligente entre CALCULATOR, CLOCK, WEB SEARCH y diálogo CHAT.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">SQLite WAL</span>
+        <span class="metric-label" data-metric-3-label>Persistencia ACID</span>
+        <p class="metric-desc" data-metric-3-desc>Write-Ahead Logging para lecturas concurrentes sin bloqueo y borrado en cascada.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">Local-First</span>
+        <span class="metric-label" data-metric-4-label>Privacidad Absoluta</span>
+        <p class="metric-desc" data-metric-4-desc>Almacenamiento en disco local sin telemetría de terceros con cabeceras Helmet.</p>
+      </div>
+    </section>
 
-  .project-header {
-    padding: 6rem 0 2rem;
-    background: linear-gradient(135deg, rgba(52, 120, 246, 0.08), rgba(143, 211, 182, 0.12));
-    border-bottom: 1px solid var(--line);
-  }
+    <!-- Business Context & Motivation -->
+    <section class="project-panel">
+      <h2 data-section-1-title>Contexto del proyecto: de la nube a la soberanía de datos local</h2>
+      <p data-section-1-intro>
+        La mayoría de asistentes de inteligencia artificial dependen íntegramente de servidores remotos cerrados, lo que plantea problemas de privacidad, latencias impredecibles y falta de control sobre el historial personal. OMNI // NEXUS nació para explorar cómo construir una capa de inteligencia local, rápida y soberana:
+      </p>
+      <div class="status-grid">
+        <div class="status-box">
+          <h3 data-status-problem-title>⚠️ Limitaciones de clientes IA tradicionales</h3>
+          <ul class="bullet-list" data-status-problem-list>
+            <li>Tus conversaciones, consultas y código residen en infraestructuras ajenas.</li>
+            <li>Incapacidad de ejecutar herramientas locales precisas (reloj del sistema, cálculos matemáticos sin sesgo).</li>
+            <li>Interfaces lentas y sobrecargadas con modelos de suscripción mensuales obligatorios.</li>
+            <li>Ausencia de una base de datos local inspectable con formato SQL estándar.</li>
+          </ul>
+        </div>
+        <div class="status-box success">
+          <h3 data-status-solution-title>💡 Solución implementada en OMNI // NEXUS</h3>
+          <ul class="bullet-list" data-status-solution-list>
+            <li>Runtime local en Express 5 con seguridad HTTP estricta (Helmet, rate limiting por IP).</li>
+            <li>Base de datos SQLite persistente con consultas instantáneas y esquema relacional abierto.</li>
+            <li>Sistema de herramientas desacoplado que resuelve operaciones matemáticas y temporales en milisegundos.</li>
+            <li>Modo DEMO offline automático para operar incluso sin conexión o sin API keys configuradas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  .cover-wrap {
-    padding: 1.5rem 0 0;
-  }
+    <!-- Architecture & Engineering -->
+    <section class="project-panel">
+      <h2 data-section-2-title>Arquitectura técnica y principios de Deep Modules</h2>
+      <p data-section-2-intro>
+        El sistema aplica de manera rigurosa la filosofía de <strong>Deep Modules</strong> (John Ousterhout): módulos con interfaces estrechas que ocultan implementaciones ricas y complejas:
+      </p>
 
-  .project-cover {
-    width: 100%;
-    display: block;
-    border-radius: 24px;
-    border: 1px solid var(--line);
-    object-fit: cover;
-    height: 420px;
-    box-shadow: 0 18px 40px rgba(19,34,56,0.08);
-  }
+      <div class="arch-cards-grid">
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">⚡</span>
+            <h4>Backend Express 5 Modular</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Servidor Desacoplado:</strong> <code>server.js</code> condensado en menos de 90 líneas legibles y testeables.</li>
+            <li><strong>Routers Dedicados:</strong> Controladores específicos para <code>/api/chat</code>, <code>/api/conversations</code>, <code>/api/memory</code> y <code>/api/health</code>.</li>
+            <li><strong>Seguridad por Defecto:</strong> Protección integral con <code>helmet</code>, límites de payload a 256kb y rate limiter en memoria.</li>
+            <li><strong>Inyección de Dependencias:</strong> Repositorios y servicios inyectados como fábricas para permitir mocks limpios en tests.</li>
+          </ul>
+        </div>
 
-  .nexus-cover {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 18% 25%, rgba(34, 211, 238, 0.32), transparent 18%),
-      radial-gradient(circle at 72% 38%, rgba(96, 165, 250, 0.26), transparent 22%),
-      radial-gradient(circle at 50% 60%, rgba(45, 212, 191, 0.1), transparent 28%),
-      linear-gradient(135deg, #010a13 0%, #081b2d 20%, #0b1c36 45%, #101f43 100%);
-    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.08), 0 0 30px rgba(14, 165, 233, 0.09);
-  }
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">💾</span>
+            <h4>Persistencia SQLite & Repositorios</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>better-sqlite3 en WAL Mode:</strong> Write-Ahead Logging para permitir lecturas y escrituras concurrentes sin esperas.</li>
+            <li><strong>Esquema Relacional Estricto:</strong> Tablas <code>nexus_conversations</code> y <code>nexus_messages</code> con claves foráneas y <code>ON DELETE CASCADE</code>.</li>
+            <li><strong>Repositorios Ocultos:</strong> Métodos limpios (<code>getConversations</code>, <code>createConversation</code>, <code>deleteConversation</code>) sin exponer SQL al exterior.</li>
+            <li><strong>Memoria Opcional:</strong> Tabla <code>memories</code> para extracción y persistencia de preferencias de usuario a largo plazo.</li>
+          </ul>
+        </div>
 
-  .nexus-cover::before,
-  .nexus-cover::after {
-    content: '';
-    position: absolute;
-    border: 1px solid rgba(148, 163, 184, 0.24);
-    border-radius: 50%;
-    pointer-events: none;
-    box-shadow: 0 0 30px rgba(96, 165, 250, 0.08);
-  }
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">🧠</span>
+            <h4>Nexus Service & Tool Routing</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Planificación de Herramientas:</strong> Detección automática en dos fases (plan y ejecución) entre CALCULATOR, CLOCK y WEB SEARCH.</li>
+            <li><strong>Evaluador Matemático Seguro:</strong> Parser aritmético propio en <code>lib/calculator.js</code> con precedencia de operadores y sin <code>eval()</code>.</li>
+            <li><strong>Modo DEMO Resiliente:</strong> Fallback sin fallo que resuelve cálculos y respuestas de demostración cuando el LLM no está accesible.</li>
+            <li><strong>Frontend Reactivo en Astro 5:</strong> Canvas procedural con órbitas y partículas estelares, navegación accesible y feedback de estado en vivo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  .nexus-cover::before {
-    width: 46rem;
-    height: 22rem;
-    left: 52%;
-    top: 28%;
-    transform: translateX(-50%) rotate(-18deg);
-    box-shadow: 0 0 50px rgba(34, 211, 238, 0.14), inset 0 0 18px rgba(125, 211, 252, 0.08);
-  }
+    <!-- Source Code & Repository -->
+    <section class="project-panel">
+      <h2 data-section-3-title>Repositorio y ejecución local</h2>
+      <p data-section-3-intro>El proyecto cuenta con suite de tests, tooling de calidad (ESLint, Prettier) y puesta en marcha en un único comando:</p>
+      <div class="code-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">bash · omniroute-test · node v24</span>
+        </div>
+        <pre><code data-terminal-code># Instalar dependencias
+npm install
 
-  .nexus-cover::after {
-    width: 58rem;
-    height: 24rem;
-    left: 50%;
-    top: 42%;
-    transform: translateX(-50%) rotate(20deg);
-    border-color: rgba(125, 211, 252, 0.22);
-    box-shadow: inset 0 0 38px rgba(59, 130, 246, 0.08), 0 0 50px rgba(14, 165, 233, 0.08);
-  }
+# Ejecutar suite de pruebas (27 tests unitarios e integración)
+npm test
 
-  .nexus-cover-ui {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 1.4rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: rgba(255,255,255,0.96);
-    text-shadow: 0 0 18px rgba(125, 211, 252, 0.18);
-  }
+# Iniciar servidor Express y frontend en http://127.0.0.1:3000
+npm start
 
-  .nexus-cover-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font: 0.7rem var(--mono);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(224, 242, 254, 0.9);
-  }
+# Verificar salud del runtime y herramientas activas
+curl http://127.0.0.1:3000/api/health</code></pre>
+      </div>
+      <div class="action-buttons-row">
+        <a class="button primary" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer" data-repo-btn>
+          Ver repositorio en GitHub ↗
+        </a>
+        <a class="button" href="/#contact" data-contact-btn>
+          Contactar conmigo →
+        </a>
+      </div>
+    </section>
 
-  .nexus-cover-status::before {
-    content: '';
-    display: inline-block;
-    width: .5rem;
-    height: .5rem;
-    border-radius: 50%;
-    background: #ff6b5d;
-    margin-right: .45rem;
-    box-shadow: 0 0 12px rgba(255, 107, 93, 0.8);
-  }
+    <!-- Conclusion Panel -->
+    <section class="project-panel conclusion-panel">
+      <h2 data-section-4-title>Conclusión y balance profesional</h2>
+      <p data-section-4-text>
+        OMNI // NEXUS demuestra cómo diseñar sistemas Node.js modernos con rigor: descomponer la complejidad en Deep Modules testeables, garantizar persistencia local robusta con SQLite y diseñar interfaces de usuario cinemáticas donde la tecnología se siente ágil, privada y fiable.
+      </p>
+      <div class="conclusion-actions">
+        <a class="button primary" href="/#projects" data-cta-btn>
+          Ver otros proyectos del portfolio ↗
+        </a>
+        <a class="button" href="/" data-footer-back>
+          ← Volver al inicio
+        </a>
+      </div>
+    </section>
+  </main>
 
-  .nexus-cover-body {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-    padding-bottom: 1.2rem;
-  }
+  <script>
+    const translations = {
+      es: {
+        docTitle: 'OMNI // NEXUS · Capa Local de Inteligencia y Chat con IA',
+        docDesc: 'OMNI // NEXUS — Aplicación local de chat inteligente con backend Express, persistencia en SQLite, herramientas modulares (WEB, CALCULATOR, CLOCK) e interfaz en Astro.',
+        backLink: '← Volver al portfolio',
+        eyebrow: 'Proyecto experimental · Aplicación real · 2026',
+        title: 'OMNI // NEXUS',
+        lead: 'Capa local de inteligencia y asistente conversacional avanzado diseñado bajo principios de <strong>Deep Modules</strong>. Combina un backend modular en <strong>Express 5</strong>, base de datos relacional <strong>SQLite con WAL</strong>, routing de herramientas locales (cálculo, reloj, búsqueda web) y una interfaz cinematográfica construida en <strong>Astro 5</strong>.',
+        urlBadge: 'Node.js · Express 5 · SQLite WAL',
+        liveText: 'Captura real de la app',
+        badgeTitle: 'NEXUS Runtime Online',
+        badgeDesc: 'Capa de Inteligencia Local · Proveedor: gpt-4.1',
+        headerRepoBtn: 'Ver repositorio en GitHub ↗',
+        headerGalleryBtn: 'Explorar capturas reales ↓',
+        galleryTitle: 'Capturas reales de la aplicación',
+        gallerySubtitle: 'Vistas reales de la plataforma capturadas en ejecución local con persistencia SQLite y fondo procedural en canvas:',
+        galleryCards: [
+          { badge: 'UI & Quick Prompts', title: 'Dashboard Principal & Ambient Canvas', desc: 'Entorno de chat local con fondo procedural de partículas, panel lateral de inicio rápido (Aprender, Crear, Resolver, Mejorar) e indicador dinámico de runtime.' },
+          { badge: 'Interacción & Diálogo', title: 'Sesión de Chat & Memoria Persistente', desc: 'Conversación activa sobre arquitectura de Deep Modules con formateo de respuestas, persistencia relacional en SQLite con WAL mode y resaltado en el historial.' },
+          { badge: 'Tools: Calculator & Clock', title: 'Orquestación & Routing de Herramientas', desc: 'Plan de ejecución coordinado por OMNI con activación de herramientas de cálculo de expresiones complejas y consulta horaria de sistema sin latencia externa.' }
+        ],
+        m1Label: 'Suite Automatizada',
+        m1Desc: '100% tests superados en pruebas unitarias y de integración con supertest y node:test.',
+        m2Label: 'Routing de Herramientas',
+        m2Desc: 'Orquestación inteligente entre CALCULATOR, CLOCK, WEB SEARCH y diálogo CHAT.',
+        m3Label: 'Persistencia ACID',
+        m3Desc: 'Write-Ahead Logging para lecturas concurrentes sin bloqueo y borrado en cascada.',
+        m4Label: 'Privacidad Absoluta',
+        m4Desc: 'Almacenamiento en disco local sin telemetría de terceros con cabeceras Helmet.',
+        s1Title: 'Contexto del proyecto: de la nube a la soberanía de datos local',
+        s1Intro: 'La mayoría de asistentes de inteligencia artificial dependen íntegramente de servidores remotos cerrados, lo que plantea problemas de privacidad, latencias impredecibles y falta de control sobre el historial personal. OMNI // NEXUS nació para explorar cómo construir una capa de inteligencia local, rápida y soberana:',
+        spTitle: '⚠️ Limitaciones de clientes IA tradicionales',
+        spList: [
+          'Tus conversaciones, consultas y código residen en infraestructuras ajenas.',
+          'Incapacidad de ejecutar herramientas locales precisas (reloj del sistema, cálculos matemáticos sin sesgo).',
+          'Interfaces lentas y sobrecargadas con modelos de suscripción mensuales obligatorios.',
+          'Ausencia de una base de datos local inspectable con formato SQL estándar.'
+        ],
+        ssTitle: '💡 Solución implementada en OMNI // NEXUS',
+        ssList: [
+          'Runtime local en Express 5 con seguridad HTTP estricta (Helmet, rate limiting por IP).',
+          'Base de datos SQLite persistente con consultas instantáneas y esquema relacional abierto.',
+          'Sistema de herramientas desacoplado que resuelve operaciones matemáticas y temporales en milisegundos.',
+          'Modo DEMO offline automático para operar incluso sin conexión o sin API keys configuradas.'
+        ],
+        s2Title: 'Arquitectura técnica y principios de Deep Modules',
+        s2Intro: 'El sistema aplica de manera rigurosa la filosofía de <strong>Deep Modules</strong> (John Ousterhout): módulos con interfaces estrechas que ocultan implementaciones ricas y complejas:',
+        archCards: [
+          {
+            title: 'Backend Express 5 Modular',
+            items: [
+              '<strong>Servidor Desacoplado:</strong> <code>server.js</code> condensado en menos de 90 líneas legibles y testeables.',
+              '<strong>Routers Dedicados:</strong> Controladores específicos para <code>/api/chat</code>, <code>/api/conversations</code>, <code>/api/memory</code> y <code>/api/health</code>.',
+              '<strong>Seguridad por Defecto:</strong> Protección integral con <code>helmet</code>, límites de payload a 256kb y rate limiter en memoria.',
+              '<strong>Inyección de Dependencias:</strong> Repositorios y servicios inyectados como fábricas para permitir mocks limpios en tests.'
+            ]
+          },
+          {
+            title: 'Persistencia SQLite & Repositorios',
+            items: [
+              '<strong>better-sqlite3 en WAL Mode:</strong> Write-Ahead Logging para permitir lecturas y escrituras concurrentes sin esperas.',
+              '<strong>Esquema Relacional Estricto:</strong> Tablas <code>nexus_conversations</code> y <code>nexus_messages</code> con claves foráneas y <code>ON DELETE CASCADE</code>.',
+              '<strong>Repositorios Ocultos:</strong> Métodos limpios (<code>getConversations</code>, <code>createConversation</code>, <code>deleteConversation</code>) sin exponer SQL al exterior.',
+              '<strong>Memoria Opcional:</strong> Tabla <code>memories</code> para extracción y persistencia de preferencias de usuario a largo plazo.'
+            ]
+          },
+          {
+            title: 'Nexus Service & Tool Routing',
+            items: [
+              '<strong>Planificación de Herramientas:</strong> Detección automática en dos fases (plan y ejecución) entre CALCULATOR, CLOCK y WEB SEARCH.',
+              '<strong>Evaluador Matemático Seguro:</strong> Parser aritmético propio en <code>lib/calculator.js</code> con precedencia de operadores y sin <code>eval()</code>.',
+              '<strong>Modo DEMO Resiliente:</strong> Fallback sin fallo que resuelve cálculos y respuestas de demostración cuando el LLM no está accesible.',
+              '<strong>Frontend Reactivo en Astro 5:</strong> Canvas procedural con órbitas y partículas estelares, navegación accesible y feedback de estado en vivo.'
+            ]
+          }
+        ],
+        s3Title: 'Repositorio y ejecución local',
+        s3Intro: 'El proyecto cuenta con suite de tests, tooling de calidad (ESLint, Prettier) y puesta en marcha en un único comando:',
+        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalComments: [
+          '# Instalar dependencias',
+          '# Ejecutar suite de pruebas (27 tests unitarios e integración)',
+          '# Iniciar servidor Express y frontend en http://127.0.0.1:3000',
+          '# Verificar salud del runtime y herramientas activas'
+        ],
+        repoBtn: 'Ver repositorio en GitHub ↗',
+        contactBtn: 'Contactar conmigo →',
+        s4Title: 'Conclusión y balance profesional',
+        s4Text: 'OMNI // NEXUS demuestra cómo diseñar sistemas Node.js modernos con rigor: descomponer la complejidad en Deep Modules testeables, garantizar persistencia local robusta con SQLite y diseñar interfaces de usuario cinemáticas donde la tecnología se siente ágil, privada y fiable.',
+        ctaBtn: 'Ver otros proyectos del portfolio ↗',
+        footerBack: '← Volver al inicio'
+      },
+      ca: {
+        docTitle: 'OMNI // NEXUS · Capa Local d\'Intel·ligència i Xat amb IA',
+        docDesc: 'OMNI // NEXUS — Aplicació local de xat intel·ligent amb backend Express, persistència a SQLite, eines modulars (WEB, CALCULATOR, CLOCK) i interfície a Astro.',
+        backLink: '← Tornar al portafoli',
+        eyebrow: 'Projecte experimental · Aplicació real · 2026',
+        title: 'OMNI // NEXUS',
+        lead: 'Capa local d\'intel·ligència i assistent conversacional avançat dissenyat sota principis de <strong>Deep Modules</strong>. Combina un backend modular a <strong>Express 5</strong>, base de dades relacional <strong>SQLite amb WAL</strong>, encaminament d\'eines locals (càlcul, rellotge, cerca web) i una interfície cinematogràfica construïda a <strong>Astro 5</strong>.',
+        urlBadge: 'Node.js · Express 5 · SQLite WAL',
+        liveText: 'Captura real de l\'app',
+        badgeTitle: 'NEXUS Runtime Online',
+        badgeDesc: 'Capa d\'Intel·ligència Local · Proveïdor: gpt-4.1',
+        headerRepoBtn: 'Veure repositori a GitHub ↗',
+        headerGalleryBtn: 'Explorar captures reals ↓',
+        galleryTitle: 'Captures reals de l\'aplicació',
+        gallerySubtitle: 'Vistes reals de la plataforma capturades en execució local amb persistència SQLite i fons procedural en canvas:',
+        galleryCards: [
+          { badge: 'UI & Quick Prompts', title: 'Dashboard Principal & Ambient Canvas', desc: 'Entorn de xat local amb fons procedural de partícules, tauler lateral d’inici ràpid (Aprendre, Crear, Resoldre, Millorar) i indicador dinàmic de runtime.' },
+          { badge: 'Interacció & Diàleg', title: 'Sessió de Xat & Memòria Persistent', desc: 'Conversa activa sobre arquitectura de Deep Modules amb formatat de respostes, persistència relacional en SQLite amb WAL mode i ressaltat a l’historial.' },
+          { badge: 'Tools: Calculator & Clock', title: 'Orquestació & Enrutament d’Eines', desc: 'Pla d’execució coordinat per OMNI amb activació d’eines de càlcul d’expressions complexes i consulta horària de sistema sense latència externa.' }
+        ],
+        m1Label: 'Suite Automatitzada',
+        m1Desc: '100% tests superats en proves unitàries i d’integració amb supertest i node:test.',
+        m2Label: 'Encaminament d’Eines',
+        m2Desc: 'Orquestració intel·ligent entre CALCULATOR, CLOCK, WEB SEARCH i diàleg CHAT.',
+        m3Label: 'Persistència ACID',
+        m3Desc: 'Write-Ahead Logging per a lectures concurrents sense bloqueig i esborrat en cascada.',
+        m4Label: 'Privacitat Absoluta',
+        m4Desc: 'Emmagatzematge en disc local sense telemetria de tercers amb capçaleres Helmet.',
+        s1Title: 'Context del projecte: del núvol a la sobirania de dades local',
+        s1Intro: 'La majoria d’assistents d’intel·ligència artificial depenen íntegrament de servidors remots tancats, la qual cosa planteja problemes de privacitat i latència. OMNI // NEXUS va néixer per explorar com construir una capa d’intel·ligència local, ràpida i sobirana:',
+        spTitle: '⚠️ Limitacions de clients IA tradicionals',
+        spList: [
+          'Les teves converses, consultes i codi resideixen en infraestructures alienes.',
+          'Incapacitat d’executar eines locals precises (rellotge del sistema, càlculs matemàtics sense biaix).',
+          'Interfícies lentes i sobrecarregades amb models de subscripció mensuals obligatoris.',
+          'Absència d’una base de dades local inspeccionable amb format SQL estàndard.'
+        ],
+        ssTitle: '💡 Solució implementada a OMNI // NEXUS',
+        ssList: [
+          'Runtime local a Express 5 amb seguretat HTTP estricta (Helmet, rate limiting per IP).',
+          'Base de dades SQLite persistent amb consultes instantànies i esquema relacional obert.',
+          'Sistema d’eines desacoblat que resol operacions matemàtiques i temporals en mil·lisegons.',
+          'Mode DEMO offline automàtic per operar fins i tot sense connexió o sense claus d’API configurades.'
+        ],
+        s2Title: 'Arquitectura tècnica i principis de Deep Modules',
+        s2Intro: 'El sistema aplica de manera rigorosa la filosofia de <strong>Deep Modules</strong> (John Ousterhout): mòduls amb interfícies estretes que oculten implementacions riques i complexes:',
+        archCards: [
+          {
+            title: 'Backend Express 5 Modular',
+            items: [
+              '<strong>Servidor Desacoblat:</strong> <code>server.js</code> condensat en menys de 90 línies llegibles i testables.',
+              '<strong>Encaminadors Dedicats:</strong> Controladors específics per a <code>/api/chat</code>, <code>/api/conversations</code>, <code>/api/memory</code> i <code>/api/health</code>.',
+              '<strong>Seguretat per Defecte:</strong> Protecció integral amb <code>helmet</code>, límits de càrrega útil a 256kb i limitador de ràtio en memòria.',
+              '<strong>Injecció de Dependències:</strong> Repositoris i serveis injectats com a fàbriques per permetre simulacions netes en tests.'
+            ]
+          },
+          {
+            title: 'Persistència SQLite & Repositoris',
+            items: [
+              '<strong>better-sqlite3 en Mode WAL:</strong> Write-Ahead Logging per permetre lectures i escriptures concurrents sense esperes.',
+              '<strong>Esquema Relacional Estricte:</strong> Taules <code>nexus_conversations</code> i <code>nexus_messages</code> amb claus foranes i <code>ON DELETE CASCADE</code>.',
+              '<strong>Repositoris Ocults:</strong> Mètodes nets (<code>getConversations</code>, <code>createConversation</code>, <code>deleteConversation</code>) sense exposar SQL a l’exterior.',
+              '<strong>Memòria Opcional:</strong> Taula <code>memories</code> per a extracció i persistència de preferències d’usuari a llarg termini.'
+            ]
+          },
+          {
+            title: 'Nexus Service & Enrutament d’Eines',
+            items: [
+              '<strong>Planificació d’Eines:</strong> Detecció automàtica en dues fases (pla i execució) entre CALCULATOR, CLOCK i WEB SEARCH.',
+              '<strong>Avaluador Matemàtic Segur:</strong> Parser aritmètic propi a <code>lib/calculator.js</code> amb precedència d’operadors i sense <code>eval()</code>.',
+              '<strong>Mode DEMO Resilient:</strong> Fallback sense fallada que resol càlculs i respostes de demostració quan el LLM no està accessible.',
+              '<strong>Frontend Reactiu a Astro 5:</strong> Canvas procedural amb òrbites i partícules estel·lars, navegació accessible i feedback d’estat en viu.'
+            ]
+          }
+        ],
+        s3Title: 'Repositori i execució local',
+        s3Intro: 'El projecte compta amb suite de tests, tooling de qualitat (ESLint, Prettier) i posada en marxa en una única comanda:',
+        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalComments: [
+          '# Instal·lar dependències',
+          '# Executar suite de proves (27 tests unitaris i integració)',
+          '# Iniciar servidor Express i frontend a http://127.0.0.1:3000',
+          '# Verificar salut del runtime i eines actives'
+        ],
+        repoBtn: 'Veure repositori a GitHub ↗',
+        contactBtn: 'Contactar amb mi →',
+        s4Title: 'Conclusió i balanç professional',
+        s4Text: 'OMNI // NEXUS demostra com dissenyar sistemes Node.js moderns amb rigor: descompondre la complexitat en Deep Modules testeables, garantir persistència local robusta amb SQLite i dissenyar interfícies cinemàtiques on la tecnologia se sent àgil, privada i fiable.',
+        ctaBtn: 'Veure altres projectes del portafoli ↗',
+        footerBack: '← Tornar a l\'inici'
+      },
+      en: {
+        docTitle: 'OMNI // NEXUS · Local Intelligence Layer & AI Chat',
+        docDesc: 'OMNI // NEXUS — Local AI intelligence chat application with Express backend, SQLite persistence, modular tools (WEB, CALCULATOR, CLOCK), and Astro interface.',
+        backLink: '← Back to portfolio',
+        eyebrow: 'Experimental Project · Real Web Application · 2026',
+        title: 'OMNI // NEXUS',
+        lead: 'Local intelligence layer and advanced conversational assistant engineered under <strong>Deep Module</strong> principles. Blends an <strong>Express 5</strong> modular backend, <strong>SQLite with WAL</strong> relational persistence, local tool routing (calculator, clock, web search), and a cinematic <strong>Astro 5</strong> interface.',
+        urlBadge: 'Node.js · Express 5 · SQLite WAL',
+        liveText: 'Real app screenshot',
+        badgeTitle: 'NEXUS Runtime Online',
+        badgeDesc: 'Local Intelligence Layer · Provider: gpt-4.1',
+        headerRepoBtn: 'View repository on GitHub ↗',
+        headerGalleryBtn: 'Explore real screenshots ↓',
+        galleryTitle: 'Real application screenshots',
+        gallerySubtitle: 'Authentic views of the platform captured in a local runtime with SQLite persistence and procedural canvas ambient backdrop:',
+        galleryCards: [
+          { badge: 'UI & Quick Prompts', title: 'Main Dashboard & Ambient Canvas', desc: 'Local chat environment featuring procedural particle canvas, quick-start action sidebar (Learn, Create, Solve, Improve), and dynamic runtime indicator.' },
+          { badge: 'Interaction & Dialogue', title: 'Active Chat & Persistent Memory', desc: 'Interactive dialogue exploring Deep Modules architecture with rich markdown rendering, SQLite WAL persistence, and real-time conversation history.' },
+          { badge: 'Tools: Calculator & Clock', title: 'Tool Orchestration & Routing', desc: 'OMNI-coordinated execution plan invoking local complex arithmetic evaluation and system clock querying without cloud latency.' }
+        ],
+        m1Label: 'Automated Test Suite',
+        m1Desc: '100% passing tests across unit and integration suites with supertest and node:test.',
+        m2Label: 'Tool Routing',
+        m2Desc: 'Intelligent orchestration across CALCULATOR, CLOCK, WEB SEARCH, and CHAT dialogue.',
+        m3Label: 'ACID Persistence',
+        m3Desc: 'Write-Ahead Logging for non-blocking concurrent reads and cascading deletes.',
+        m4Label: 'Absolute Privacy',
+        m4Desc: 'Local disk storage without third-party telemetry safeguarded by Helmet headers.',
+        s1Title: 'Project context: from the cloud to local data sovereignty',
+        s1Intro: 'Most AI conversational assistants rely entirely on opaque remote servers, raising privacy concerns, latency unpredictability, and complete lack of control over user records. OMNI // NEXUS was created to engineer a fast, private, and sovereign local intelligence layer:',
+        spTitle: '⚠️ Limitations of traditional AI clients',
+        spList: [
+          'Conversations, queries, and confidential code reside on third-party cloud infrastructure.',
+          'Inability to execute instant local tools (exact system clock, unbiased math calculations).',
+          'Heavy, cluttered web apps locked behind recurring monthly subscriptions.',
+          'Absence of an inspectable local database using standard SQL schemas.'
+        ],
+        ssTitle: '💡 Solution implemented in OMNI // NEXUS',
+        ssList: [
+          'Local Express 5 runtime hardened with HTTP security headers (Helmet, IP rate limiting).',
+          'Persistent SQLite database providing sub-millisecond queries and open relational models.',
+          'Decoupled tool routing layer resolving math operations and timestamps without remote overhead.',
+          'Automatic offline DEMO mode ensuring full functionality without external API keys.'
+        ],
+        s2Title: 'Technical architecture and Deep Module principles',
+        s2Intro: 'The system strictly implements the <strong>Deep Modules</strong> philosophy (John Ousterhout): units with narrow interfaces backed by deep, rich implementations:',
+        archCards: [
+          {
+            title: 'Modular Express 5 Backend',
+            items: [
+              '<strong>Decoupled Server:</strong> <code>server.js</code> condensed into under 90 readable and unit-testable lines.',
+              '<strong>Dedicated Routers:</strong> Modular endpoints for <code>/api/chat</code>, <code>/api/conversations</code>, <code>/api/memory</code>, and <code>/api/health</code>.',
+              '<strong>Security by Default:</strong> Fortified with <code>helmet</code>, strict 256kb payload limits, and in-memory rate limiting.',
+              '<strong>Dependency Injection:</strong> Repositories and domain services injected as factories for clean test mocks.'
+            ]
+          },
+          {
+            title: 'SQLite Persistence & Repositories',
+            items: [
+              '<strong>better-sqlite3 in WAL Mode:</strong> Write-Ahead Logging delivering concurrent non-blocking reads and high-speed writes.',
+              '<strong>Strict Relational Schema:</strong> Foreign key-constrained <code>nexus_conversations</code> and <code>nexus_messages</code> tables with cascade deletion.',
+              '<strong>Encapsulated Repositories:</strong> Clean contract methods (<code>getConversations</code>, <code>createConversation</code>, <code>deleteConversation</code>) shielding raw SQL.',
+              '<strong>Optional Memory:</strong> Dedicated <code>memories</code> table for semantic extraction and long-term user preference storage.'
+            ]
+          },
+          {
+            title: 'Nexus Service & Tool Routing',
+            items: [
+              '<strong>Tool Planning & Routing:</strong> Two-phase autonomous reasoning (plan and execute) coordinating CALCULATOR, CLOCK, and WEB SEARCH.',
+              '<strong>Secure Math Evaluator:</strong> Custom arithmetic parser in <code>lib/calculator.js</code> with strict operator precedence and zero <code>eval()</code>.',
+              '<strong>Resilient DEMO Mode:</strong> Graceful fallback executing tools and synthetic answers whenever upstream LLMs are unreachable.',
+              '<strong>Reactive Astro 5 Frontend:</strong> Procedural particle canvas with planetary orbits, accessible UX, and real-time server health badges.'
+            ]
+          }
+        ],
+        s3Title: 'Repository and local execution',
+        s3Intro: 'The codebase features an automated test suite, quality tooling (ESLint, Prettier), and single-command startup:',
+        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalComments: [
+          '# Install dependencies',
+          '# Run test suite (27 unit & integration tests)',
+          '# Start Express server and frontend on http://127.0.0.1:3000',
+          '# Check runtime health and active tools'
+        ],
+        repoBtn: 'View repository on GitHub ↗',
+        contactBtn: 'Contact me →',
+        s4Title: 'Conclusion and professional takeaways',
+        s4Text: 'OMNI // NEXUS showcases how to engineer modern Node.js systems with discipline: breaking down complexity into testable Deep Modules, enforcing reliable local persistence with SQLite, and designing cinematic user interfaces that feel responsive, private, and dependable.',
+        ctaBtn: 'View other portfolio projects ↗',
+        footerBack: '← Back to home'
+      }
+    };
 
-  .nexus-cover-orbit {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-    border: 1px solid rgba(148, 163, 184, 0.28);
-    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.12);
-    background: rgba(15, 23, 42, 0.18);
-  }
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
+    const setLanguage = (lang: 'es' | 'ca' | 'en') => {
+      const d = translations[lang] || translations.es;
 
-  .nexus-cover-kicker {
-    color: rgba(191, 219, 254, 0.8);
-    font: 0.7rem var(--mono);
-    letter-spacing: 0.22em;
-  }
+      buttons.forEach((b) => {
+        const active = b.dataset.language === lang;
+        b.setAttribute('aria-pressed', String(active));
+        b.classList.toggle('is-active', active);
+      });
 
-  .nexus-cover-body h2 {
-    font: 800 clamp(2.5rem, 5vw, 6rem)/0.9 var(--serif);
-    letter-spacing: -0.06em;
-  }
+      const backLink = document.querySelector('.back-link');
+      if (backLink) backLink.textContent = d.backLink;
+      const eyebrow = document.querySelector('.project-eyebrow');
+      if (eyebrow) eyebrow.textContent = d.eyebrow;
+      const title = document.querySelector('.project-title');
+      if (title) title.textContent = d.title;
+      const lead = document.querySelector('.lead');
+      if (lead) lead.innerHTML = d.lead;
 
-  .nexus-cover-body h2 em {
-    font-style: normal;
-    color: #ff7e65;
-    text-shadow: 0 0 18px rgba(255, 126, 101, 0.35);
-  }
+      const urlBadge = document.querySelector('.browser-url .url-badge');
+      if (urlBadge) urlBadge.textContent = d.urlBadge;
+      const liveText = document.querySelector('.browser-actions .live-text');
+      if (liveText) liveText.textContent = d.liveText;
+      const bTitle = document.querySelector('.showcase-floating-badge strong');
+      if (bTitle) bTitle.textContent = d.badgeTitle;
+      const bDesc = document.querySelector('.showcase-floating-badge span');
+      if (bDesc) bDesc.textContent = d.badgeDesc;
 
-  .nexus-cover-pill-row {
-    display: flex;
-    gap: .7rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+      const hRepo = document.querySelector('[data-header-repo-btn]');
+      if (hRepo) hRepo.textContent = d.headerRepoBtn;
+      const hGallery = document.querySelector('[data-header-gallery-btn]');
+      if (hGallery) hGallery.textContent = d.headerGalleryBtn;
 
-  .nexus-cover-pill-row span {
-    padding: .5rem .75rem;
-    border: 1px solid rgba(191, 219, 254, 0.25);
-    border-radius: 999px;
-    color: rgba(224, 242, 254, 0.8);
-    font: 0.58rem var(--mono);
-    letter-spacing: 0.17em;
-  }
+      const galTitle = document.querySelector('[data-gallery-title]');
+      if (galTitle) galTitle.textContent = d.galleryTitle;
+      const galSub = document.querySelector('[data-gallery-subtitle]');
+      if (galSub) galSub.textContent = d.gallerySubtitle;
 
-  .project-header-inner {
-    display: grid;
-    gap: 1rem;
-  }
+      document.querySelectorAll('.views-grid .view-card').forEach((card, idx) => {
+        const item = d.galleryCards[idx];
+        if (item) {
+          const badge = card.querySelector('.view-badge');
+          if (badge) badge.textContent = item.badge;
+          const cardTitle = card.querySelector('h4');
+          if (cardTitle) cardTitle.textContent = item.title;
+          const desc = card.querySelector('p');
+          if (desc) desc.textContent = item.desc;
+        }
+      });
 
-  .back-link {
-    color: var(--coral-dark);
-    text-decoration: none;
-    font: 0.7rem var(--mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
+      const m1L = document.querySelector('[data-metric-1-label]');
+      if (m1L) m1L.textContent = d.m1Label;
+      const m1D = document.querySelector('[data-metric-1-desc]');
+      if (m1D) m1D.textContent = d.m1Desc;
 
-  .project-eyebrow {
-    margin: 0;
-  }
+      const m2L = document.querySelector('[data-metric-2-label]');
+      if (m2L) m2L.textContent = d.m2Label;
+      const m2D = document.querySelector('[data-metric-2-desc]');
+      if (m2D) m2D.textContent = d.m2Desc;
 
-  .project-header h1 {
-    font: 400 clamp(2.8rem, 7vw, 6rem)/0.9 var(--serif);
-    letter-spacing: -0.06em;
-  }
+      const m3L = document.querySelector('[data-metric-3-label]');
+      if (m3L) m3L.textContent = d.m3Label;
+      const m3D = document.querySelector('[data-metric-3-desc]');
+      if (m3D) m3D.textContent = d.m3Desc;
 
-  .stack-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 0.25rem;
-  }
+      const m4L = document.querySelector('[data-metric-4-label]');
+      if (m4L) m4L.textContent = d.m4Label;
+      const m4D = document.querySelector('[data-metric-4-desc]');
+      if (m4D) m4D.textContent = d.m4Desc;
 
-  .stack-list span {
-    padding: 0.5rem 0.8rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: rgba(255,255,255,0.24);
-    color: var(--ink);
-    font: 0.66rem var(--mono);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+      const s1T = document.querySelector('[data-section-1-title]');
+      if (s1T) s1T.textContent = d.s1Title;
+      const s1I = document.querySelector('[data-section-1-intro]');
+      if (s1I) s1I.textContent = d.s1Intro;
 
-  .lead {
-    max-width: 52rem;
-    color: var(--muted);
-    font-size: 1.08rem;
-  }
+      const spT = document.querySelector('[data-status-problem-title]');
+      if (spT) spT.textContent = d.spTitle;
+      const spL = document.querySelector('[data-status-problem-list]');
+      if (spL) spL.innerHTML = d.spList.map((item) => `<li>${item}</li>`).join('');
 
-  .project-content {
-    padding: 2.5rem 0 5rem;
-    display: grid;
-    gap: 1.5rem;
-  }
+      const ssT = document.querySelector('[data-status-solution-title]');
+      if (ssT) ssT.textContent = d.ssTitle;
+      const ssL = document.querySelector('[data-status-solution-list]');
+      if (ssL) ssL.innerHTML = d.ssList.map((item) => `<li>${item}</li>`).join('');
 
-  .project-panel {
-    background: rgba(255,255,255,0.28);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 2rem;
-    box-shadow: 0 10px 25px rgba(19,34,56,0.04);
-  }
+      const s2T = document.querySelector('[data-section-2-title]');
+      if (s2T) s2T.textContent = d.s2Title;
+      const s2I = document.querySelector('[data-section-2-intro]');
+      if (s2I) s2I.innerHTML = d.s2Intro;
 
-  .project-panel h2 {
-    margin-bottom: 1rem;
-    font: 400 clamp(1.8rem, 4vw, 2.8rem)/1.05 var(--serif);
-  }
+      document.querySelectorAll('.arch-cards-grid .arch-card').forEach((card, idx) => {
+        const item = d.archCards[idx];
+        if (item) {
+          const h4 = card.querySelector('h4');
+          if (h4) h4.textContent = item.title;
+          card.querySelectorAll('li').forEach((li, lIdx) => {
+            if (item.items[lIdx]) li.innerHTML = item.items[lIdx];
+          });
+        }
+      });
 
-  .project-panel p,
-  .project-panel li {
-    color: var(--muted);
-    line-height: 1.7;
-  }
+      const s3T = document.querySelector('[data-section-3-title]');
+      if (s3T) s3T.textContent = d.s3Title;
+      const s3I = document.querySelector('[data-section-3-intro]');
+      if (s3I) s3I.textContent = d.s3Intro;
 
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
+      const termCode = document.querySelector('[data-terminal-code]');
+      if (termCode) {
+        termCode.textContent = `${d.terminalComments[0]}
+npm install
 
-  .status-grid h3 {
-    margin-bottom: 0.75rem;
-    font-size: 1.15rem;
-  }
+${d.terminalComments[1]}
+npm test
 
-  .bullet-list,
-  .number-list {
-    margin-left: 1.2rem;
-  }
+${d.terminalComments[2]}
+npm start
 
-  .code-block {
-    background: #0f172a;
-    color: #e5eefc;
-    border-radius: 16px;
-    padding: 1.1rem 1.2rem;
-    overflow-x: auto;
-    margin: 1rem 0;
-  }
+${d.terminalComments[3]}
+curl http://127.0.0.1:3000/api/health`;
+      }
 
-  .code-block pre {
-    margin: 0;
-    font: 0.8rem/1.6 var(--mono);
-    white-space: pre-wrap;
-  }
+      const repoBtn = document.querySelector('[data-repo-btn]');
+      if (repoBtn) repoBtn.textContent = d.repoBtn;
+      const contBtn = document.querySelector('[data-contact-btn]');
+      if (contBtn) contBtn.textContent = d.contactBtn;
 
-  .api-box {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.75rem;
-    margin-top: 1rem;
-  }
+      const s4T = document.querySelector('[data-section-4-title]');
+      if (s4T) s4T.textContent = d.s4Title;
+      const s4Text = document.querySelector('[data-section-4-text]');
+      if (s4Text) s4Text.textContent = d.s4Text;
+      const ctaBtn = document.querySelector('[data-cta-btn]');
+      if (ctaBtn) ctaBtn.textContent = d.ctaBtn;
+      const footBack = document.querySelector('[data-footer-back]');
+      if (footBack) footBack.textContent = d.footerBack;
 
-  .api-box p {
-    padding: 0.75rem 0.9rem;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: rgba(52, 120, 246, 0.03);
-    margin: 0;
-  }
+      document.title = d.docTitle;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', d.docDesc);
+      document.documentElement.lang = lang;
+      localStorage.setItem('portfolio-language', lang);
+    };
 
-  .contact-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
-  }
+    const storedLang = localStorage.getItem('portfolio-language');
+    const initLang = storedLang === 'ca' || storedLang === 'en' ? storedLang : 'es';
+    buttons.forEach((b) => b.addEventListener('click', () => setLanguage((b.dataset.language || 'es') as 'es' | 'ca' | 'en')));
+    setLanguage(initLang);
+  </script>
 
-  .button.primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--ink);
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 0.8rem 1.2rem;
-    text-decoration: none;
-    font-size: 0.88rem;
-  }
+  <style>
+    body.project-page {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+    }
 
-  .project-footer {
-    border-top: 1px solid var(--line);
-    padding: 1.5rem 0 2.5rem;
-  }
+    .project-header {
+      padding: 6rem 0 2.8rem;
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 10% 15%, rgba(52, 120, 246, 0.07), transparent 35%),
+                  radial-gradient(circle at 90% 25%, rgba(143, 211, 182, 0.1), transparent 35%),
+                  var(--paper);
+    }
 
-  @media (max-width: 850px) {
-    .project-header { padding: 5rem 0 1.5rem; }
-    .project-cover { height: 340px; }
-    .nexus-cover::before { width: 36rem; height: 18rem; }
-    .nexus-cover::after { width: 44rem; height: 20rem; }
-    .status-grid { gap: 1rem; }
-  }
+    .project-header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
 
-  @media (max-width: 560px) {
-    .project-header { padding: 5rem 0 1rem; }
-    .project-header-inner { gap: .8rem; }
-    .project-header h1 { font-size: clamp(2.7rem, 14vw, 4.5rem); overflow-wrap: anywhere; }
-    .lead { font-size: .95rem; line-height: 1.55; }
-    .stack-list { gap: .4rem; }
-    .stack-list span { padding: .4rem .55rem; font-size: .56rem; }
-    .cover-wrap { padding-top: 1rem; }
-    .project-cover { height: 300px; border-radius: 16px; }
-    .nexus-cover-ui { padding: 1rem; }
-    .nexus-cover-header { gap: .7rem; font-size: .58rem; letter-spacing: .1em; }
-    .nexus-cover-status { text-align: right; }
-    .nexus-cover-body { gap: .7rem; padding-bottom: .4rem; }
-    .nexus-cover-orbit { width: 5rem; height: 5rem; }
-    .nexus-cover-kicker { font-size: .5rem; letter-spacing: .12em; }
-    .nexus-cover-body h2 { font-size: clamp(2.2rem, 13vw, 4rem); }
-    .nexus-cover-pill-row { gap: .35rem; }
-    .nexus-cover-pill-row span { padding: .4rem .5rem; font-size: .45rem; letter-spacing: .1em; }
-    .project-content { padding: 2rem 0 3rem; gap: 1rem; }
-    .project-panel { padding: 1.25rem; border-radius: 16px; }
-    .project-panel h2 { font-size: clamp(1.8rem, 10vw, 2.5rem); }
-    .project-panel p, .project-panel li { line-height: 1.55; }
-    .status-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-    .bullet-list, .number-list { margin-left: 1rem; padding-left: .25rem; }
-    .code-block { padding: .85rem; border-radius: 10px; }
-    .code-block pre { font-size: .68rem; line-height: 1.5; overflow-wrap: anywhere; }
-    .api-box { grid-template-columns: 1fr; }
-    .project-footer-inner { display: flex; flex-direction: column; gap: .5rem; }
-  }
+    .header-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
 
-  .project-footer-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-  }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--coral-dark);
+      text-decoration: none;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.22);
+      transition: all 0.2s ease;
+    }
 
-  .project-footer span {
-    font: 600 1rem var(--serif);
-  }
+    .back-link:hover {
+      background: rgba(52, 120, 246, 0.16);
+      border-color: var(--coral);
+      transform: translateX(-2px);
+    }
 
-  .project-footer a {
-    color: var(--coral-dark);
-    text-decoration: none;
-  }
+    .header-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 54rem;
+    }
 
-  @media (max-width: 700px) {
-    .status-grid {
-      grid-template-columns: 1fr;
+    .project-eyebrow {
+      align-self: flex-start;
+      margin: 0;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.18);
+    }
+
+    .project-title {
+      font: 400 clamp(2.8rem, 6.5vw, 5.2rem)/0.92 var(--serif);
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.68;
+      margin: 0;
+      max-width: 50rem;
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.25rem;
+    }
+
+    .stack-pill {
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--ink);
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 6px rgba(19, 34, 56, 0.03);
+      backdrop-filter: blur(4px);
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .cover-wrap {
+      padding: 2.5rem 0 1rem;
+    }
+
+    /* Browser Mockup Frame */
+    .browser-showcase {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 50px -12px rgba(19, 34, 56, 0.12),
+                  0 4px 12px rgba(19, 34, 56, 0.04);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .browser-showcase:hover {
+      box-shadow: 0 28px 60px -12px rgba(19, 34, 56, 0.16),
+                  0 6px 16px rgba(19, 34, 56, 0.06);
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      background: #f1f3f7;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .browser-controls {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .browser-controls .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .browser-controls .dot.close { background: #ff5f56; }
+    .browser-controls .dot.min { background: #ffbd2e; }
+    .browser-controls .dot.max { background: #27c93f; }
+
+    .browser-url {
+      flex: 1;
+      max-width: 38rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #ffffff;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(19, 34, 56, 0.1);
+      font: 500 0.76rem var(--mono);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .url-lock {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .url-text {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .url-badge {
+      font-size: 0.68rem;
+      background: rgba(52, 120, 246, 0.12);
+      color: var(--coral-dark);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .browser-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.75; }
+    }
+
+    .live-text {
+      font: 600 0.68rem var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .browser-screen {
+      position: relative;
+      background: #050813;
+      overflow: hidden;
+    }
+
+    .showcase-img {
+      width: 100%;
+      height: auto;
+      max-height: 640px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .showcase-floating-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(5, 8, 19, 0.9);
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(45, 164, 255, 0.28);
+      backdrop-filter: blur(8px);
+      max-width: calc(100% - 3rem);
+    }
+
+    .floating-icon {
+      font-size: 1.4rem;
+      color: #2da4ff;
+    }
+
+    .showcase-floating-badge strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .showcase-floating-badge span {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(224, 245, 255, 0.75);
+      margin-top: 0.1rem;
+    }
+
+    .project-content {
+      padding: 3rem 0 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
     }
 
     .project-panel {
-      padding: 1.25rem;
+      padding: 2.2rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: 0 10px 30px rgba(19, 34, 56, 0.02);
     }
 
-    .project-footer-inner {
-      flex-direction: column;
-      align-items: flex-start;
+    .project-panel h2 {
+      font: 400 clamp(1.6rem, 2.8vw, 2.2rem) var(--serif);
+      color: var(--ink);
+      margin: 0 0 0.8rem;
     }
-  }
-</style>
+
+    .project-panel p {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Views Grid */
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin-top: 2rem;
+    }
+
+    .view-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(19, 34, 56, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .view-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(19, 34, 56, 0.08);
+    }
+
+    .view-image-wrap {
+      position: relative;
+      background: #050813;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+
+    .view-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .view-card:hover .view-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    .view-badge {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: rgba(5, 8, 19, 0.88);
+      color: #7ce1ff;
+      font: 600 0.65rem var(--mono);
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(124, 225, 255, 0.25);
+      z-index: 2;
+    }
+
+    .view-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .view-info h4 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .view-info p {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .metric-card {
+      padding: 1.8rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: 0 4px 16px rgba(19, 34, 56, 0.02);
+    }
+
+    .metric-num {
+      font: 400 clamp(2rem, 3.5vw, 2.6rem) var(--serif);
+      color: var(--coral-dark);
+      line-height: 1;
+    }
+
+    .metric-label {
+      font: 600 0.82rem var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .metric-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Status Grid */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+
+    .status-box {
+      padding: 1.6rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.04);
+      border: 1px solid rgba(239, 68, 68, 0.16);
+    }
+
+    .status-box.success {
+      background: rgba(16, 185, 129, 0.05);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .status-box h3 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0 0 1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.3rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0.2rem;
+      color: var(--coral);
+      font-weight: bold;
+    }
+
+    /* Architecture Cards */
+    .arch-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+
+    .arch-card {
+      padding: 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(19, 34, 56, 0.03);
+    }
+
+    .arch-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .arch-icon {
+      font-size: 1.3rem;
+    }
+
+    .arch-header h4 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* Code Terminal */
+    .code-terminal {
+      margin-top: 1.4rem;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111827;
+      border: 1px solid #1f2937;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1.1rem;
+      background: #1f2937;
+      border-bottom: 1px solid #374151;
+    }
+
+    .terminal-bar .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-bar .dot.red { background: #ef4444; }
+    .terminal-bar .dot.yellow { background: #f59e0b; }
+    .terminal-bar .dot.green { background: #10b981; }
+
+    .terminal-title {
+      font: 500 0.72rem var(--mono);
+      color: #9ca3af;
+      margin-left: 0.5rem;
+    }
+
+    .code-terminal pre {
+      margin: 0;
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+    }
+
+    .code-terminal code {
+      font: 400 0.85rem/1.65 var(--mono);
+      color: #e5e7eb;
+    }
+
+    .action-buttons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    /* Conclusion Panel */
+    .conclusion-panel {
+      background: linear-gradient(135deg, rgba(52, 120, 246, 0.05), rgba(143, 211, 182, 0.08)), var(--surface);
+      border-color: rgba(52, 120, 246, 0.2);
+    }
+
+    .conclusion-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-header {
+        padding: 5rem 0 2rem;
+      }
+
+      .browser-bar {
+        flex-wrap: wrap;
+      }
+
+      .browser-url {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .project-panel {
+        padding: 1.5rem;
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>

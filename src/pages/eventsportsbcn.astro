@@ -1,0 +1,1325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
+const stack = ['PHP 8', 'MySQL / MariaDB', 'Arquitectura MVC', 'JavaScript', 'CSS3 Responsive', 'Apache / XAMPP', 'Control de Aforo'];
+
+const appViews = [
+  {
+    id: 'home',
+    title: 'Portal Principal & Portada',
+    badge: 'Landing & Featured Sports',
+    desc: 'Página de inicio con cabecera visual, acceso rápido a deportes destacados y accesos directos para organizadores de torneos.',
+    img: '/images/eventsports-home.jpg'
+  },
+  {
+    id: 'basket',
+    title: 'Catálogo de Torneos con Filtros',
+    badge: 'Búsqueda & Calendario',
+    desc: 'Módulo de exploración deportiva con buscador en tiempo real, selector de fechas, ordenación alfabética y tarjetas informativas con aforo y sede.',
+    img: '/images/eventsports-basket.jpg'
+  },
+  {
+    id: 'detalle',
+    title: 'Ficha Detallada & Reserva de Plaza',
+    badge: 'Ficha de Evento',
+    desc: 'Vista pormenorizada del evento con fotografía, horarios, dirección exacta en Barcelona, plazas totales y disponibles, enlace a Google Maps y llamada a la inscripción.',
+    img: '/images/eventsports-detalle.jpg'
+  },
+  {
+    id: 'manager',
+    title: 'Panel del Organizador (Manager)',
+    badge: 'Gestión CRUD de Eventos',
+    desc: 'Panel de control exclusivo para organizadores deportivos: creación de nuevas actividades, control de aforo, edición de datos y eliminación.',
+    img: '/images/eventsports-manager.jpg'
+  },
+  {
+    id: 'login',
+    title: 'Autenticación & Control de Roles',
+    badge: 'Seguridad & Sesiones',
+    desc: 'Sistema de acceso con hashing seguro de contraseñas, gestión de sesiones PHP, política de cookies y pantallas de registro diferenciadas.',
+    img: '/images/eventsports-login.jpg'
+  }
+];
+---
+
+<BaseLayout
+  title="EventSportsBCN · Plataforma de Gestión Deportiva en Barcelona"
+  description="EventSportsBCN — Aplicación web full-stack para el descubrimiento, inscripción y gestión de eventos deportivos en Barcelona construida con PHP, MySQL y arquitectura MVC."
+  ogImage="https://alexbarrera457.github.io/images/eventsports-home.jpg"
+  canonicalUrl="https://alexbarrera457.github.io/eventsportsbcn"
+  bodyClass="project-page"
+>
+  <header class="project-header">
+    <div class="container project-header-inner">
+      <div class="header-nav-bar">
+        <a class="back-link" href="/">← Volver al portfolio</a>
+        <LanguageSwitcher />
+      </div>
+
+      <div class="header-hero">
+        <span class="eyebrow project-eyebrow">Proyecto académico · Aplicación real · 2026</span>
+        <h1 class="project-title">EventSportsBCN</h1>
+        <p class="lead">
+          Plataforma web full-stack para descubrir, inscribirse y gestionar eventos y torneos deportivos en <strong>Barcelona</strong>.
+          Construida con <strong>PHP 8</strong>, base de datos relacional <strong>MySQL</strong> y arquitectura <strong>MVC</strong> pura
+          con control de aforo en tiempo real y roles de usuario diferenciados.
+        </p>
+        <div class="stack-list">
+          {stack.map((item) => <span class="stack-pill">{item}</span>)}
+        </div>
+        <div class="header-actions">
+          <a class="button primary" href="https://github.com/alexBarrera457/ProjectEventSportsBCN" target="_blank" rel="noopener noreferrer" data-header-repo-btn>
+            Ver repositorio en GitHub ↗
+          </a>
+          <a class="button" href="#capturas-reales" data-header-gallery-btn>
+            Explorar capturas reales ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Real Web Application Hero Showcase -->
+  <div class="container cover-wrap" id="capturas-reales">
+    <div class="browser-showcase">
+      <div class="browser-bar">
+        <div class="browser-controls">
+          <span class="dot close"></span>
+          <span class="dot min"></span>
+          <span class="dot max"></span>
+        </div>
+        <div class="browser-url">
+          <span class="url-lock">🔒</span>
+          <span class="url-text">http://localhost/ProjectEventSportsBCN/View/HTML/Pages/HomeMenu.php</span>
+          <span class="url-badge">PHP 8 · MySQL · MVC Activo</span>
+        </div>
+        <div class="browser-actions">
+          <span class="live-dot"></span>
+          <span class="live-text">Captura real de la app</span>
+        </div>
+      </div>
+      <div class="browser-screen">
+        <img
+          id="main-showcase-img"
+          src="/images/eventsports-home.jpg"
+          alt="Captura real de la plataforma deportiva EventSportsBCN"
+          class="showcase-img"
+          width="1440"
+          height="900"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="showcase-floating-badge">
+          <span class="floating-icon">🏆</span>
+          <div>
+            <strong>Plataforma Deportiva Operativa</strong>
+            <span>Gestión de eventos, torneos y aforo en Barcelona</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container project-content">
+    <!-- Real Views Tabs & Gallery Section -->
+    <section class="project-panel gallery-panel">
+      <div class="panel-header-row">
+        <div>
+          <h2 data-gallery-title>Capturas reales de la aplicación</h2>
+          <p data-gallery-subtitle>
+            Vistas reales de la plataforma deportiva capturadas en entorno local, reflejando el flujo integral desde el usuario deportista hasta el gestor deportivo:
+          </p>
+        </div>
+      </div>
+
+      <div class="views-grid">
+        {appViews.map((view) => (
+          <article class="view-card" data-view-id={view.id}>
+            <div class="view-image-wrap">
+              <span class="view-badge">{view.badge}</span>
+              <img src={view.img} alt={view.title} loading="lazy" decoding="async" width="800" height="500" />
+            </div>
+            <div class="view-info">
+              <h4>{view.title}</h4>
+              <p>{view.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Key Impact Metrics -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-num">2 Roles</span>
+        <span class="metric-label" data-metric-1-label>Roles Diferenciados</span>
+        <p class="metric-desc" data-metric-1-desc>Acceso segregado: Usuario (reserva y seguimiento) y Manager (administración integral de eventos).</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">100% MVC</span>
+        <span class="metric-label" data-metric-2-label>Arquitectura Modular</span>
+        <p class="metric-desc" data-metric-2-desc>Separación estricta entre Controladores POO en PHP, Modelos de datos PDO y Vistas HTML/CSS.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">5 Deportes</span>
+        <span class="metric-label" data-metric-3-label>Disciplinas Cubiertas</span>
+        <p class="metric-desc" data-metric-3-desc>Fútbol, Baloncesto, Pádel, Tenis y Golf con filtrado dinámico por fecha y ordenación alfabética.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">Real-Time</span>
+        <span class="metric-label" data-metric-4-label>Control de Aforo</span>
+        <p class="metric-desc" data-metric-4-desc>Cálculo exacto de plazas totales vs plazas disponibles con integridad referencial en MySQL.</p>
+      </div>
+    </section>
+
+    <!-- Business Context & Motivation -->
+    <section class="project-panel">
+      <h2 data-section-1-title>Contexto del proyecto: digitalizar el deporte amateur en Barcelona</h2>
+      <p data-section-1-intro>
+        En el ecosistema deportivo amateur de Barcelona coexisten clubes municipales, pistas abiertas y organizadores independientes.
+        La falta de un canal unificado suele provocar dificultades logísticas tanto a los deportistas que buscan unirse a partidos como a los gestores que intentan completar convocatorias:
+      </p>
+      <div class="status-grid">
+        <div class="status-box">
+          <h3 data-status-problem-title>⚠️ Retos de la organización tradicional</h3>
+          <ul class="bullet-list" data-status-problem-list>
+            <li>Gestión informal de convocatorias a través de grupos de mensajería dispersos.</li>
+            <li>Incertidumbre constante sobre el aforo real y cancelaciones de última hora sin recuento.</li>
+            <li>Falta de visibilidad para torneos de disciplinas como pádel, tenis o golf en instalaciones municipales.</li>
+            <li>Ausencia de un registro histórico de eventos inscritos o guardados por parte del jugador.</li>
+          </ul>
+        </div>
+        <div class="status-box success">
+          <h3 data-status-solution-title>💡 Solución implementada en EventSportsBCN</h3>
+          <ul class="bullet-list" data-status-solution-list>
+            <li>Catálogo centralizado clasificado por categorías deportivas con buscador reactivo y selector de fecha.</li>
+            <li>Panel de control CRUD para organizadores con publicación inmediata de convocatorias y dirección física.</li>
+            <li>Control riguroso de plazas en base de datos con vinculación directa entre usuarios y eventos.</li>
+            <li>Área privada con secciones de "Eventos apuntados", "Eventos guardados" y "Deportes seguidos".</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Engineering -->
+    <section class="project-panel">
+      <h2 data-section-2-title>Arquitectura técnica y patrones de ingeniería</h2>
+      <p data-section-2-intro>
+        El sistema está estructurado mediante el patrón <strong>Modelo-Vista-Controlador (MVC)</strong> en PHP, garantizando una separación clara entre la lógica de negocio, el almacenamiento y la presentación visual:
+      </p>
+
+      <div class="arch-cards-grid">
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">⚡</span>
+            <h4>Controladores POO (PHP 8)</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>EventController & UserController:</strong> Clases desacopladas encargadas de coordinar la lógica de negocio y las peticiones POST/GET.</li>
+            <li><strong>Validación & Sanitización:</strong> Verificación estricta de parámetros obligatorios, tipos y subida controlada de imágenes de portada.</li>
+            <li><strong>Manejo de Sesiones:</strong> Control de autenticación nativo en PHP con <code>$_SESSION</code> para protección de rutas según rol.</li>
+            <li><strong>Seguridad de Acceso:</strong> Almacenamiento seguro de contraseñas mediante algoritmos de hashing <code>password_hash()</code>.</li>
+          </ul>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">💾</span>
+            <h4>Persistencia & Base de Datos (MySQL / MariaDB)</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Abstracción PDO:</strong> Conexión mediante PHP Data Objects con prepared statements para prevenir inyecciones SQL.</li>
+            <li><strong>Integridad Referencial:</strong> Relaciones relacionales entre <code>usuarios</code>, <code>eventos</code> e <code>inscripciones</code> con cascada (<code>ON DELETE CASCADE</code>).</li>
+            <li><strong>Tipos Normalizados:</strong> Enums para deportes y roles, control temporal de fecha y hora, y almacenamiento de ubicaciones con código postal.</li>
+            <li><strong>Indexación & Consultas:</strong> Filtrado por disciplina deportiva y ordenación cronológica descendente.</li>
+          </ul>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">🎨</span>
+            <h4>Vistas & Experiencia de Usuario</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Modularidad de Vistas:</strong> Pantallas especializadas con hojas de estilos CSS dedicadas por módulo funcional.</li>
+            <li><strong>Filtros Reactivos en Cliente:</strong> Búsqueda en tiempo real mediante JavaScript/jQuery sin recargas innecesarias.</li>
+            <li><strong>Diseño Responsive:</strong> Rejilla adaptable para pantallas móviles y escritorios optimizada para consulta rápida en pistas.</li>
+            <li><strong>Integración con Mapas:</strong> Enlaces directos a Google Maps para facilitar la llegada de los deportistas a cada sede.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code & Repository -->
+    <section class="project-panel">
+      <h2 data-section-3-title>Repositorio y código fuente</h2>
+      <p data-section-3-intro>El repositorio completo del proyecto está disponible de forma abierta en GitHub:</p>
+      <div class="code-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">bash · repository ProjectEventSportsBCN</span>
+        </div>
+        <pre><code data-terminal-code># Clonar repositorio
+git clone https://github.com/alexBarrera457/ProjectEventSportsBCN.git
+cd ProjectEventSportsBCN
+
+# Importar el esquema de base de datos en MySQL
+mysql -u root -p eventsportsbcn &lt; Model/Model.sql
+
+# Iniciar Apache y MySQL en XAMPP y acceder desde el navegador:
+# http://localhost/ProjectEventSportsBCN/View/HTML/Pages/HomeMenu.php</code></pre>
+      </div>
+      <div class="action-buttons-row">
+        <a class="button primary" href="https://github.com/alexBarrera457/ProjectEventSportsBCN" target="_blank" rel="noopener noreferrer" data-repo-btn>
+          Ver repositorio en GitHub ↗
+        </a>
+        <a class="button" href="/#contact" data-contact-btn>
+          Contactar conmigo →
+        </a>
+      </div>
+    </section>
+
+    <!-- Conclusion Panel -->
+    <section class="project-panel conclusion-panel">
+      <h2 data-section-4-title>Conclusión y balance profesional</h2>
+      <p data-section-4-text>
+        EventSportsBCN representa la consolidación de los fundamentos del desarrollo web del lado del servidor: estructurar una aplicación completa desde la arquitectura MVC, el diseño del esquema relacional en SQL, la gestión de sesiones seguras y la entrega de una interfaz visual clara para deportistas y gestores de la ciudad de Barcelona.
+      </p>
+      <div class="conclusion-actions">
+        <a class="button primary" href="/#projects" data-cta-btn>
+          Ver otros proyectos del portfolio ↗
+        </a>
+        <a class="button" href="/" data-footer-back>
+          ← Volver al inicio
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const translations = {
+      es: {
+        docTitle: 'EventSportsBCN · Plataforma de Gestión Deportiva en Barcelona',
+        docDesc: 'EventSportsBCN — Aplicación web full-stack para el descubrimiento, inscripción y gestión de eventos deportivos en Barcelona construida con PHP, MySQL y arquitectura MVC.',
+        backLink: '← Volver al portfolio',
+        eyebrow: 'Proyecto académico · Aplicación real · 2026',
+        title: 'EventSportsBCN',
+        lead: 'Plataforma web full-stack para descubrir, inscribirse y gestionar eventos y torneos deportivos en <strong>Barcelona</strong>. Construida con <strong>PHP 8</strong>, base de datos relacional <strong>MySQL</strong> y arquitectura <strong>MVC</strong> pura con control de aforo en tiempo real y roles de usuario diferenciados.',
+        urlBadge: 'PHP 8 · MySQL · MVC Activo',
+        liveText: 'Captura real de la app',
+        badgeTitle: 'Plataforma Deportiva Operativa',
+        badgeDesc: 'Gestión de eventos, torneos y aforo en Barcelona',
+        headerRepoBtn: 'Ver repositorio en GitHub ↗',
+        headerGalleryBtn: 'Explorar capturas reales ↓',
+        galleryTitle: 'Capturas reales de la aplicación',
+        gallerySubtitle: 'Vistas reales de la plataforma deportiva capturadas en entorno local, reflejando el flujo integral desde el usuario deportista hasta el gestor deportivo:',
+        galleryCards: [
+          { badge: 'Catálogo Frontend', title: 'Directorio de Torneos & Filtros', desc: 'Filtros dinámicos por disciplina deportiva, calendario de fechas y ordenación alfabética.' },
+          { badge: 'Detalle & Reserva', title: 'Ficha Técnica & Control de Aforo', desc: 'Información del encuentro, dirección física, plazas disponibles y botón de reserva de plaza.' },
+          { badge: 'Panel de Gestión', title: 'Panel de Administración (CRUD)', desc: 'Formularios de alta, edición y cancelación de eventos con control de precios y aforos.' },
+          { badge: 'Seguridad & Sesiones', title: 'Autenticación de Usuarios', desc: 'Gestión de sesiones PHP seguras para usuarios deportistas y administradores deportivos.' }
+        ],
+        m1Label: 'Roles Diferenciados',
+        m1Desc: 'Acceso segregado: Usuario (reserva y seguimiento) y Manager (administración integral de eventos).',
+        m2Label: 'Arquitectura Modular',
+        m2Desc: 'Separación estricta entre Controladores POO en PHP, Modelos de datos PDO y Vistas HTML/CSS.',
+        m3Label: 'Disciplinas Cubiertas',
+        m3Desc: 'Fútbol, Baloncesto, Pádel, Tenis y Golf con filtrado dinámico por fecha y ordenación alfabética.',
+        m4Label: 'Control de Aforo',
+        m4Desc: 'Cálculo exacto de plazas totales vs plazas disponibles con integridad referencial en MySQL.',
+        s1Title: 'Contexto del proyecto: digitalizar el deporte amateur en Barcelona',
+        s1Intro: 'En el ecosistema deportivo amateur de Barcelona coexisten clubes municipales, pistas abiertas y organizadores independientes. La falta de un canal unificado suele provocar dificultades logísticas tanto a los deportistas que buscan unirse a partidos como a los gestores que intentan completar convocatorias:',
+        spTitle: '⚠️ Retos de la organización tradicional',
+        spList: [
+          'Gestión informal de convocatorias a través de grupos de mensajería dispersos.',
+          'Incertidumbre constante sobre el aforo real y cancelaciones de última hora sin recuento.',
+          'Falta de visibilidad para torneos de disciplinas como pádel, tenis o golf en instalaciones municipales.',
+          'Ausencia de un registro histórico de eventos inscritos o guardados por parte del jugador.'
+        ],
+        ssTitle: '💡 Solución implementada en EventSportsBCN',
+        ssList: [
+          'Catálogo centralizado clasificado por categorías deportivas con buscador reactivo y selector de fecha.',
+          'Panel de control CRUD para organizadores con publicación inmediata de convocatorias y dirección física.',
+          'Control riguroso de plazas en base de datos con vinculación directa entre usuarios y eventos.',
+          'Área privada con secciones de "Eventos apuntados", "Eventos guardados" y "Deportes seguidos".'
+        ],
+        s2Title: 'Arquitectura técnica y patrones de ingeniería',
+        s2Intro: 'El sistema está estructurado mediante el patrón <strong>Modelo-Vista-Controlador (MVC)</strong> en PHP, garantizando una separación clara entre la lógica de negocio, el almacenamiento y la presentación visual:',
+        archCards: [
+          {
+            title: 'Controladores POO (PHP 8)',
+            items: [
+              '<strong>EventController & UserController:</strong> Clases desacopladas encargadas de coordinar la lógica de negocio y las peticiones POST/GET.',
+              '<strong>Validación & Sanitización:</strong> Verificación estricta de parámetros obligatorios, tipos y subida controlada de imágenes de portada.',
+              '<strong>Manejo de Sesiones:</strong> Control de autenticación nativo en PHP con <code>$_SESSION</code> para protección de rutas según rol.',
+              '<strong>Seguridad de Acceso:</strong> Almacenamiento seguro de contraseñas mediante algoritmos de hashing <code>password_hash()</code>.'
+            ]
+          },
+          {
+            title: 'Persistencia & Base de Datos (MySQL / MariaDB)',
+            items: [
+              '<strong>Abstracción PDO:</strong> Conexión mediante PHP Data Objects con prepared statements para prevenir inyecciones SQL.',
+              '<strong>Integridad Referencial:</strong> Relaciones relacionales entre <code>usuarios</code>, <code>eventos</code> e <code>inscripciones</code> con cascada (<code>ON DELETE CASCADE</code>).',
+              '<strong>Tipos Normalizados:</strong> Enums para deportes y roles, control temporal de fecha y hora, y almacenamiento de ubicaciones con código postal.',
+              '<strong>Indexación & Consultas:</strong> Filtrado por disciplina deportiva y ordenación cronológica descendente.'
+            ]
+          },
+          {
+            title: 'Vistas & Experiencia de Usuario',
+            items: [
+              '<strong>Modularidad de Vistas:</strong> Pantallas especializadas con hojas de estilos CSS dedicadas por módulo funcional.',
+              '<strong>Filtros Reactivos en Cliente:</strong> Búsqueda en tiempo real mediante JavaScript/jQuery sin recargas innecesarias.',
+              '<strong>Diseño Responsive:</strong> Rejilla adaptable para pantallas móviles y escritorios optimizada para consulta rápida en pistas.',
+              '<strong>Integración con Mapas:</strong> Enlaces directos a Google Maps para facilitar la llegada de los deportistas a cada sede.'
+            ]
+          }
+        ],
+        s3Title: 'Repositorio y código fuente',
+        s3Intro: 'El repositorio completo del proyecto está disponible de forma abierta en GitHub:',
+        terminalTitle: 'bash · repository ProjectEventSportsBCN',
+        terminalComments: [
+          '# Clonar repositorio',
+          '# Importar el esquema de base de datos en MySQL',
+          '# Iniciar Apache y MySQL en XAMPP y acceder desde el navegador:'
+        ],
+        repoBtn: 'Ver repositorio en GitHub ↗',
+        contactBtn: 'Contactar conmigo →',
+        s4Title: 'Conclusión y balance profesional',
+        s4Text: 'EventSportsBCN representa la consolidación de los fundamentos del desarrollo web del lado del servidor: estructurar una aplicación completa desde la arquitectura MVC, el diseño del esquema relacional en SQL, la gestión de sesiones seguras y la entrega de una interfaz visual clara para deportistas y gestores de la ciudad de Barcelona.',
+        ctaBtn: 'Ver otros proyectos del portfolio ↗',
+        footerBack: '← Volver al inicio'
+      },
+      ca: {
+        docTitle: 'EventSportsBCN · Plataforma de Gestió Esportiva a Barcelona',
+        docDesc: 'EventSportsBCN — Aplicació web full-stack per a la descoberta, inscripció i gestió d\'esdeveniments esportius a Barcelona construïda amb PHP, MySQL i arquitectura MVC.',
+        backLink: '← Tornar al portafoli',
+        eyebrow: 'Projecte acadèmic · Aplicació real · 2026',
+        title: 'EventSportsBCN',
+        lead: 'Plataforma web full-stack per descobrir, inscriure\'s i gestionar esdeveniments i tornejos esportius a <strong>Barcelona</strong>. Construïda amb <strong>PHP 8</strong>, base de dades relacional <strong>MySQL</strong> i arquitectura <strong>MVC</strong> pura amb control d\'aforament en temps real i rols d\'usuari diferenciats.',
+        urlBadge: 'PHP 8 · MySQL · MVC Actiu',
+        liveText: 'Captura real de l\'app',
+        badgeTitle: 'Plataforma Esportiva Operativa',
+        badgeDesc: 'Gestió d\'esdeveniments, tornejos i aforament a Barcelona',
+        headerRepoBtn: 'Veure repositori a GitHub ↗',
+        headerGalleryBtn: 'Explorar captures reals ↓',
+        galleryTitle: 'Captures reals de l\'aplicació',
+        gallerySubtitle: 'Vistes reals de la plataforma esportiva capturades en entorn local, reflectint el flux complet des de l\'esportista fins al gestor esportiu:',
+        galleryCards: [
+          { badge: 'Catàleg Frontend', title: 'Directori de Tornejos & Filtres', desc: 'Filtres dinàmics per disciplina esportiva, calendari de dates i ordenació alfabètica.' },
+          { badge: 'Detall & Reserva', title: 'Fitxa Tècnica & Control d\'Aforament', desc: 'Informació de la trobada, adreça física, places disponibles i botó de reserva de plaça.' },
+          { badge: 'Panell de Gestió', title: 'Panell d\'Administració (CRUD)', desc: 'Formularis d\'alta, edició i cancel·lació d\'esdeveniments amb control de preus i aforaments.' },
+          { badge: 'Seguretat & Sessions', title: 'Autenticació d\'Usuaris', desc: 'Gestió de sessions PHP segures per a esportistes i administradors esportius.' }
+        ],
+        m1Label: 'Rols Diferenciats',
+        m1Desc: 'Accés segregat: Usuari (reserva i seguiment) i Manager (administració integral d\'esdeveniments).',
+        m2Label: 'Arquitectura Modular',
+        m2Desc: 'Separació estricta entre Controladors POO en PHP, Models de dades PDO i Vistes HTML/CSS.',
+        m3Label: 'Disciplines Cobertes',
+        m3Desc: 'Futbol, Bàsquet, Pàdel, Tennis i Golf amb filtratge dinàmic per data i ordenació alfabètica.',
+        m4Label: 'Control d\'Aforament',
+        m4Desc: 'Càlcul exacte de places totals vs places disponibles amb integritat referencial a MySQL.',
+        s1Title: 'Context del projecte: digitalitzar l\'esport amateur a Barcelona',
+        s1Intro: 'A l\'ecosistema esportiu amateur de Barcelona conviuen clubs municipals, pistes obertes i organitzadors independents. La manca d\'un canal unificat sol provocar dificultats logístiques tant als esportistes com als gestors:',
+        spTitle: '⚠️ Reptes de l\'organització tradicional',
+        spList: [
+          'Gestió informal de convocatòries mitjançant grups de missatgeria dispersos.',
+          'Incertesa constant sobre l\'aforament real i cancel·lacions d\'última hora sense recompte.',
+          'Manca de visibilitat per a tornejos de pàdel, tennis o golf en instal·lacions municipals.',
+          'Absència d\'un registre històric d\'esdeveniments inscrits o desats per part del jugador.'
+        ],
+        ssTitle: '💡 Solució implementada a EventSportsBCN',
+        ssList: [
+          'Catàleg centralitzat classificat per categories esportives amb cercador reactiu i selector de data.',
+          'Panell de control CRUD per a organitzadors amb publicació immediata de convocatòries i adreça física.',
+          'Control rigorós de places a la base de dades amb vinculació directa entre usuaris i esdeveniments.',
+          'Àrea privada amb seccions d\'"Esdeveniments inscrits", "Esdeveniments desats" i "Esports seguits".'
+        ],
+        s2Title: 'Arquitectura tècnica i patrons d\'enginyeria',
+        s2Intro: 'El sistema està estructurat mitjançant el patró <strong>Model-Vista-Controlador (MVC)</strong> en PHP, garantint una separació neta entre la lògica de negoci, l\'emmagatzematge i la presentació visual:',
+        archCards: [
+          {
+            title: 'Controladors POO (PHP 8)',
+            items: [
+              '<strong>EventController & UserController:</strong> Classes desacoblades encarregades de coordinar la lògica de negoci i les peticions POST/GET.',
+              '<strong>Validació & Sanitització:</strong> Verificació estricta de paràmetres obligatoris, tipus i pujada controlada d\'imatges de portada.',
+              '<strong>Gestió de Sessions:</strong> Control d\'autenticació natiu en PHP amb <code>$_SESSION</code> per a protecció de rutes segons rol.',
+              '<strong>Seguretat d\'Accés:</strong> Emmagatzematge segur de contrasenyes mitjançant algorismes de resum <code>password_hash()</code>.'
+            ]
+          },
+          {
+            title: 'Persistència & Base de Dades (MySQL / MariaDB)',
+            items: [
+              '<strong>Abstracció PDO:</strong> Connexió mitjançant PHP Data Objects amb prepared statements per prevenir injeccions SQL.',
+              '<strong>Integritat Referencial:</strong> Relacions relacionals entre <code>usuarios</code>, <code>eventos</code> i <code>inscripciones</code> amb cascada (<code>ON DELETE CASCADE</code>).',
+              '<strong>Tipus Normalitzats:</strong> Enums per a esports i rols, control temporal de data i hora, i emmagatzematge d\'ubicacions amb codi postal.',
+              '<strong>Indexació & Consultes:</strong> Filtrat per disciplina esportiva i ordenació cronològica descendent.'
+            ]
+          },
+          {
+            title: 'Vistes & Experiència d\'Usuari',
+            items: [
+              '<strong>Modularitat de Vistes:</strong> Pantalles especialitzades amb fulls d\'estils CSS dedicats per mòdul funcional.',
+              '<strong>Filtres Reactius en Client:</strong> Cerca en temps real mitjançant JavaScript/jQuery sense recàrregues innecessàries.',
+              '<strong>Disseny Responsive:</strong> Reixeta adaptable per a pantalles mòbils i escriptoris optimitzada per a consulta ràpida a pistes.',
+              '<strong>Integració amb Mapes:</strong> Enllaços directes a Google Maps per facilitar l\'arribada dels esportistes a cada seu.'
+            ]
+          }
+        ],
+        s3Title: 'Repositori i codi font',
+        s3Intro: 'El repositori complet del projecte està disponible de forma oberta a GitHub:',
+        terminalTitle: 'bash · repository ProjectEventSportsBCN',
+        terminalComments: [
+          '# Clonar repositori',
+          '# Importar l\'esquema de base de dades a MySQL',
+          '# Iniciar Apache i MySQL a XAMPP i accedir des del navegador:'
+        ],
+        repoBtn: 'Veure repositori a GitHub ↗',
+        contactBtn: 'Contactar amb mi →',
+        s4Title: 'Conclusió i balanç professional',
+        s4Text: 'EventSportsBCN representa la consolidació dels fonaments del desenvolupament web del costat del servidor: estructurar una aplicació completa des de l\'arquitectura MVC, el disseny del model relacional en SQL, la gestió de sessions segures i el lliurament d\'una interfície visual clara per a esportistes i gestors.',
+        ctaBtn: 'Veure altres projectes del portafoli ↗',
+        footerBack: '← Tornar a l\'inici'
+      },
+      en: {
+        docTitle: 'EventSportsBCN · Sports Events Management Platform in Barcelona',
+        docDesc: 'EventSportsBCN — Full-stack web application for discovering, registering for, and managing sports events in Barcelona built with PHP, MySQL, and MVC architecture.',
+        backLink: '← Back to portfolio',
+        eyebrow: 'Academic Project · Real Web Application · 2026',
+        title: 'EventSportsBCN',
+        lead: 'Full-stack web platform for discovering, booking, and managing sports tournaments across <strong>Barcelona</strong>. Built with <strong>PHP 8</strong>, <strong>MySQL</strong> relational database, and clean <strong>MVC</strong> architecture with real-time capacity tracking and dedicated user roles.',
+        urlBadge: 'PHP 8 · MySQL · Active MVC',
+        liveText: 'Real app screenshot',
+        badgeTitle: 'Live Sports Platform',
+        badgeDesc: 'Events, tournaments, and capacity management in Barcelona',
+        headerRepoBtn: 'View repository on GitHub ↗',
+        headerGalleryBtn: 'Explore real screenshots ↓',
+        galleryTitle: 'Real application screenshots',
+        gallerySubtitle: 'Authentic views of the sports platform captured in a local environment, demonstrating the end-to-end workflow from athletes to sports managers:',
+        galleryCards: [
+          { badge: 'Frontend Directory', title: 'Tournament Directory & Filters', desc: 'Dynamic sports filters, interactive date calendar, and alphabetical sorting.' },
+          { badge: 'Detail & Booking', title: 'Event Sheet & Capacity Control', desc: 'Match information, physical venue address, available spots, and instant spot reservation.' },
+          { badge: 'Manager Dashboard', title: 'Admin Management Panel (CRUD)', desc: 'Event creation, editing, and cancellation forms with strict pricing and capacity control.' },
+          { badge: 'Security & Auth', title: 'User Authentication', desc: 'Secure PHP session management tailored for athletes and sports administrators.' }
+        ],
+        m1Label: 'Segregated Roles',
+        m1Desc: 'Distinct access levels: User (booking and tracking) and Manager (full CRUD event management).',
+        m2Label: 'Modular Architecture',
+        m2Desc: 'Strict separation between PHP OOP Controllers, PDO Data Models, and HTML/CSS Views.',
+        m3Label: 'Covered Disciplines',
+        m3Desc: 'Football, Basketball, Padel, Tennis, and Golf with real-time date filtering and alphabetical sorting.',
+        m4Label: 'Capacity Tracking',
+        m4Desc: 'Precise calculation of total vs available spots enforced by MySQL relational foreign keys.',
+        s1Title: 'Project context: digitalizing amateur sports in Barcelona',
+        s1Intro: 'Across Barcelona\'s amateur sports ecosystem, municipal facilities, open courts, and independent organizers operate simultaneously. The absence of a unified hub often causes logistical hurdles for players and tournament hosts alike:',
+        spTitle: '⚠️ Traditional organization challenges',
+        spList: [
+          'Informal scheduling through scattered instant messaging groups.',
+          'Constant uncertainty regarding venue capacity and last-minute dropouts without live headcount.',
+          'Limited discovery for sports tournaments like padel, tennis, or golf across city facilities.',
+          'No historical archive of joined or saved events for individual athletes.'
+        ],
+        ssTitle: '💡 Solution implemented in EventSportsBCN',
+        ssList: [
+          'Centralized directory organized by sports category with reactive text search and date picker.',
+          'CRUD management panel for organizers with immediate schedule publication and venue address.',
+          'Strict database capacity control linking users directly to event spots.',
+          'Private dashboard featuring "Joined events", "Saved events", and "Followed sports".'
+        ],
+        s2Title: 'Technical architecture and engineering standards',
+        s2Intro: 'The system is architected around the <strong>Model-View-Controller (MVC)</strong> pattern in PHP, ensuring clean separation between business logic, persistence, and visual rendering:',
+        archCards: [
+          {
+            title: 'OOP Controllers (PHP 8)',
+            items: [
+              '<strong>EventController & UserController:</strong> Decoupled classes responsible for coordinating business logic and POST/GET requests.',
+              '<strong>Validation & Sanitization:</strong> Strict parameter verification, type safety, and controlled cover image uploads.',
+              '<strong>Session Management:</strong> Native PHP authentication via <code>$_SESSION</code> with role-based route guard security.',
+              '<strong>Access Security:</strong> Secure password storage powered by <code>password_hash()</code> algorithms.'
+            ]
+          },
+          {
+            title: 'Persistence & Database (MySQL / MariaDB)',
+            items: [
+              '<strong>PDO Abstraction:</strong> Prepared statements through PHP Data Objects providing ironclad SQL injection immunity.',
+              '<strong>Referential Integrity:</strong> Relational foreign key constraints between <code>users</code>, <code>events</code>, and <code>registrations</code> with <code>ON DELETE CASCADE</code>.',
+              '<strong>Normalized Types:</strong> Custom enums for sports and roles, date-time indexing, and standardized postal code geolocation.',
+              '<strong>Optimized Queries:</strong> High-performance sport category filtering and descending chronological indexing.'
+            ]
+          },
+          {
+            title: 'Views & User Experience',
+            items: [
+              '<strong>View Modularity:</strong> Decoupled UI templates with dedicated CSS stylesheets for each operational subsystem.',
+              '<strong>Client-Side Reactive Filtering:</strong> Real-time asynchronous text query and discipline filtering without page reloads.',
+              '<strong>Responsive Design:</strong> Fluid CSS grid layout adapted for mobile screens at courtside and desktop workstations.',
+              '<strong>Map Integration:</strong> Direct deep-links to Google Maps assisting tournament participants with venue navigation.'
+            ]
+          }
+        ],
+        s3Title: 'Repository and source code',
+        s3Intro: 'The complete project repository is openly available on GitHub:',
+        terminalTitle: 'bash · repository ProjectEventSportsBCN',
+        terminalComments: [
+          '# Clone repository',
+          '# Import MySQL database schema',
+          '# Start Apache and MySQL on XAMPP and visit:'
+        ],
+        repoBtn: 'View repository on GitHub ↗',
+        contactBtn: 'Contact me →',
+        s4Title: 'Conclusion and professional takeaways',
+        s4Text: 'EventSportsBCN marks the mastery of server-side web engineering fundamentals: architecting an application with clean MVC separation, designing relational schemas in SQL, managing secure sessions, and delivering an intuitive UI for sports enthusiasts and organizers across Barcelona.',
+        ctaBtn: 'View other portfolio projects ↗',
+        footerBack: '← Back to home'
+      }
+    };
+
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
+    const setLanguage = (lang: 'es' | 'ca' | 'en') => {
+      const d = translations[lang] || translations.es;
+
+      buttons.forEach((b) => {
+        const active = b.dataset.language === lang;
+        b.setAttribute('aria-pressed', String(active));
+        b.classList.toggle('is-active', active);
+      });
+
+      const backLink = document.querySelector('.back-link');
+      if (backLink) backLink.textContent = d.backLink;
+      const eyebrow = document.querySelector('.project-eyebrow');
+      if (eyebrow) eyebrow.textContent = d.eyebrow;
+      const title = document.querySelector('.project-title');
+      if (title) title.textContent = d.title;
+      const lead = document.querySelector('.lead');
+      if (lead) lead.innerHTML = d.lead;
+
+      const urlBadge = document.querySelector('.browser-url .url-badge');
+      if (urlBadge) urlBadge.textContent = d.urlBadge;
+      const liveText = document.querySelector('.browser-actions .live-text');
+      if (liveText) liveText.textContent = d.liveText;
+      const bTitle = document.querySelector('.showcase-floating-badge strong');
+      if (bTitle) bTitle.textContent = d.badgeTitle;
+      const bDesc = document.querySelector('.showcase-floating-badge span');
+      if (bDesc) bDesc.textContent = d.badgeDesc;
+
+      const hRepo = document.querySelector('[data-header-repo-btn]');
+      if (hRepo) hRepo.textContent = d.headerRepoBtn;
+      const hGallery = document.querySelector('[data-header-gallery-btn]');
+      if (hGallery) hGallery.textContent = d.headerGalleryBtn;
+
+      const galTitle = document.querySelector('[data-gallery-title]');
+      if (galTitle) galTitle.textContent = d.galleryTitle;
+      const galSub = document.querySelector('[data-gallery-subtitle]');
+      if (galSub) galSub.textContent = d.gallerySubtitle;
+
+      document.querySelectorAll('.views-grid .view-card').forEach((card, idx) => {
+        const item = d.galleryCards[idx];
+        if (item) {
+          const badge = card.querySelector('.view-badge');
+          if (badge) badge.textContent = item.badge;
+          const cardTitle = card.querySelector('h4');
+          if (cardTitle) cardTitle.textContent = item.title;
+          const desc = card.querySelector('p');
+          if (desc) desc.textContent = item.desc;
+        }
+      });
+
+      const m1L = document.querySelector('[data-metric-1-label]');
+      if (m1L) m1L.textContent = d.m1Label;
+      const m1D = document.querySelector('[data-metric-1-desc]');
+      if (m1D) m1D.textContent = d.m1Desc;
+
+      const m2L = document.querySelector('[data-metric-2-label]');
+      if (m2L) m2L.textContent = d.m2Label;
+      const m2D = document.querySelector('[data-metric-2-desc]');
+      if (m2D) m2D.textContent = d.m2Desc;
+
+      const m3L = document.querySelector('[data-metric-3-label]');
+      if (m3L) m3L.textContent = d.m3Label;
+      const m3D = document.querySelector('[data-metric-3-desc]');
+      if (m3D) m3D.textContent = d.m3Desc;
+
+      const m4L = document.querySelector('[data-metric-4-label]');
+      if (m4L) m4L.textContent = d.m4Label;
+      const m4D = document.querySelector('[data-metric-4-desc]');
+      if (m4D) m4D.textContent = d.m4Desc;
+
+      const s1T = document.querySelector('[data-section-1-title]');
+      if (s1T) s1T.textContent = d.s1Title;
+      const s1I = document.querySelector('[data-section-1-intro]');
+      if (s1I) s1I.textContent = d.s1Intro;
+
+      const spT = document.querySelector('[data-status-problem-title]');
+      if (spT) spT.textContent = d.spTitle;
+      const spL = document.querySelector('[data-status-problem-list]');
+      if (spL) spL.innerHTML = d.spList.map((item) => `<li>${item}</li>`).join('');
+
+      const ssT = document.querySelector('[data-status-solution-title]');
+      if (ssT) ssT.textContent = d.ssTitle;
+      const ssL = document.querySelector('[data-status-solution-list]');
+      if (ssL) ssL.innerHTML = d.ssList.map((item) => `<li>${item}</li>`).join('');
+
+      const s2T = document.querySelector('[data-section-2-title]');
+      if (s2T) s2T.textContent = d.s2Title;
+      const s2I = document.querySelector('[data-section-2-intro]');
+      if (s2I) s2I.innerHTML = d.s2Intro;
+
+      document.querySelectorAll('.arch-cards-grid .arch-card').forEach((card, idx) => {
+        const item = d.archCards[idx];
+        if (item) {
+          const h4 = card.querySelector('h4');
+          if (h4) h4.textContent = item.title;
+          card.querySelectorAll('li').forEach((li, lIdx) => {
+            if (item.items[lIdx]) li.innerHTML = item.items[lIdx];
+          });
+        }
+      });
+
+      const s3T = document.querySelector('[data-section-3-title]');
+      if (s3T) s3T.textContent = d.s3Title;
+      const s3I = document.querySelector('[data-section-3-intro]');
+      if (s3I) s3I.textContent = d.s3Intro;
+
+      const termCode = document.querySelector('[data-terminal-code]');
+      if (termCode) {
+        termCode.textContent = `${d.terminalComments[0]}
+git clone https://github.com/alexBarrera457/ProjectEventSportsBCN.git
+cd ProjectEventSportsBCN
+
+${d.terminalComments[1]}
+mysql -u root -p eventsportsbcn < Model/Model.sql
+
+${d.terminalComments[2]}
+# http://localhost/ProjectEventSportsBCN/View/HTML/Pages/HomeMenu.php`;
+      }
+
+      const repoBtn = document.querySelector('[data-repo-btn]');
+      if (repoBtn) repoBtn.textContent = d.repoBtn;
+      const contBtn = document.querySelector('[data-contact-btn]');
+      if (contBtn) contBtn.textContent = d.contactBtn;
+
+      const s4T = document.querySelector('[data-section-4-title]');
+      if (s4T) s4T.textContent = d.s4Title;
+      const s4Text = document.querySelector('[data-section-4-text]');
+      if (s4Text) s4Text.textContent = d.s4Text;
+      const ctaBtn = document.querySelector('[data-cta-btn]');
+      if (ctaBtn) ctaBtn.textContent = d.ctaBtn;
+      const footBack = document.querySelector('[data-footer-back]');
+      if (footBack) footBack.textContent = d.footerBack;
+
+      document.title = d.docTitle;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', d.docDesc);
+      document.documentElement.lang = lang;
+      localStorage.setItem('portfolio-language', lang);
+    };
+
+    const storedLang = localStorage.getItem('portfolio-language');
+    const initLang = storedLang === 'ca' || storedLang === 'en' ? storedLang : 'es';
+    buttons.forEach((b) => b.addEventListener('click', () => setLanguage((b.dataset.language || 'es') as 'es' | 'ca' | 'en')));
+    setLanguage(initLang);
+  </script>
+
+  <style>
+    body.project-page {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+    }
+
+    .project-header {
+      padding: 6rem 0 2.8rem;
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 10% 15%, rgba(52, 120, 246, 0.07), transparent 35%),
+                  radial-gradient(circle at 90% 25%, rgba(143, 211, 182, 0.1), transparent 35%),
+                  var(--paper);
+    }
+
+    .project-header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .header-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--coral-dark);
+      text-decoration: none;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.22);
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(52, 120, 246, 0.16);
+      border-color: var(--coral);
+      transform: translateX(-2px);
+    }
+
+    .header-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 54rem;
+    }
+
+    .project-eyebrow {
+      align-self: flex-start;
+      margin: 0;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.18);
+    }
+
+    .project-title {
+      font: 400 clamp(2.8rem, 6.5vw, 5.2rem)/0.92 var(--serif);
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.68;
+      margin: 0;
+      max-width: 50rem;
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.25rem;
+    }
+
+    .stack-pill {
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--ink);
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 6px rgba(19, 34, 56, 0.03);
+      backdrop-filter: blur(4px);
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .cover-wrap {
+      padding: 2.5rem 0 1rem;
+    }
+
+    /* Browser Mockup Frame */
+    .browser-showcase {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 50px -12px rgba(19, 34, 56, 0.12),
+                  0 4px 12px rgba(19, 34, 56, 0.04);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .browser-showcase:hover {
+      box-shadow: 0 28px 60px -12px rgba(19, 34, 56, 0.16),
+                  0 6px 16px rgba(19, 34, 56, 0.06);
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      background: #f1f3f7;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .browser-controls {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+
+    .browser-controls .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .browser-controls .dot.close { background: #ff5f56; }
+    .browser-controls .dot.min { background: #ffbd2e; }
+    .browser-controls .dot.max { background: #27c93f; }
+
+    .browser-url {
+      flex: 1;
+      max-width: 38rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #ffffff;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(19, 34, 56, 0.1);
+      font: 500 0.76rem var(--mono);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .url-lock {
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .url-text {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .url-badge {
+      font-size: 0.68rem;
+      background: rgba(52, 120, 246, 0.12);
+      color: var(--coral-dark);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .browser-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.75; }
+    }
+
+    .live-text {
+      font: 600 0.68rem var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .browser-screen {
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+    }
+
+    .showcase-img {
+      width: 100%;
+      height: auto;
+      max-height: 640px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .showcase-floating-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(19, 34, 56, 0.88);
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      max-width: calc(100% - 3rem);
+    }
+
+    .floating-icon {
+      font-size: 1.4rem;
+    }
+
+    .showcase-floating-badge strong {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .showcase-floating-badge span {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 0.1rem;
+    }
+
+    .project-content {
+      padding: 3rem 0 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .project-panel {
+      padding: 2.2rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      box-shadow: 0 10px 30px rgba(19, 34, 56, 0.02);
+    }
+
+    .project-panel h2 {
+      font: 400 clamp(1.6rem, 2.8vw, 2.2rem) var(--serif);
+      color: var(--ink);
+      margin: 0 0 0.8rem;
+    }
+
+    .project-panel p {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* Views Grid */
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin-top: 2rem;
+    }
+
+    .view-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 14px rgba(19, 34, 56, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .view-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(19, 34, 56, 0.08);
+    }
+
+    .view-image-wrap {
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+
+    .view-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .view-card:hover .view-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    .view-badge {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      background: rgba(19, 34, 56, 0.85);
+      color: #ffffff;
+      font: 600 0.65rem var(--mono);
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 2;
+    }
+
+    .view-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex: 1;
+    }
+
+    .view-info h4 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .view-info p {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .metric-card {
+      padding: 1.8rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: 0 4px 16px rgba(19, 34, 56, 0.02);
+    }
+
+    .metric-num {
+      font: 400 clamp(2rem, 3.5vw, 2.6rem) var(--serif);
+      color: var(--coral-dark);
+      line-height: 1;
+    }
+
+    .metric-label {
+      font: 600 0.82rem var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .metric-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Status Grid */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+
+    .status-box {
+      padding: 1.6rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.04);
+      border: 1px solid rgba(239, 68, 68, 0.16);
+    }
+
+    .status-box.success {
+      background: rgba(16, 185, 129, 0.05);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .status-box h3 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0 0 1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.3rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0.2rem;
+      color: var(--coral);
+      font-weight: bold;
+    }
+
+    /* Architecture Cards */
+    .arch-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.8rem;
+    }
+
+    .arch-card {
+      padding: 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(19, 34, 56, 0.03);
+    }
+
+    .arch-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .arch-icon {
+      font-size: 1.3rem;
+    }
+
+    .arch-header h4 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* Code Terminal */
+    .code-terminal {
+      margin-top: 1.4rem;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #111827;
+      border: 1px solid #1f2937;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.7rem 1.1rem;
+      background: #1f2937;
+      border-bottom: 1px solid #374151;
+    }
+
+    .terminal-bar .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-bar .dot.red { background: #ef4444; }
+    .terminal-bar .dot.yellow { background: #f59e0b; }
+    .terminal-bar .dot.green { background: #10b981; }
+
+    .terminal-title {
+      font: 500 0.72rem var(--mono);
+      color: #9ca3af;
+      margin-left: 0.5rem;
+    }
+
+    .code-terminal pre {
+      margin: 0;
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+    }
+
+    .code-terminal code {
+      font: 400 0.85rem/1.65 var(--mono);
+      color: #e5e7eb;
+    }
+
+    .action-buttons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    /* Conclusion Panel */
+    .conclusion-panel {
+      background: linear-gradient(135deg, rgba(52, 120, 246, 0.05), rgba(143, 211, 182, 0.08)), var(--surface);
+      border-color: rgba(52, 120, 246, 0.2);
+    }
+
+    .conclusion-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-header {
+        padding: 5rem 0 2rem;
+      }
+
+      .browser-bar {
+        flex-wrap: wrap;
+      }
+
+      .browser-url {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .project-panel {
+        padding: 1.5rem;
+      }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>

@@ -1,62 +1,103 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 const skills = [
-  ['☕', 'Java', 'backend'],
-  ['🐘', 'PHP', 'backend'],
-  ['◈', 'Symfony', 'framework'],
-  ['✦', 'Laravel', 'framework'],
-  ['▦', 'JavaScript', 'frontend'],
-  ['◎', 'React', 'frontend'],
-  ['△', 'Angular', 'frontend'],
-  ['◌', 'HTML5', 'frontend'],
-  ['▧', 'CSS3', 'frontend'],
-  ['⌘', 'SQL', 'database'],
-  ['◍', 'MongoDB', 'database'],
-  ['⌁', 'Git', 'tooling'],
-  ['◉', 'GitHub', 'tooling'],
-  ['▣', 'VS Code', 'tooling'],
-  ['▤', 'NetBeans', 'IDE']
+  ['/icons/java.svg', 'Java', 'backend', 'backend'],
+  ['/icons/php.svg', 'PHP', 'backend', 'backend'],
+  ['/icons/symfony.svg', 'Symfony', 'framework', 'backend'],
+  ['/icons/laravel.svg', 'Laravel', 'framework', 'backend'],
+  ['/icons/javascript.svg', 'JavaScript', 'frontend', 'frontend'],
+  ['/icons/react.svg', 'React', 'frontend', 'frontend'],
+  ['/icons/angular.svg', 'Angular', 'frontend', 'frontend'],
+  ['/icons/html5.svg', 'HTML5', 'frontend', 'frontend'],
+  ['/icons/css3.svg', 'CSS3', 'frontend', 'frontend'],
+  ['/icons/mysql.svg', 'MySQL', 'database', 'database'],
+  ['/icons/mongodb.svg', 'MongoDB', 'database', 'database'],
+  ['/icons/git.svg', 'Git', 'tooling', 'tools'],
+  ['/icons/github.svg', 'GitHub', 'tooling', 'tools'],
+  ['/icons/vscode.svg', 'VS Code', 'tooling', 'tools'],
+  ['/icons/netbeans.svg', 'NetBeans', 'IDE', 'tools']
 ];
 
 const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', 'MySQL', 'Git'];
+
+const defaultRepos = [
+  {
+    name: 'Prototipo-Cal-Sard-',
+    html_url: 'https://github.com/alexBarrera457/Prototipo-Cal-Sard-',
+    description: 'Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà con Angular 22 y SSR.',
+    language: 'TypeScript',
+    updated_at: '2026-10-05T17:27:17Z'
+  },
+  {
+    name: 'alexBarrera457.github.io',
+    html_url: 'https://github.com/alexBarrera457/alexBarrera457.github.io',
+    description: 'Portfolio personal y profesional desarrollado con Astro, TypeScript y diseño moderno adaptativo.',
+    language: 'Astro',
+    updated_at: '2026-10-06T20:25:34Z'
+  },
+  {
+    name: 'MP0613_RA3_POO_Bank',
+    html_url: 'https://github.com/alexBarrera457/MP0613_RA3_POO_Bank',
+    description: 'Práctica académica de Programación Orientada a Objetos en PHP simulando operaciones bancarias.',
+    language: 'PHP',
+    updated_at: '2026-10-06T15:45:00Z'
+  },
+  {
+    name: 'OmniNexus',
+    html_url: 'https://github.com/alexBarrera457/OmniNexus',
+    description: 'Interfaz experimental de chat inteligente con backend Express, SQLite y enrutamiento de herramientas.',
+    language: 'JavaScript',
+    updated_at: '2026-09-24T16:03:07Z'
+  }
+];
+
+let buildRepos = defaultRepos;
+try {
+  const res = await fetch('https://api.github.com/users/alexBarrera457/repos?sort=updated&per_page=8', {
+    headers: { 'User-Agent': 'Portfolio-Build' }
+  });
+  if (res.ok) {
+    const raw = (await res.json()) as Array<{ name: string; html_url: string; description: string | null; language: string | null; updated_at: string; fork: boolean }>;
+    const filtered = raw.filter((r) => !r.fork).slice(0, 4);
+    if (filtered.length) {
+      buildRepos = filtered.map((r) => ({
+        name: r.name,
+        html_url: r.html_url,
+        description: r.description || 'Repositorio público de desarrollo web.',
+        language: r.language || 'Web',
+        updated_at: r.updated_at
+      }));
+    }
+  }
+} catch {
+  // Use curated defaultRepos fallback
+}
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona." />
-    <meta property="og:title" content="Àlex Barrera Sardà · Portfolio" />
-    <meta property="og:description" content="Estudiante de segundo de DAW y desarrollador web en formación, abierto a oportunidades de prácticas." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://alexbarrera457.github.io/" />
-    <meta property="og:image" content="https://alexbarrera457.github.io/images/profile.jpg" />
-    <link rel="canonical" href="https://alexbarrera457.github.io/" />
-    <link rel="icon" href="data:," />
-    <title>Àlex Barrera — Desarrollador web</title>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Saltar al contenido</a>
-    <header class="site-header" data-header>
-      <nav class="nav" aria-label="Navegación principal">
-        <a class="logo" href="#hero">Àlex<span>.</span>Barrera</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú <span>+</span></button>
-        <ul class="nav-links" id="main-menu">
-          <li><a href="#stack">Stack</a></li>
-          <li><a href="#projects">Proyectos</a></li>
-          <li><a href="#experience">Experiencia</a></li>
-          <li><a href="#about">Sobre mí</a></li>
-          <li><a href="#contact">Contacto</a></li>
-        </ul>
-        <div class="language-switcher" aria-label="Idioma">
-          <button type="button" data-language="es" aria-pressed="true">ES</button>
-          <button type="button" data-language="ca" aria-pressed="false">CA</button>
-          <button type="button" data-language="en" aria-pressed="false">EN</button>
-        </div>
-      </nav>
-      <div class="scroll-progress" data-progress></div>
-    </header>
+<BaseLayout
+  title="Àlex Barrera — Desarrollador web"
+  description="Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona."
+  ogImage="https://alexbarrera457.github.io/images/profile.jpg"
+  canonicalUrl="https://alexbarrera457.github.io/"
+>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="logo" href="#hero">Àlex<span>.</span>Barrera</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú <span>+</span></button>
+      <ul class="nav-links" id="main-menu">
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#experience">Experiencia</a></li>
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+      <LanguageSwitcher />
+    </nav>
+    <div class="scroll-progress" data-progress></div>
+  </header>
 
     <main id="main-content">
       <section class="hero" id="hero">
@@ -69,7 +110,9 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
               <a class="button primary" href="#projects">Ver mi trabajo <span>↗</span></a>
               <a class="button" href="/cv" target="_blank" rel="noopener noreferrer">Ver currículum <span>↗</span></a>
               <a class="button" href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a>
-              <a class="button text" href="mailto:salexbarrera@gmail.com">Hablemos <span>→</span></a>
+              <button type="button" class="button copy-email-btn" data-copy-email="salexbarrera@gmail.com" title="Copiar correo al portapapeles">
+                <span class="copy-text">Copiar email</span> <span class="copy-icon">📋</span>
+              </button>
             </div>
           </div>
 
@@ -77,7 +120,7 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
             <div class="orbit"></div>
             <div class="profile-shape"></div>
             <div class="profile-photo-wrap">
-              <img class="profile-photo" src="/images/profile.jpg" alt="Foto de perfil de Àlex Barrera" />
+              <img class="profile-photo" src="/images/profile.jpg" alt="Foto de perfil de Àlex Barrera" width="400" height="400" fetchpriority="high" decoding="async" />
               <span class="profile-fallback">AB</span>
             </div>
             <div class="art-note"><strong>Disponible</strong>para nuevas oportunidades</div>
@@ -99,10 +142,29 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         <div class="container">
           <div class="section-heading reveal"><span class="number">01</span><h2>Mi caja de herramientas</h2></div>
           <p class="section-intro reveal">Tecnologías que uso para pensar, construir y llevar una idea desde la base de datos hasta el navegador.</p>
+          <div class="skills-filter reveal" role="tablist" aria-label="Filtrar tecnologías">
+            <button type="button" class="skill-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+              <span class="filter-label" data-filter-key="all">Todos</span> <span class="filter-count">15</span>
+            </button>
+            <button type="button" class="skill-filter-btn" data-filter="frontend" role="tab" aria-selected="false">
+              <span class="filter-label" data-filter-key="frontend">Frontend</span> <span class="filter-count">5</span>
+            </button>
+            <button type="button" class="skill-filter-btn" data-filter="backend" role="tab" aria-selected="false">
+              <span class="filter-label" data-filter-key="backend">Backend</span> <span class="filter-count">4</span>
+            </button>
+            <button type="button" class="skill-filter-btn" data-filter="database" role="tab" aria-selected="false">
+              <span class="filter-label" data-filter-key="database">Bases de datos</span> <span class="filter-count">2</span>
+            </button>
+            <button type="button" class="skill-filter-btn" data-filter="tools" role="tab" aria-selected="false">
+              <span class="filter-label" data-filter-key="tools">Herramientas</span> <span class="filter-count">4</span>
+            </button>
+          </div>
           <div class="skills reveal">
-            {skills.map(([icon, name, type]) => (
-              <article class="skill">
-                <span class="skill-icon" aria-hidden="true">{icon}</span>
+            {skills.map(([icon, name, type, category]) => (
+              <article class="skill" data-category={category}>
+                <span class="skill-icon" aria-hidden="true">
+                  <img src={icon} alt="" width="34" height="34" loading="lazy" />
+                </span>
                 <strong class="skill-name">{name}</strong>
                 <span class="skill-type">{type}</span>
               </article>
@@ -115,11 +177,18 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         <div class="container">
           <div class="section-heading reveal"><span class="number">02</span><h2>Proyectos en curso</h2></div>
 
-          <article class="project reveal">
+          <article class="project project-eventsports reveal">
             <div class="project-copy">
               <span class="project-label">Featured build · 2026</span>
               <h3>EventSportsBCN</h3>
               <p>Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.</p>
+              <div class="project-tags">
+                <span class="project-tag">PHP</span>
+                <span class="project-tag">MySQL</span>
+                <span class="project-tag">JavaScript</span>
+                <span class="project-tag">Arquitectura MVC</span>
+                <span class="project-tag">Responsive</span>
+              </div>
               <ul class="feature-list">
                 <li>Autenticación para usuarios y gestores.</li>
                 <li>Control de aforo e inscripciones.</li>
@@ -127,14 +196,49 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
                 <li>MySQL, PHP, JavaScript y diseño responsive.</li>
               </ul>
               <div class="actions">
-                <a class="button" href="https://github.com/alexBarrera457/ProjectEventSportsBCN" target="_blank" rel="noopener noreferrer">Ver en GitHub ↗</a>
+                <a class="button primary" href="/eventsportsbcn" data-eventsports-info-btn>Más información ↗</a>
+                <a class="button" href="https://github.com/alexBarrera457/ProjectEventSportsBCN" target="_blank" rel="noopener noreferrer" data-eventsports-github-btn>Ver en GitHub ↗</a>
               </div>
             </div>
             <div class="project-visual">
-              <img class="project-photo" src="/images/eventsportsbcn.jpg" alt="EventSportsBCN, plataforma de eventos deportivos" />
+              <img class="project-photo" src="/images/eventsportsbcn.jpg" alt="EventSportsBCN, plataforma de eventos deportivos" width="600" height="380" loading="lazy" decoding="async" />
               <div class="project-screen" aria-hidden="true">
                 <div class="screen-bar"><i></i><i></i><i></i></div>
                 <div class="screen-title">Events<span style="color:var(--coral-dark)">BCN</span></div>
+                <div class="screen-line"></div><div class="screen-line short"></div>
+                <div class="screen-pills"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project project-calsarda reveal" style="margin-top: 2rem;">
+            <div class="project-copy">
+              <span class="project-label">Proyecto personal · 2026</span>
+              <h3>Cal Sardà</h3>
+              <p>Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà (fundado en 1930). Desarrollado como proyecto personal para digitalizar la experiencia de compra: catálogo interactivo de productos gourmet, alérgenos, gestión de cestas y pedidos de recogida y entrega.</p>
+              <div class="project-tags">
+                <span class="project-tag">Angular 22</span>
+                <span class="project-tag">SSR / Express</span>
+                <span class="project-tag">TypeScript</span>
+                <span class="project-tag">Domain-Driven</span>
+                <span class="project-tag">E-Commerce</span>
+              </div>
+              <ul class="feature-list">
+                <li>Desarrollado con Angular 22, SSR y arquitectura modular orientada al dominio.</li>
+                <li>Catálogo gastronómico interactivo con filtros, categorías y control de alérgenos.</li>
+                <li>Gestión de cesta de compra y flujo de pedidos para recogida en tienda o envío.</li>
+                <li>Modelado riguroso de entidades (obrador, lotes, productos y pedidos).</li>
+              </ul>
+              <div class="actions">
+                <a class="button primary" href="/cal-sarda" data-calsarda-info-btn>Más información ↗</a>
+                <a class="button" href="https://github.com/alexBarrera457/Prototipo-Cal-Sard-" target="_blank" rel="noopener noreferrer" data-calsarda-github-btn>Ver en GitHub ↗</a>
+              </div>
+            </div>
+            <div class="project-visual project-visual-calsarda">
+              <img class="project-photo" src="/images/calsarda.jpg" alt="Cal Sardà, prototipo de tienda real" width="600" height="380" loading="lazy" decoding="async" />
+              <div class="project-screen project-screen-calsarda" aria-hidden="true">
+                <div class="screen-bar"><i></i><i></i><i></i></div>
+                <div class="screen-title">Cal <span style="color:var(--coral)">Sardà</span></div>
                 <div class="screen-line"></div><div class="screen-line short"></div>
                 <div class="screen-pills"><i></i><i></i><i></i></div>
               </div>
@@ -146,6 +250,13 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
               <span class="project-label">En curso · 2026</span>
               <h3>OMNI // NEXUS</h3>
               <p>Proyecto experimental de chat inteligente local que combina una interfaz web con historial de conversaciones, memoria opcional y herramientas de búsqueda, cálculo y respuesta contextual. Está en desarrollo y me permite explorar la integración entre IA, backend y experiencia de usuario.</p>
+              <div class="project-tags">
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express</span>
+                <span class="project-tag">SQLite</span>
+                <span class="project-tag">REST API</span>
+                <span class="project-tag">IA Local / OpenAI API</span>
+              </div>
               <ul class="feature-list">
                 <li>Backend Express con API REST y SQLite.</li>
                 <li>Diseño visual de panel de control y feedback de estado.</li>
@@ -153,7 +264,7 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
                 <li>Desarrollo continuo con IA, lógica propia y enfoque práctico.</li>
               </ul>
               <div class="actions">
-                <a class="button" href="/omni-nexus">Más información ↗</a>
+                <a class="button primary" href="/omni-nexus" data-nexus-info-btn>Más información ↗</a>
               </div>
             </div>
             <div class="project-visual project-visual-secondary nexus-preview" aria-label="Previsualización de la interfaz OMNI // NEXUS">
@@ -186,8 +297,19 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
             <a class="button" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer">Ver perfil en GitHub ↗</a>
           </div>
           <div class="github-repositories reveal" data-github-repositories>
-            <article class="github-repository github-loading">Cargando actividad de GitHub...</article>
+            {buildRepos.map((repo) => (
+              <article class="github-repository">
+                <span class="github-repository-label">Repositorio</span>
+                <h3>{repo.name}</h3>
+                <p>{repo.description}</p>
+                <div class="github-repository-meta">
+                  {repo.language} · Actualizado {new Date(repo.updated_at).toLocaleDateString('es-ES')}
+                </div>
+                <a class="button" href={repo.html_url} target="_blank" rel="noopener noreferrer">Ver repositorio ↗</a>
+              </article>
+            ))}
           </div>
+          <script id="github-initial-data" type="application/json" set:html={JSON.stringify(buildRepos)} />
         </div>
       </section>
 
@@ -248,6 +370,9 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
             <p>¿Tienes una idea, una oportunidad o simplemente quieres saludar? Estoy abierto a proyectos, prácticas y conversaciones sobre desarrollo web.</p>
             <div class="actions contact-actions">
               <a class="button primary" href="mailto:salexbarrera@gmail.com">Escríbeme →</a>
+              <button type="button" class="button copy-email-btn" data-copy-email="salexbarrera@gmail.com" title="Copiar correo al portapapeles">
+                <span class="copy-text">Copiar email</span> <span class="copy-icon">📋</span>
+              </button>
               <a class="button" href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             </div>
           </div>
@@ -260,6 +385,11 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
       <span>Hecho con Astro · Barcelona</span>
     </footer>
 
+    <div class="copy-toast" id="copy-toast" aria-live="polite">
+      <span class="copy-toast-check">✓</span>
+      <span id="copy-toast-msg">Email copiado al portapapeles</span>
+    </div>
+
     <script>
       const translations = {
         es: {
@@ -269,6 +399,7 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
           work: 'Ver mi trabajo ↗', cv: 'Ver currículum ↗', talk: 'Hablemos →', available: '<strong>Disponible</strong>para nuevas oportunidades',
           stackTitle: 'Mi caja de herramientas', stackIntro: 'Tecnologías que uso para pensar, construir y llevar una idea desde la base de datos hasta el navegador.',
           projectsTitle: 'Proyectos en curso', eventLabel: 'Proyecto destacado · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.',
+          calsardaLabel: 'Proyecto personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà (fundado en 1930). Desarrollado como proyecto personal para digitalizar la experiencia de compra: catálogo interactivo de productos gourmet, alérgenos, gestión de cestas y pedidos de recogida y entrega.',
           nexusLabel: 'En curso · 2026', nexusCopy: 'Proyecto experimental de chat inteligente local que combina una interfaz web con historial de conversaciones, memoria opcional y herramientas de búsqueda, cálculo y respuesta contextual. Está en desarrollo y me permite explorar la integración entre IA, backend y experiencia de usuario.',
           experienceTitle: 'Experiencia y actividad', experienceIntro: 'Una selección de mi actividad pública en GitHub: proyectos, tecnologías y trabajo reciente.', experienceButton: 'Ver perfil en GitHub ↗', loadingGithub: 'Cargando actividad de GitHub...', aboutTitle: 'Un poco sobre mí', about1: 'Estoy cursando <strong>Desarrollo de Aplicaciones Web</strong> en Stucom Barcelona y me apasiona construir soluciones completas, desde la lógica de negocio hasta la experiencia final del usuario.',
           about2: 'He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB y VS Code</strong>, además de diseño responsive, gestión de bases de datos y resolución de problemas en proyectos web reales.',
@@ -283,6 +414,7 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
           work: 'Veure la meva feina ↗', cv: 'Veure currículum ↗', talk: 'Parlem →', available: '<strong>Disponible</strong>per a noves oportunitats',
           stackTitle: 'La meva caixa d’eines', stackIntro: 'Tecnologies que faig servir per pensar, construir i portar una idea des de la base de dades fins al navegador.',
           projectsTitle: 'Projectes en curs', eventLabel: 'Projecte destacat · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack per descobrir i gestionar esdeveniments esportius a Barcelona, construïda amb arquitectura MVC i rols d’usuari diferenciats.',
+          calsardaLabel: 'Projecte personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototip de botiga real per al comerç tradicional i xarcuteria centenària Cal Sardà (fundat el 1930). Desenvolupat com a projecte personal per digitalitzar l’experiència de compra: catàleg interactiu de productes gurmet, al·lèrgens, gestió de cistelles i comandes de recollida i lliurament.',
           nexusLabel: 'En curs · 2026', nexusCopy: 'Projecte experimental de xat intel·ligent local que combina una interfície web amb historial de converses, memòria opcional i eines de cerca, càlcul i resposta contextual. Està en desenvolupament i em permet explorar la integració entre IA, backend i experiència d’usuari.',
           experienceTitle: 'Experiència i activitat', experienceIntro: 'Una selecció de la meva activitat pública a GitHub: projectes, tecnologies i treball recent.', experienceButton: 'Veure el perfil a GitHub ↗', loadingGithub: 'Carregant activitat de GitHub...', aboutTitle: 'Una mica sobre mi', about1: 'Estic cursant <strong>Desenvolupament d’Aplicacions Web</strong> a Stucom Barcelona i m’apassiona construir solucions completes, des de la lògica de negoci fins a l’experiència final de l’usuari.',
           about2: 'He treballat amb <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB i VS Code</strong>, a més de disseny responsive, gestió de bases de dades i resolució de problemes en projectes web reals.',
@@ -297,6 +429,7 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
           work: 'See my work ↗', cv: 'View résumé ↗', talk: 'Let’s talk →', available: '<strong>Available</strong>for new opportunities',
           stackTitle: 'My toolbox', stackIntro: 'Technologies I use to think, build and take an idea from the database to the browser.',
           projectsTitle: 'Projects in progress', eventLabel: 'Featured build · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'A full-stack platform for discovering and managing sports events in Barcelona, built with MVC architecture and differentiated user roles.',
+          calsardaLabel: 'Personal project · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Real store prototype for the centenary traditional gourmet charcuterie and grocery store Cal Sardà (founded in 1930). Developed as a personal project to digitalize the shopping experience: interactive gourmet catalog, allergen filters, basket management, and pickup or delivery orders.',
           nexusLabel: 'In progress · 2026', nexusCopy: 'An experimental local intelligent chat project combining a web interface with conversation history, optional memory, and search, calculation and contextual response tools. It is in development and lets me explore the integration of AI, backend and user experience.',
           experienceTitle: 'Experience and activity', experienceIntro: 'A selection of my public GitHub activity: projects, technologies and recent work.', experienceButton: 'View GitHub profile ↗', loadingGithub: 'Loading GitHub activity...', aboutTitle: 'A little about me', about1: 'I’m studying <strong>Web Application Development</strong> at Stucom Barcelona and I enjoy building complete solutions, from business logic to the final user experience.',
           about2: 'I have worked with <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB and VS Code</strong>, as well as responsive design, database management and problem-solving in real web projects.',
@@ -306,17 +439,57 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         }
       };
       const portfolioDetails = {
-        es: { eventFeatures: ['Autenticación para usuarios y gestores.', 'Control de aforo e inscripciones.', 'Panel de administración de eventos.', 'MySQL, PHP, JavaScript y diseño responsive.'], nexusFeatures: ['Backend Express con API REST y SQLite.', 'Diseño visual de panel de control y feedback de estado.', 'Integración con proveedores compatibles con OpenAI.', 'Desarrollo continuo con IA, lógica propia y enfoque práctico.'], eventButton: 'Ver en GitHub ↗', nexusButton: 'Más información ↗', infoLabels: ['Ubicación', 'Estudios', 'Enfoque', 'Estado', 'Idiomas', 'Email', 'LinkedIn'], infoValues: ['Barcelona, España', 'DAW · Stucom · 2º', 'Full-stack web', 'Buscando prácticas', 'Catalán C1 · Castellano · Inglés B1', 'salexbarrera@gmail.com', 'Ver perfil ↗'], highlights: ['Experiencia', 'Canguro · 2025', '6 meses como cuidador de niños.', 'Cal Sardà · 2024', '5 meses como dependiente.', 'Certificaciones', 'Inteligencia Artificial', 'Python y Hugging Face Transformers · Cibernarium, 2025.', 'Prompting y cartografía de herramientas de IA · Cibernarium, 2025.', 'Fortalezas', 'Cómo trabajo', 'Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.'], nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'] },
-        ca: { eventFeatures: ['Autenticació per a usuaris i gestors.', 'Control d’aforament i inscripcions.', 'Panell d’administració d’esdeveniments.', 'MySQL, PHP, JavaScript i disseny responsive.'], nexusFeatures: ['Backend Express amb API REST i SQLite.', 'Disseny visual de panell de control i feedback d’estat.', 'Integració amb proveïdors compatibles amb OpenAI.', 'Desenvolupament continu amb IA, lògica pròpia i enfocament pràctic.'], eventButton: 'Veure a GitHub ↗', nexusButton: 'Més informació ↗', infoLabels: ['Ubicació', 'Estudis', 'Enfocament', 'Estat', 'Idiomes', 'Email', 'LinkedIn'], infoValues: ['Barcelona, Espanya', 'DAW · Stucom · 2n', 'Full-stack web', 'Buscant pràctiques', 'Català C1 · Castellà · Anglès B1', 'salexbarrera@gmail.com', 'Veure perfil ↗'], highlights: ['Experiència', 'Cangur · 2025', '6 mesos com a cuidador d’infants.', 'Cal Sardà · 2024', '5 mesos com a dependent.', 'Certificacions', 'Intel·ligència Artificial', 'Python i Hugging Face Transformers · Cibernarium, 2025.', 'Prompting i cartografia d’eines d’IA · Cibernarium, 2025.', 'Punts forts', 'Com treballo', 'Treball en equip, empatia, responsabilitat i bona gestió del temps.'], nexusKicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', nexusTitle: 'Pensa en <em>sistemes.</em>', nexusPills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA'] },
-        en: { eventFeatures: ['Authentication for users and managers.', 'Capacity and registration management.', 'Event administration panel.', 'MySQL, PHP, JavaScript and responsive design.'], nexusFeatures: ['Express backend with REST API and SQLite.', 'Visual control-panel design and status feedback.', 'Integration with OpenAI-compatible providers.', 'Ongoing development with AI, custom logic and a practical focus.'], eventButton: 'View on GitHub ↗', nexusButton: 'More information ↗', infoLabels: ['Location', 'Education', 'Focus', 'Status', 'Languages', 'Email', 'LinkedIn'], infoValues: ['Barcelona, Spain', 'Web Development · Stucom · 2nd year', 'Full-stack web', 'Looking for an internship', 'Catalan C1 · Spanish · English', 'salexbarrera@gmail.com', 'View profile ↗'], highlights: ['Experience', 'Childcare · 2025', '6 months in childcare.', 'Cal Sardà · 2024', '5 months as a shop assistant.', 'Certifications', 'Artificial Intelligence', 'Python and Hugging Face Transformers · Cibernarium, 2025.', 'Prompting and mapping AI tools · Cibernarium, 2025.', 'Strengths', 'How I work', 'Teamwork, empathy, responsibility and good time management.'], nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR'] }
+        es: {
+          eventFeatures: ['Autenticación para usuarios y gestores.', 'Control de aforo e inscripciones.', 'Panel de administración de eventos.', 'MySQL, PHP, JavaScript y diseño responsive.'],
+          calsardaFeatures: ['Desarrollado con Angular 22, SSR y arquitectura modular orientada al dominio.', 'Catálogo gastronómico interactivo con filtros, categorías y control de alérgenos.', 'Gestión de cesta de compra y flujo de pedidos para recogida en tienda o envío.', 'Modelado riguroso de entidades (obrador, lotes, productos y pedidos).'],
+          nexusFeatures: ['Backend Express con API REST y SQLite.', 'Diseño visual de panel de control y feedback de estado.', 'Integración con proveedores compatibles con OpenAI.', 'Desarrollo continuo con IA, lógica propia y enfoque práctico.'],
+          eventTags: ['PHP', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Arquitectura Modular'],
+          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'IA Local / OpenAI API'],
+          eventInfoBtn: 'Más información ↗', eventGithubBtn: 'Ver en GitHub ↗', calsardaInfoBtn: 'Más información ↗', calsardaGithubBtn: 'Ver en GitHub ↗', nexusButton: 'Más información ↗',
+          infoLabels: ['Ubicación', 'Estudios', 'Enfoque', 'Estado', 'Idiomas', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, España', 'DAW · Stucom · 2º', 'Full-stack web', 'Buscando prácticas', 'Catalán C1 · Castellano · Inglés B1', 'salexbarrera@gmail.com', 'Ver perfil ↗'],
+          highlights: ['Experiencia', 'Canguro · 2025', '6 meses como cuidador de niños.', 'Cal Sardà · 2024', '5 meses como dependiente.', 'Certificaciones', 'Inteligencia Artificial', 'Python y Hugging Face Transformers · Cibernarium, 2025.', 'Prompting y cartografía de herramientas de IA · Cibernarium, 2025.', 'Fortalezas', 'Cómo trabajo', 'Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.'],
+          nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR']
+        },
+        ca: {
+          eventFeatures: ['Autenticació per a usuaris i gestors.', 'Control d’aforament i inscripcions.', 'Panell d’administració d’esdeveniments.', 'MySQL, PHP, JavaScript i disseny responsive.'],
+          calsardaFeatures: ['Desenvolupat amb Angular 22, SSR i arquitectura modular orientada al domini.', 'Catàleg gastronòmic interactiu amb filtres, categories i control d’al·lèrgens.', 'Gestió de cistella de compra i flux de comandes per a recollida a botiga o lliurament.', 'Modelatge rigorós d’entitats (obrador, lots, productes i comandes).'],
+          nexusFeatures: ['Backend Express amb API REST i SQLite.', 'Disseny visual de panell de control i feedback d’estat.', 'Integració amb proveïdors compatibles amb OpenAI.', 'Desenvolupament continu amb IA, lògica pròpia i enfocament pràctic.'],
+          eventTags: ['PHP', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Arquitectura Modular'],
+          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'IA Local / OpenAI API'],
+          eventInfoBtn: 'Més informació ↗', eventGithubBtn: 'Veure a GitHub ↗', calsardaInfoBtn: 'Més informació ↗', calsardaGithubBtn: 'Veure a GitHub ↗', nexusButton: 'Més informació ↗',
+          infoLabels: ['Ubicació', 'Estudis', 'Enfocament', 'Estat', 'Idiomes', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, Espanya', 'DAW · Stucom · 2n', 'Full-stack web', 'Buscant pràctiques', 'Català C1 · Castellà · Anglès B1', 'salexbarrera@gmail.com', 'Veure perfil ↗'],
+          highlights: ['Experiència', 'Cangur · 2025', '6 mesos com a cuidador d’infants.', 'Cal Sardà · 2024', '5 mesos com a dependent.', 'Certificacions', 'Intel·ligència Artificial', 'Python i Hugging Face Transformers · Cibernarium, 2025.', 'Prompting i cartografia d’eines d’IA · Cibernarium, 2025.', 'Punts forts', 'Com treballo', 'Treball en equip, empatia, responsabilitat i bona gestió del temps.'],
+          nexusKicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', nexusTitle: 'Pensa en <em>sistemes.</em>', nexusPills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA']
+        },
+        en: {
+          eventFeatures: ['Authentication for users and managers.', 'Capacity and registration management.', 'Event administration panel.', 'MySQL, PHP, JavaScript and responsive design.'],
+          calsardaFeatures: ['Built with Angular 22, SSR and domain-driven modular architecture.', 'Interactive gourmet catalog with filters, categories and allergen controls.', 'Shopping basket management and checkout workflow for pickup or delivery.', 'Rigorous entity modeling (artisan workshop, batches, products and orders).'],
+          nexusFeatures: ['Express backend with REST API and SQLite.', 'Visual control-panel design and status feedback.', 'Integration with OpenAI-compatible providers.', 'Ongoing development with AI, custom logic and a practical focus.'],
+          eventTags: ['PHP', 'MySQL', 'JavaScript', 'MVC Architecture', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Modular Architecture'],
+          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'Local AI / OpenAI API'],
+          eventInfoBtn: 'More information ↗', eventGithubBtn: 'View on GitHub ↗', calsardaInfoBtn: 'More information ↗', calsardaGithubBtn: 'View on GitHub ↗', nexusButton: 'More information ↗',
+          infoLabels: ['Location', 'Education', 'Focus', 'Status', 'Languages', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, Spain', 'Web Development · Stucom · 2nd year', 'Full-stack web', 'Looking for an internship', 'Catalan C1 · Spanish · English', 'salexbarrera@gmail.com', 'View profile ↗'],
+          highlights: ['Experience', 'Childcare · 2025', '6 months in childcare.', 'Cal Sardà · 2024', '5 months as a shop assistant.', 'Certifications', 'Artificial Intelligence', 'Python and Hugging Face Transformers · Cibernarium, 2025.', 'Prompting and mapping AI tools · Cibernarium, 2025.', 'Strengths', 'How I work', 'Teamwork, empathy, responsibility and good time management.'],
+          nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR']
+        }
       };
       type Language = keyof typeof translations;
       type TranslationKey = Exclude<keyof typeof translations.es, 'menu' | 'loadingGithub'>;
       const languageSelectors: Record<TranslationKey, string> = {
         navStack: '.nav-links a[href="#stack"]', navProjects: '.nav-links a[href="#projects"]', navExperience: '.nav-links a[href="#experience"]', navAbout: '.nav-links a[href="#about"]', navContact: '.nav-links a[href="#contact"]', skip: '.skip-link',
         eyebrow: '.hero .eyebrow', heroTitle: '.hero h1', heroCopy: '.hero-copy', work: '.hero .button.primary', cv: '.hero .button:not(.primary)', talk: '.hero .button.text', available: '.art-note',
-        stackTitle: '#stack h2', stackIntro: '#stack .section-intro', projectsTitle: '#projects h2', eventLabel: '.project:not(.project-secondary) .project-label', eventTitle: '.project:not(.project-secondary) h3', eventCopy: '.project:not(.project-secondary) .project-copy > p', experienceTitle: '#experience h2', experienceIntro: '#experience .github-intro p', experienceButton: '#experience .github-intro .button',
-        nexusLabel: '.project-secondary .project-label', nexusCopy: '.project-secondary .project-copy > p', aboutTitle: '#about h2', about1: '.about-copy p:nth-child(1)', about2: '.about-copy p:nth-child(2)', about3: '.about-copy p:nth-child(3)',
+        stackTitle: '#stack h2', stackIntro: '#stack .section-intro', projectsTitle: '#projects h2',
+        eventLabel: '.project-eventsports .project-label', eventTitle: '.project-eventsports h3', eventCopy: '.project-eventsports .project-copy > p',
+        calsardaLabel: '.project-calsarda .project-label', calsardaTitle: '.project-calsarda h3', calsardaCopy: '.project-calsarda .project-copy > p',
+        experienceTitle: '#experience h2', experienceIntro: '#experience .github-intro p', experienceButton: '#experience .github-intro .button',
+        nexusLabel: '.project-secondary .project-label', nexusCopy: '.project-secondary .project-copy > p',
+        aboutTitle: '#about h2', about1: '.about-copy p:nth-child(1)', about2: '.about-copy p:nth-child(2)', about3: '.about-copy p:nth-child(3)',
         profileLabel: '.cv-callout .project-label', profileTitle: '.cv-callout h3', profileCopy: '.cv-callout p', profileButton: '.cv-callout .button', contactTitle: '.contact h2', contactCopy: '.contact p', write: '.contact .button.primary', footer: 'footer span:last-child'
       };
       type GithubRepository = { name: string; html_url: string; description: string | null; language: string | null; stargazers_count: number; updated_at: string; fork: boolean };
@@ -375,31 +548,69 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         const pageDescriptions = { es: 'Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona.', ca: 'Portfoli d’Àlex Barrera Sardà, estudiant de segon de DAW i desenvolupador d’aplicacions web a Barcelona.', en: 'Portfolio of Àlex Barrera Sardà, second-year web development student and web developer in Barcelona.' };
         document.title = pageTitles[language];
         document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescriptions[language]);
-        document.querySelectorAll('.project:not(.project-secondary) .feature-list li').forEach((item, index) => { item.textContent = detail.eventFeatures[index]; });
+        document.querySelectorAll('.project-eventsports .feature-list li').forEach((item, index) => { item.textContent = detail.eventFeatures[index]; });
+        document.querySelectorAll('.project-calsarda .feature-list li').forEach((item, index) => { item.textContent = detail.calsardaFeatures[index]; });
         document.querySelectorAll('.project-secondary .feature-list li').forEach((item, index) => { item.textContent = detail.nexusFeatures[index]; });
-        document.querySelector('.project:not(.project-secondary) .project-copy .button')!.textContent = detail.eventButton;
-        document.querySelector('.project-secondary .project-copy .button')!.textContent = detail.nexusButton;
+        const eventInfoBtn = document.querySelector<HTMLElement>('[data-eventsports-info-btn]');
+        if (eventInfoBtn) eventInfoBtn.textContent = detail.eventInfoBtn;
+        const eventGithubBtn = document.querySelector<HTMLElement>('[data-eventsports-github-btn]');
+        if (eventGithubBtn) eventGithubBtn.textContent = detail.eventGithubBtn;
+        const calsardaInfoBtn = document.querySelector<HTMLElement>('[data-calsarda-info-btn]');
+        if (calsardaInfoBtn) calsardaInfoBtn.textContent = detail.calsardaInfoBtn;
+        const calsardaGithubBtn = document.querySelector<HTMLElement>('[data-calsarda-github-btn]');
+        if (calsardaGithubBtn) calsardaGithubBtn.textContent = detail.calsardaGithubBtn;
+        const nexusBtn = document.querySelector('.project-secondary .project-copy .button');
+        if (nexusBtn) nexusBtn.textContent = detail.nexusButton;
+        const filterLabels = {
+          es: { all: 'Todos', frontend: 'Frontend', backend: 'Backend', database: 'Bases de datos', tools: 'Herramientas' },
+          ca: { all: 'Tots', frontend: 'Frontend', backend: 'Backend', database: 'Bases de dades', tools: 'Eines' },
+          en: { all: 'All', frontend: 'Frontend', backend: 'Backend', database: 'Databases', tools: 'Tools' }
+        };
+        document.querySelectorAll<HTMLElement>('[data-filter-key]').forEach((el) => {
+          const key = el.dataset.filterKey as keyof typeof filterLabels.es;
+          if (key && filterLabels[language][key]) {
+            el.textContent = filterLabels[language][key];
+          }
+        });
         document.querySelectorAll('.info-row').forEach((row, index) => { row.querySelector('span:first-child')!.textContent = detail.infoLabels[index]; const value = row.querySelector('span:last-child, a'); if (value) value.textContent = detail.infoValues[index]; });
         document.querySelectorAll('.cv-highlights article .cv-highlight-label, .cv-highlights article h3, .cv-highlights article p').forEach((element, index) => { if (detail.highlights[index]) element.textContent = detail.highlights[index]; });
         document.querySelector('.nexus-kicker')!.textContent = detail.nexusKicker;
         document.querySelector('.nexus-title-block h4')!.innerHTML = detail.nexusTitle;
         document.querySelectorAll('.nexus-row span').forEach((item, index) => { item.textContent = detail.nexusPills[index]; });
+        document.querySelectorAll('.project-eventsports .project-tags .project-tag').forEach((el, index) => { if (detail.eventTags[index]) el.textContent = detail.eventTags[index]; });
+        document.querySelectorAll('.project-calsarda .project-tags .project-tag').forEach((el, index) => { if (detail.calsardaTags[index]) el.textContent = detail.calsardaTags[index]; });
+        document.querySelectorAll('.project-secondary .project-tags .project-tag').forEach((el, index) => { if (detail.nexusTags[index]) el.textContent = detail.nexusTags[index]; });
         const githubLoading = document.querySelector('[data-github-repositories] .github-loading');
         if (githubLoading) githubLoading.textContent = copy.loadingGithub;
         renderGithubRepositories(language);
+        const copyLabel = language === 'en' ? 'Copy email' : language === 'ca' ? 'Copiar correu' : 'Copiar email';
+        const copyTitle = language === 'en' ? 'Copy email to clipboard' : language === 'ca' ? 'Copiar correu al porta-retalls' : 'Copiar correo al portapapeles';
+        document.querySelectorAll('.copy-email-btn .copy-text').forEach((el) => { el.textContent = copyLabel; });
+        document.querySelectorAll<HTMLElement>('.copy-email-btn').forEach((el) => { el.setAttribute('title', copyTitle); });
+        const toastMsg = document.getElementById('copy-toast-msg');
+        if (toastMsg) toastMsg.textContent = language === 'en' ? 'Email copied to clipboard' : language === 'ca' ? 'Correu copiat al porta-retalls' : 'Email copiado al portapapeles';
         document.documentElement.lang = language;
         document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.getAttribute('data-language') === language)));
         localStorage.setItem('portfolio-language', language);
       };
       const getLanguage = (value: string | null): Language => value === 'ca' || value === 'en' ? value : 'es';
+      const initialDataEl = document.getElementById('github-initial-data');
+      if (initialDataEl?.textContent) {
+        try {
+          githubRepositories = JSON.parse(initialDataEl.textContent);
+        } catch {}
+      }
       document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((button) => button.addEventListener('click', () => setLanguage(getLanguage(button.dataset.language || null))));
       setLanguage(getLanguage(localStorage.getItem('portfolio-language')));
 
       fetch('https://api.github.com/users/alexBarrera457/repos?sort=updated&per_page=8')
         .then((response) => response.ok ? response.json() as Promise<GithubRepository[]> : Promise.reject(new Error('GitHub request failed')))
         .then((repositories) => {
-          githubRepositories = repositories.filter((repository) => !repository.fork).slice(0, 4);
-          renderGithubRepositories(getLanguage(localStorage.getItem('portfolio-language')));
+          const fresh = repositories.filter((repository) => !repository.fork).slice(0, 4);
+          if (fresh.length) {
+            githubRepositories = fresh;
+            renderGithubRepositories(getLanguage(localStorage.getItem('portfolio-language')));
+          }
         })
         .catch(() => renderGithubRepositories(getLanguage(localStorage.getItem('portfolio-language'))));
 
@@ -424,8 +635,6 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
       }));
       const profilePhoto = document.querySelector<HTMLImageElement>('.profile-photo');
       const profileFallback = document.querySelector<HTMLElement>('.profile-fallback');
-      const projectPhoto = document.querySelector<HTMLImageElement>('.project-photo');
-      const projectScreen = document.querySelector<HTMLElement>('.project-screen');
 
       const showProfileFallback = () => {
         if (profilePhoto) profilePhoto.style.display = 'none';
@@ -439,17 +648,72 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
         profilePhoto.addEventListener('error', showProfileFallback);
         if (profilePhoto.complete && profilePhoto.naturalWidth === 0) showProfileFallback();
       }
-      if (projectPhoto && projectScreen) {
-        const showProjectPhoto = () => {
-          projectPhoto.style.opacity = '1';
-          projectScreen.style.display = 'none';
-        };
-        projectPhoto.addEventListener('load', showProjectPhoto);
-        projectPhoto.addEventListener('error', () => {
-          projectPhoto.style.display = 'none';
+
+      document.querySelectorAll<HTMLElement>('.project').forEach((card) => {
+        const photo = card.querySelector<HTMLImageElement>('.project-photo');
+        const screen = card.querySelector<HTMLElement>('.project-screen');
+        if (photo && screen) {
+          const showPhoto = () => {
+            photo.style.opacity = '1';
+            screen.style.display = 'none';
+          };
+          photo.addEventListener('load', showPhoto);
+          photo.addEventListener('error', () => {
+            photo.style.display = 'none';
+          });
+          if (photo.complete && photo.naturalWidth > 0) showPhoto();
+        }
+      });
+
+      document.querySelectorAll<HTMLButtonElement>('.copy-email-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const email = btn.getAttribute('data-copy-email') || 'salexbarrera@gmail.com';
+          const copyText = btn.querySelector('.copy-text');
+          const copyIcon = btn.querySelector('.copy-icon');
+          const currentLang = getLanguage(localStorage.getItem('portfolio-language'));
+          const copiedLabel = currentLang === 'en' ? 'Copied!' : currentLang === 'ca' ? 'Copiat!' : '¡Copiado!';
+          const originalLabel = currentLang === 'en' ? 'Copy email' : currentLang === 'ca' ? 'Copiar correu' : 'Copiar email';
+          try {
+            await navigator.clipboard.writeText(email);
+            if (copyText) copyText.textContent = copiedLabel;
+            if (copyIcon) copyIcon.textContent = '✓';
+            btn.classList.add('copied');
+            const toast = document.getElementById('copy-toast');
+            if (toast) toast.classList.add('show');
+            setTimeout(() => {
+              if (copyText) copyText.textContent = originalLabel;
+              if (copyIcon) copyIcon.textContent = '📋';
+              btn.classList.remove('copied');
+              if (toast) toast.classList.remove('show');
+            }, 2200);
+          } catch {
+            window.location.href = `mailto:${email}`;
+          }
         });
-        if (projectPhoto.complete && projectPhoto.naturalWidth > 0) showProjectPhoto();
-      }
+      });
+
+      const filterButtons = document.querySelectorAll<HTMLButtonElement>('.skill-filter-btn');
+      const skillsContainer = document.querySelector<HTMLElement>('.skills');
+      const skillCards = document.querySelectorAll<HTMLElement>('.skill');
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter || 'all';
+          filterButtons.forEach((b) => {
+            const isActive = b === btn;
+            b.classList.toggle('is-active', isActive);
+            b.setAttribute('aria-selected', String(isActive));
+          });
+          if (skillsContainer) {
+            skillsContainer.classList.toggle('is-filtered', filter !== 'all');
+          }
+          skillCards.forEach((card) => {
+            const category = card.dataset.category;
+            const matches = filter === 'all' || category === filter;
+            card.classList.toggle('is-hidden', !matches);
+          });
+        });
+      });
 
       window.addEventListener('scroll', () => {
         header?.classList.toggle('scrolled', window.scrollY > 20);
@@ -475,5 +739,4 @@ const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', '
       }, { rootMargin: '-35% 0px -55%' });
       sections.forEach((section) => navObserver.observe(section));
     </script>
-  </body>
-</html>
+</BaseLayout>

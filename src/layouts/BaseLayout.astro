@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import ImageLightbox from '../components/ImageLightbox.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  bodyClass?: string;
+  lang?: string;
+}
+
+const {
+  title = 'Àlex Barrera — Desarrollador web',
+  description = 'Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona.',
+  ogImage = 'https://alexbarrera457.github.io/images/profile.jpg',
+  canonicalUrl = 'https://alexbarrera457.github.io/',
+  bodyClass = '',
+  lang = 'es'
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+
+    <!-- Author & Theme -->
+    <meta name="author" content="Àlex Barrera Sardà" />
+    <meta name="theme-color" content="#fcfaf7" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Àlex Barrera — Portfolio" />
+    <meta property="og:locale" content={lang === 'ca' ? 'ca_ES' : lang === 'en' ? 'en_US' : 'es_ES'} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Àlex Barrera Sardà",
+      "url": "https://alexbarrera457.github.io/",
+      "jobTitle": "Web Application Developer",
+      "alumniOf": "Dominiques Barcelona",
+      "affiliation": {
+        "@type": "EducationalOrganization",
+        "name": "Stucom Barcelona"
+      },
+      "sameAs": [
+        "https://github.com/alexBarrera457",
+        "https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/"
+      ]
+    })} />
+
+    <!-- Preconnect & Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+    <slot name="head" />
+  </head>
+  <body class={bodyClass}>
+    <slot />
+    <ImageLightbox />
+  </body>
+</html>

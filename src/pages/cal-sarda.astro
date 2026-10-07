@@ -1,0 +1,1367 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
+const stack = ['Angular 22', 'TypeScript', 'SSR / Express', 'Monorepo', 'Signals', 'Domain-Driven', 'Responsive'];
+
+const appViews = [
+  {
+    id: 'tienda',
+    title: 'Tienda Online & Catálogo',
+    badge: 'Catálogo Frontend',
+    desc: 'Catálogo con más de 450 referencias organizadas por familias: conservas de mar, cafés de autor, frutos secos, dulces y bodega gourmet.',
+    img: '/images/calsarda-tienda.jpg'
+  },
+  {
+    id: 'lotes',
+    title: 'Lotes y Cestas Gourmet',
+    badge: 'Regalos & Empresas',
+    desc: 'Módulo de configuración y pedido de lotes gastronómicos personalizados para particulares y empresas.',
+    img: '/images/calsarda-lotes.jpg'
+  },
+  {
+    id: 'historia',
+    title: 'Nuestra Historia (Desde 1930)',
+    badge: 'Patrimonio & Marca',
+    desc: 'Sección editorial que recorre cuatro generaciones de comercio tradicional en Barcelona, desde la lechería de 1930 hasta hoy.',
+    img: '/images/calsarda-historia.jpg'
+  },
+  {
+    id: 'galeria',
+    title: 'Galería de la Tienda Física',
+    badge: 'Comercio de Proximidad',
+    desc: 'Recorrido visual por el establecimiento de la calle Marina en el barrio de la Sagrada Família.',
+    img: '/images/calsarda-galeria.jpg'
+  }
+];
+---
+
+<BaseLayout
+  title="Cal Sardà · Aplicación Web E-Commerce Real"
+  description="Cal Sardà — Plataforma web e-commerce para el comercio gastronómico centenario fundado en 1930. Desarrollado con Angular 22, SSR y Monorepo."
+  ogImage="https://alexbarrera457.github.io/images/calsarda-tienda.jpg"
+  canonicalUrl="https://alexbarrera457.github.io/cal-sarda"
+  bodyClass="project-page"
+>
+  <header class="project-header">
+    <div class="container project-header-inner">
+      <div class="header-nav-bar">
+        <a class="back-link" href="/">← Volver al portfolio</a>
+        <LanguageSwitcher />
+      </div>
+
+      <div class="header-hero">
+        <span class="eyebrow project-eyebrow">Proyecto personal · Aplicación real · 2026</span>
+        <h1 class="project-title">Cal Sardà</h1>
+        <p class="lead">
+          Plataforma web de comercio electrónico desarrollada con <strong>Angular 22</strong> y <strong>Server-Side Rendering (SSR)</strong>
+          para digitalizar el emblemático comercio tradicional centenario <strong>Cal Sardà</strong> (fundado en 1930 en Barcelona):
+          catálogo con más de 450 referencias gastronómicas, gestión de lotes gourmet y pedidos Click & Collect.
+        </p>
+        <div class="stack-list">
+          {stack.map((item) => <span class="stack-pill">{item}</span>)}
+        </div>
+        <div class="header-actions">
+          <a class="button primary" href="https://github.com/alexBarrera457/Prototipo-Cal-Sard-" target="_blank" rel="noopener noreferrer" data-header-repo-btn>
+            Ver repositorio en GitHub ↗
+          </a>
+          <a class="button" href="#capturas-reales" data-header-gallery-btn>
+            Explorar capturas reales ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Real Web Application Hero Showcase -->
+  <div class="container cover-wrap" id="capturas-reales">
+    <div class="browser-showcase">
+      <div class="browser-bar">
+        <div class="browser-controls">
+          <span class="dot close"></span>
+          <span class="dot min"></span>
+          <span class="dot max"></span>
+        </div>
+        <div class="browser-url">
+          <span class="url-lock">🔒</span>
+          <span class="url-text">https://calsarda.cat/tienda-online</span>
+          <span class="url-badge">Angular 22 · SSR Activo</span>
+        </div>
+        <div class="browser-actions">
+          <span class="live-dot"></span>
+          <span class="live-text">Captura real de la app</span>
+        </div>
+      </div>
+      <div class="browser-screen">
+        <img
+          id="main-showcase-img"
+          src="/images/calsarda-tienda.jpg"
+          alt="Captura real de la tienda online Cal Sardà en Angular 22"
+          class="showcase-img"
+          width="1440"
+          height="900"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="showcase-floating-badge">
+          <span class="floating-icon">🛒</span>
+          <div>
+            <strong>Tienda Online Operativa</strong>
+            <span>450+ productos gastronómicos catalogados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container project-content">
+    <!-- Real Views Tabs & Gallery Section -->
+    <section class="project-panel gallery-panel">
+      <div class="panel-header-row">
+        <div>
+          <h2 data-gallery-title>Capturas reales de la aplicación</h2>
+          <p data-gallery-subtitle>
+            Vistas reales del prototipo web compilado y renderizado en servidor (SSR), reflejando la identidad visual y funcional del negocio:
+          </p>
+        </div>
+      </div>
+
+      <div class="views-grid">
+        {appViews.map((view) => (
+          <article class="view-card" data-view-id={view.id}>
+            <div class="view-image-wrap">
+              <span class="view-badge">{view.badge}</span>
+              <img src={view.img} alt={view.title} loading="lazy" decoding="async" width="800" height="500" />
+            </div>
+            <div class="view-info">
+              <h4>{view.title}</h4>
+              <p>{view.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Key Impact Metrics -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-num">450+</span>
+        <span class="metric-label" data-metric-1-label>Productos catalogados</span>
+        <p class="metric-desc" data-metric-1-desc>Familias completas: cafés artesanos, conservas de mar, ibéricos y dulces.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">Angular 22</span>
+        <span class="metric-label" data-metric-2-label>Monorepo Modular</span>
+        <p class="metric-desc" data-metric-2-desc>Arquitectura con paquete compartido de dominio (@cal-sarda/domain) y SSR.</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">1930</span>
+        <span class="metric-label" data-metric-3-label>Historia y Comercio</span>
+        <p class="metric-desc" data-metric-3-desc>Establecimiento centenario en la calle Marina (Sagrada Família, Barcelona).</p>
+      </div>
+      <div class="metric-card">
+        <span class="metric-num">0 min</span>
+        <span class="metric-label" data-metric-4-label>Click & Collect</span>
+        <p class="metric-desc" data-metric-4-desc>Flujo de encargo web con recogida ágil en tienda sin hacer colas.</p>
+      </div>
+    </section>
+
+    <!-- Business Context & Motivation -->
+    <section class="project-panel">
+      <h2 data-section-1-title>Contexto real: del mostrador al software</h2>
+      <p data-section-1-intro>
+        Cal Sardà es un establecimiento emblemático con casi un siglo de historia en Barcelona, ubicado en la calle Marina.
+        Durante 2024 trabajé allí directamente como dependiente de tienda. Esa experiencia diaria me permitió entender los problemas
+        reales del comercio de proximidad y transformarlos en especificaciones técnicas de software:
+      </p>
+      <div class="status-grid">
+        <div class="status-box">
+          <h3 data-status-problem-title>🏪 Retos en la tienda física</h3>
+          <ul class="bullet-list" data-status-problem-list>
+            <li>Gestión de encargos apuntados en libretas de papel en plena hora punta.</li>
+            <li>Colas de espera evitables para clientes que únicamente venían a recoger un encargo.</li>
+            <li>Consultas repetitivas sobre ingredientes, alérgenos y formatos de regalo.</li>
+            <li>Falta de canal digital para consultar catálogo y stock fuera de horario comercial.</li>
+          </ul>
+        </div>
+        <div class="status-box success">
+          <h3 data-status-solution-title>💡 Soluciones implementadas en la web</h3>
+          <ul class="bullet-list" data-status-solution-list>
+            <li>Catálogo digital 24/7 con fotos reales tomadas en la tienda y fichas detalladas.</li>
+            <li>Configurador de lotes y cestas gourmet con presupuesto cerrado para regalo.</li>
+            <li>Sistema Click & Collect para preparar pedidos antes de la llegada del cliente.</li>
+            <li>Página editorial que pone en valor los más de 90 años de historia de la familia.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Engineering -->
+    <section class="project-panel">
+      <h2 data-section-2-title>Arquitectura de software y estándares de ingeniería</h2>
+      <p data-section-2-intro>
+        Desarrollado como un <strong>monorepo modular</strong> siguiendo principios de <em>Deep Modules</em> (interfaces estrechas respaldadas por implementaciones ricas) y separación de responsabilidades:
+      </p>
+
+      <div class="arch-cards-grid">
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">⚡</span>
+            <h4>Frontend (Angular 22)</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Standalone Components:</strong> Estructura ligera y modular sin módulos NgModules redundantes.</li>
+            <li><strong>Angular Signals:</strong> Reactividad atómica con <code>signal()</code> y <code>computed()</code> para la cesta de compra.</li>
+            <li><strong>Control Flow nativo:</strong> Sintaxis moderna <code>@if</code> y <code>@for</code> para optimizar renderizado.</li>
+            <li><strong>Seams & Adapters:</strong> Desacople de APIs del navegador (<code>CartStorageAdapter</code>) para compatibilidad cliente/SSR.</li>
+          </ul>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">🚀</span>
+            <h4>Servidor SSR (Node.js & Express)</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Server-Side Rendering:</strong> Angular SSR con Express para servir HTML hidratado y rápido.</li>
+            <li><strong>Optimización LCP:</strong> Primer renderizado visual instantáneo sin pantalla en blanco para usuarios móviles.</li>
+            <li><strong>SEO Gastronómico:</strong> Metadatos Open Graph y títulos dinámicos indexables para Google.</li>
+            <li><strong>Caché estática:</strong> Entrega ultraeficiente de activos multimedia y fotos reales del catálogo.</li>
+          </ul>
+        </div>
+
+        <div class="arch-card">
+          <div class="arch-header">
+            <span class="arch-icon">🏛️</span>
+            <h4>Contratos de Dominio (@cal-sarda/domain)</h4>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Paquete de Dominio compartido:</strong> TypeScript estricto para entidades canónicas de negocio.</li>
+            <li><strong>Entidades de negocio:</strong> <code>Producto</code>, <code>Lote</code>, <code>Obrador</code>, <code>Cesta</code>, <code>Pedido</code>, <code>Cliente</code>.</li>
+            <li><strong>Glosario de negocio canónico:</strong> Mapeo formal de conceptos tradicionales a modelos de datos.</li>
+            <li><strong>Vitest Test Suite:</strong> Suite de pruebas unitarias automatizadas para la lógica de cálculo y filtrado.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code & Repository -->
+    <section class="project-panel">
+      <h2 data-section-3-title>Repositorio y código fuente</h2>
+      <p data-section-3-intro>El código fuente completo del monorepo está disponible en GitHub:</p>
+      <div class="code-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">bash · monorepo cal-sarda</span>
+        </div>
+        <pre><code data-terminal-code># Clonar monorepo
+git clone https://github.com/alexBarrera457/Prototipo-Cal-Sard-.git
+cd Prototipo-Cal-Sard-
+
+# Instalar dependencias del monorepo y paquetes
+npm install
+
+# Iniciar servidor Angular en desarrollo con SSR
+npm start</code></pre>
+      </div>
+      <div class="action-buttons-row">
+        <a class="button primary" href="https://github.com/alexBarrera457/Prototipo-Cal-Sard-" target="_blank" rel="noopener noreferrer" data-repo-btn>
+          Ver repositorio en GitHub ↗
+        </a>
+        <a class="button" href="/#contact" data-contact-btn>
+          Contactar conmigo →
+        </a>
+      </div>
+    </section>
+
+    <!-- Conclusion Panel -->
+    <section class="project-panel conclusion-panel">
+      <h2 data-section-4-title>Conclusión y balance profesional</h2>
+      <p data-section-4-text>
+        Este proyecto une mi experiencia práctica en el sector comercio y atención al cliente con
+        estándares de ingeniería de software contemporáneos: crear un producto digital real, fiel a la identidad de un negocio
+        con casi 100 años de historia, con arquitectura limpia y tecnologías punteras del ecosistema web.
+      </p>
+      <div class="conclusion-cta">
+        <a class="button primary" href="/#contact" data-cta-btn>Hablar sobre este proyecto →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="project-footer">
+    <div class="container project-footer-inner">
+      <span>Cal Sardà · Proyecto de Software Real</span>
+      <a href="/" data-footer-back>← Volver al portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    const calsardaButtons = document.querySelectorAll<HTMLButtonElement>('[data-language]');
+
+    const contentData = {
+      es: {
+        back: '← Volver al portfolio',
+        eyebrow: 'Proyecto personal · Aplicación real · 2026',
+        title: 'Cal Sardà',
+        lead: 'Plataforma web de comercio electrónico desarrollada con Angular 22 y Server-Side Rendering (SSR) para digitalizar el emblemático comercio tradicional centenario Cal Sardà (fundado en 1930 en Barcelona): catálogo con más de 450 referencias gastronómicas, gestión de lotes gourmet y pedidos Click & Collect.',
+        urlBadge: 'Angular 22 · SSR Activo',
+        liveText: 'Captura real de la app',
+        badgeTitle: 'Tienda Online Operativa',
+        badgeDesc: '450+ productos gastronómicos catalogados',
+        galleryTitle: 'Capturas reales de la aplicación',
+        gallerySubtitle: 'Vistas reales del prototipo web compilado y renderizado en servidor (SSR), reflejando la identidad visual y funcional del negocio:',
+        galleryCards: [
+          { badge: 'Catálogo Frontend', title: 'Tienda Online & Catálogo', desc: 'Catálogo con más de 450 referencias organizadas por familias: conservas de mar, cafés de autor, frutos secos, dulces y bodega gourmet.' },
+          { badge: 'Regalos & Empresas', title: 'Lotes y Cestas Gourmet', desc: 'Módulo de configuración y pedido de lotes gastronómicos personalizados para particulares y empresas.' },
+          { badge: 'Patrimonio & Marca', title: 'Nuestra Historia (Desde 1930)', desc: 'Sección editorial que recorre cuatro generaciones de comercio tradicional en Barcelona, desde la lechería de 1930 hasta hoy.' },
+          { badge: 'Comercio de Proximidad', title: 'Galería de la Tienda Física', desc: 'Recorrido visual por el establecimiento de la calle Marina en el barrio de la Sagrada Família.' }
+        ],
+        metric1Label: 'Productos catalogados',
+        metric1Desc: 'Familias completas: cafés artesanos, conservas de mar, ibéricos y dulces.',
+        metric2Label: 'Monorepo Modular',
+        metric2Desc: 'Arquitectura con paquete compartido de dominio (@cal-sarda/domain) y SSR.',
+        metric3Label: 'Historia y Comercio',
+        metric3Desc: 'Establecimiento centenario en la calle Marina (Sagrada Família, Barcelona).',
+        metric4Label: 'Click & Collect',
+        metric4Desc: 'Flujo de encargo web con recogida ágil en tienda sin hacer colas.',
+        s1Title: 'Contexto real: del mostrador al software',
+        s1Intro: 'Cal Sardà es un establecimiento emblemático con casi un siglo de historia en Barcelona, ubicado en la calle Marina. Durante 2024 trabajé allí directamente como dependiente de tienda. Esa experiencia diaria me permitió entender los problemas reales del comercio de proximidad y transformarlos en especificaciones técnicas de software:',
+        sProblemTitle: '🏪 Retos en la tienda física',
+        sProblemList: [
+          'Gestión de encargos apuntados en libretas de papel en plena hora punta.',
+          'Colas de espera evitables para clientes que únicamente venían a recoger un encargo.',
+          'Consultas repetitivas sobre ingredientes, alérgenos y formatos de regalo.',
+          'Falta de canal digital para consultar catálogo y stock fuera de horario comercial.'
+        ],
+        sSolutionTitle: '💡 Soluciones implementadas en la web',
+        sSolutionList: [
+          'Catálogo digital 24/7 con fotos reales tomadas en la tienda y fichas detalladas.',
+          'Configurador de lotes y cestas gourmet con presupuesto cerrado para regalo.',
+          'Sistema Click & Collect para preparar pedidos antes de la llegada del cliente.',
+          'Página editorial que pone en valor los más de 90 años de historia de la familia.'
+        ],
+        s2Title: 'Arquitectura de software y estándares de ingeniería',
+        s2Intro: 'Desarrollado como un monorepo modular siguiendo principios de Deep Modules (interfaces estrechas respaldadas por implementaciones ricas) y separación de responsabilidades:',
+        archCards: [
+          {
+            title: 'Frontend (Angular 22)',
+            items: [
+              '<strong>Standalone Components:</strong> Estructura ligera y modular sin módulos NgModules redundantes.',
+              '<strong>Angular Signals:</strong> Reactividad atómica con <code>signal()</code> y <code>computed()</code> para la cesta de compra.',
+              '<strong>Control Flow nativo:</strong> Sintaxis moderna <code>@if</code> y <code>@for</code> para optimizar renderizado.',
+              '<strong>Seams & Adapters:</strong> Desacople de APIs del navegador (<code>CartStorageAdapter</code>) para compatibilidad cliente/SSR.'
+            ]
+          },
+          {
+            title: 'Servidor SSR (Node.js & Express)',
+            items: [
+              '<strong>Server-Side Rendering:</strong> Angular SSR con Express para servir HTML hidratado y rápido.',
+              '<strong>Optimización LCP:</strong> Primer renderizado visual instantáneo sin pantalla en blanco para usuarios móviles.',
+              '<strong>SEO Gastronómico:</strong> Metadatos Open Graph y títulos dinámicos indexables para Google.',
+              '<strong>Caché estática:</strong> Entrega ultraeficiente de activos multimedia y fotos reales del catálogo.'
+            ]
+          },
+          {
+            title: 'Contratos de Dominio (@cal-sarda/domain)',
+            items: [
+              '<strong>Paquete de Dominio compartido:</strong> TypeScript estricto para entidades canónicas de negocio.',
+              '<strong>Entidades de negocio:</strong> <code>Producto</code>, <code>Lote</code>, <code>Obrador</code>, <code>Cesta</code>, <code>Pedido</code>, <code>Cliente</code>.',
+              '<strong>Glosario de negocio canónico:</strong> Mapeo formal de conceptos tradicionales a modelos de datos.',
+              '<strong>Vitest Test Suite:</strong> Suite de pruebas unitarias automatizadas para la lógica de cálculo y filtrado.'
+            ]
+          }
+        ],
+        s3Title: 'Repositorio y código fuente',
+        s3Intro: 'El código fuente completo del monorepo está disponible en GitHub:',
+        terminalTitle: 'bash · monorepo cal-sarda',
+        terminalComments: [
+          '# Clonar monorepo',
+          '# Instalar dependencias del monorepo y paquetes',
+          '# Iniciar servidor Angular en desarrollo con SSR'
+        ],
+        repoBtn: 'Ver repositorio en GitHub ↗',
+        contactBtn: 'Contactar conmigo →',
+        s4Title: 'Conclusión y balance profesional',
+        s4Text: 'Este proyecto une mi experiencia práctica en el sector comercio y atención al cliente con estándares de ingeniería de software contemporáneos: crear un producto digital real, fiel a la identidad de un negocio con casi 100 años de historia, con arquitectura limpia y tecnologías punteras del ecosistema web.',
+        ctaBtn: 'Hablar sobre este proyecto →',
+        footerBack: '← Volver al portfolio',
+        headerRepoBtn: 'Ver repositorio en GitHub ↗',
+        headerGalleryBtn: 'Explorar capturas reales ↓',
+        docTitle: 'Cal Sardà · Aplicación Web E-Commerce Real',
+        docDesc: 'Cal Sardà — Plataforma web e-commerce para el comercio gastronómico centenario fundado en 1930 con Angular 22 y SSR.'
+      },
+      ca: {
+        back: '← Tornar al portfoli',
+        eyebrow: 'Projecte personal · Aplicació real · 2026',
+        title: 'Cal Sardà',
+        lead: 'Plataforma web de comerç electrònic desenvolupada amb Angular 22 i Server-Side Rendering (SSR) per digitalitzar l’emblemàtic comerç tradicional centenari Cal Sardà (fundat el 1930 a Barcelona): catàleg amb més de 450 referències gastronòmiques, gestió de lots gurmet i comandes Click & Collect.',
+        urlBadge: 'Angular 22 · SSR Actiu',
+        liveText: 'Captura real de l’app',
+        badgeTitle: 'Botiga Online Operativa',
+        badgeDesc: '450+ productes gastronòmics catalogats',
+        galleryTitle: 'Captures reals de l’aplicació',
+        gallerySubtitle: 'Vistes reals del prototip web compilat i renderitzat en servidor (SSR), reflectint la identitat visual i funcional del negoci:',
+        galleryCards: [
+          { badge: 'Catàleg Frontend', title: 'Botiga Online & Catàleg', desc: 'Catàleg amb més de 450 referències organitzades per famílies: conserves de mar, cafès d’autor, fruits secs, dolços i celler gurmet.' },
+          { badge: 'Regals & Empreses', title: 'Lots i Paneres Gurmet', desc: 'Mòdul de configuració i comanda de lots gastronòmics personalitzats per a particulars i empreses.' },
+          { badge: 'Patrimoni & Marca', title: 'La Nostra Història (Des de 1930)', desc: 'Secció editorial que recorre quatre generacions de comerç tradicional a Barcelona, des de la lleteria del 1930 fins avui.' },
+          { badge: 'Comerç de Proximitat', title: 'Galeria de la Botiga Física', desc: 'Recorregut visual per l’establiment del carrer Marina al barri de la Sagrada Família.' }
+        ],
+        metric1Label: 'Productes catalogats',
+        metric1Desc: 'Famílies completes: cafès artesans, conserves de mar, ibèrics i dolços.',
+        metric2Label: 'Monorepo Modular',
+        metric2Desc: 'Arquitectura amb paquet compartit de domini (@cal-sarda/domain) i SSR.',
+        metric3Label: 'Història i Comerç',
+        metric3Desc: 'Establiment centenari al carrer Marina (Sagrada Família, Barcelona).',
+        metric4Label: 'Click & Collect',
+        metric4Desc: 'Flux d’encàrrec web amb recollida àgil a la botiga sense fer cues.',
+        s1Title: 'Context real: del taulell al programari',
+        s1Intro: 'Cal Sardà és un establiment emblemàtic amb gairebé un segle d’història a Barcelona, ubicat al carrer Marina. Durant el 2024 hi vaig treballar directament com a dependent de botiga. Aquesta experiència diària em va permetre entendre els problemes reals del comerç de proximitat i transformar-los en especificacions tècniques de programari:',
+        sProblemTitle: '🏪 Reptes a la botiga física',
+        sProblemList: [
+          'Gestió d’encàrrecs anotats en llibretes de paper en plena hora punta.',
+          'Cues d’espera evitables per a clients que només venien a recollir un encàrrec.',
+          'Consultes repetitives sobre ingredients, al·lèrgens i formats de regal.',
+          'Manca de canal digital per consultar catàleg i estoc fora d’horari comercial.'
+        ],
+        sSolutionTitle: '💡 Solucions implementades a la web',
+        sSolutionList: [
+          'Catàleg digital 24/7 amb fotos reals fetes a la botiga i fitxes detallades.',
+          'Configurador de lots i cistelles gurmet amb pressupost tancat per a regal.',
+          'Sistema Click & Collect per preparar comandes abans de l’arribada del client.',
+          'Pàgina editorial que posa en valor els més de 90 anys d’història familiar.'
+        ],
+        s2Title: 'Arquitectura de programari i estàndards d’enginyeria',
+        s2Intro: 'Desenvolupat com un monorepo modular seguint principis de Deep Modules (interfícies estretes recolzades per implementacions riques) i separació de responsabilitats:',
+        archCards: [
+          {
+            title: 'Frontend (Angular 22)',
+            items: [
+              '<strong>Standalone Components:</strong> Estructura lleugera i modular sense mòduls NgModules redundants.',
+              '<strong>Angular Signals:</strong> Reactivitat atòmica amb <code>signal()</code> i <code>computed()</code> per a la cistella de compra.',
+              '<strong>Control Flow natiu:</strong> Sintaxi moderna <code>@if</code> i <code>@for</code> per optimitzar el renderitzat.',
+              '<strong>Seams & Adapters:</strong> Desacoblament d’APIs del navegador (<code>CartStorageAdapter</code>) per a compatibilitat client/SSR.'
+            ]
+          },
+          {
+            title: 'Servidor SSR (Node.js & Express)',
+            items: [
+              '<strong>Server-Side Rendering:</strong> Angular SSR amb Express per servir HTML hidratat i ràpid.',
+              '<strong>Optimització LCP:</strong> Primer renderitzat visual instantani sense pantalla en blanc per a usuaris mòbils.',
+              '<strong>SEO Gastronòmic:</strong> Metadades Open Graph i títols dinàmics indexables per a Google.',
+              '<strong>Memòria cau estàtica:</strong> Lliurament ultraeficient d’actius multimèdia i fotos reals del catàleg.'
+            ]
+          },
+          {
+            title: 'Contractes de Domini (@cal-sarda/domain)',
+            items: [
+              '<strong>Paquet de Domini compartit:</strong> TypeScript estricte per a entitats canòniques de negoci.',
+              '<strong>Entitats de negoci:</strong> <code>Producte</code>, <code>Lot</code>, <code>Obrador</code>, <code>Cistella</code>, <code>Comanda</code>, <code>Client</code>.',
+              '<strong>Glossari de negoci canònic:</strong> Mapatge formal de conceptes tradicionals a models de dades.',
+              '<strong>Vitest Test Suite:</strong> Suite de proves unitàries automatitzades per a la lògica de càlcul i filtrat.'
+            ]
+          }
+        ],
+        s3Title: 'Repositori i codi font',
+        s3Intro: 'El codi font complet del monorepo està disponible a GitHub:',
+        terminalTitle: 'bash · monorepo cal-sarda',
+        terminalComments: [
+          '# Clonar monorepo',
+          '# Instal·lar dependències del monorepo i paquets',
+          '# Iniciar servidor Angular en desenvolupament amb SSR'
+        ],
+        repoBtn: 'Veure repositori a GitHub ↗',
+        contactBtn: 'Contactar amb mi →',
+        s4Title: 'Conclusió i balanç professional',
+        s4Text: 'Aquest projecte uneix la meva experiència pràctica al sector comerç i atenció al client amb estàndards d’enginyeria de programari contemporanis: crear un producte digital real, fidel a la identitat d’un negoci amb gairebé 100 anys d’història, amb arquitectura neta i tecnologies punteres de l’ecosistema web.',
+        ctaBtn: 'Parlar sobre aquest projecte →',
+        footerBack: '← Tornar al portfoli',
+        headerRepoBtn: 'Veure repositori a GitHub ↗',
+        headerGalleryBtn: 'Explorar captures reals ↓',
+        docTitle: 'Cal Sardà · Aplicació Web E-Commerce Real',
+        docDesc: 'Cal Sardà — Plataforma web e-commerce per al comerç gastronòmic centenari fundat el 1930 amb Angular 22 i SSR.'
+      },
+      en: {
+        back: '← Back to portfolio',
+        eyebrow: 'Personal project · Real application · 2026',
+        title: 'Cal Sardà',
+        lead: 'E-commerce web platform engineered with Angular 22 and Server-Side Rendering (SSR) to digitalize centenary traditional culinary shop Cal Sardà (founded in 1930 in Barcelona): catalog with over 450 gourmet items, gift basket management, and Click & Collect pickup orders.',
+        urlBadge: 'Angular 22 · Active SSR',
+        liveText: 'Real app screenshot',
+        badgeTitle: 'Live Online Store',
+        badgeDesc: '450+ gourmet products cataloged',
+        galleryTitle: 'Real Application Screenshots',
+        gallerySubtitle: 'Actual screenshots from the compiled web prototype rendered via SSR, reflecting the authentic visual identity and features of the business:',
+        galleryCards: [
+          { badge: 'Frontend Catalog', title: 'Online Store & Catalog', desc: 'Catalog with over 450 references organized by categories: sea preserves, specialty coffees, nuts, sweets, and gourmet cellar.' },
+          { badge: 'Gifts & Corporate', title: 'Gourmet Hampers & Baskets', desc: 'Configuration and order module for bespoke gourmet gift hampers for individuals and businesses.' },
+          { badge: 'Heritage & Brand', title: 'Our History (Since 1930)', desc: 'Editorial section spanning four generations of traditional commerce in Barcelona, from the 1930 dairy shop to the present day.' },
+          { badge: 'Neighborhood Retail', title: 'Physical Store Gallery', desc: 'Visual walkthrough of the establishment on Carrer Marina in the Sagrada Família neighborhood.' }
+        ],
+        metric1Label: 'Cataloged products',
+        metric1Desc: 'Complete categories: artisan coffees, sea preserves, Iberian cured meats and sweets.',
+        metric2Label: 'Modular Monorepo',
+        metric2Desc: 'Architecture with shared domain package (@cal-sarda/domain) and SSR.',
+        metric3Label: 'Heritage & Retail',
+        metric3Desc: 'Centenary shop on Carrer Marina (Sagrada Família neighborhood, Barcelona).',
+        metric4Label: 'Click & Collect',
+        metric4Desc: 'Online ordering workflow with fast counter pickup skip-the-line experience.',
+        s1Title: 'Real-world context: from shop counter to software',
+        s1Intro: 'Cal Sardà is a landmark shop with nearly a century of history in Barcelona, located on Carrer Marina. In 2024 I worked there directly as a shop assistant. That day-to-day experience gave me firsthand insights into the operational bottlenecks of neighborhood retail and inspired their transformation into software engineering specifications:',
+        sProblemTitle: '🏪 Physical retail challenges',
+        sProblemList: [
+          'Managing advance orders hand-written in paper notebooks during peak rush hours.',
+          'Avoidable queues for customers simply arriving to collect a pre-placed order.',
+          'Repetitive inquiries regarding ingredients, allergens, and gift box options.',
+          'Lack of a digital channel to check catalog stock outside opening hours.'
+        ],
+        sSolutionTitle: '💡 Digital solutions implemented',
+        sSolutionList: [
+          '24/7 digital catalog featuring real photos taken in-store and detailed spec sheets.',
+          'Customizable gourmet gift basket configurator with fixed gift pricing.',
+          'Click & Collect system allowing staff to assemble orders ahead of customer arrival.',
+          'Editorial heritage page celebrating the family’s 90+ years of neighborhood history.'
+        ],
+        s2Title: 'Software architecture & engineering standards',
+        s2Intro: 'Engineered as a modular monorepo applying Deep Modules principles (narrow interfaces backed by rich implementations) and clear separation of concerns:',
+        archCards: [
+          {
+            title: 'Frontend (Angular 22)',
+            items: [
+              '<strong>Standalone Components:</strong> Lightweight and modular architecture without redundant NgModules.',
+              '<strong>Angular Signals:</strong> Atomic reactivity with <code>signal()</code> and <code>computed()</code> for the shopping cart.',
+              '<strong>Native Control Flow:</strong> Modern <code>@if</code> and <code>@for</code> syntax optimizing template rendering.',
+              '<strong>Seams & Adapters:</strong> Browser API decoupling (<code>CartStorageAdapter</code>) ensuring full client/SSR compatibility.'
+            ]
+          },
+          {
+            title: 'SSR Server (Node.js & Express)',
+            items: [
+              '<strong>Server-Side Rendering:</strong> Angular SSR with Express serving fast, pre-rendered hydrated HTML.',
+              '<strong>LCP Optimization:</strong> Instant visual first paint eliminating blank screens for mobile visitors.',
+              '<strong>Gourmet SEO:</strong> Open Graph metadata and dynamic titles fully indexable by search engines.',
+              '<strong>Static Caching:</strong> Ultra-efficient delivery of multimedia assets and catalog photography.'
+            ]
+          },
+          {
+            title: 'Domain Contracts (@cal-sarda/domain)',
+            items: [
+              '<strong>Shared Domain Package:</strong> Strict TypeScript interfaces for canonical business entities.',
+              '<strong>Business Entities:</strong> <code>Product</code>, <code>Batch</code>, <code>Workshop</code>, <code>Basket</code>, <code>Order</code>, <code>Customer</code>.',
+              '<strong>Canonical Domain Glossary:</strong> Formal translation of traditional commerce into structured data models.',
+              '<strong>Vitest Test Suite:</strong> Automated unit testing suite validating calculation rules and filters.'
+            ]
+          }
+        ],
+        s3Title: 'Repository and source code',
+        s3Intro: 'The complete monorepo source code is available on GitHub:',
+        terminalTitle: 'bash · monorepo cal-sarda',
+        terminalComments: [
+          '# Clone monorepo',
+          '# Install monorepo dependencies and packages',
+          '# Start Angular dev server with SSR'
+        ],
+        repoBtn: 'View repository on GitHub ↗',
+        contactBtn: 'Get in touch →',
+        s4Title: 'Conclusion & professional takeaway',
+        s4Text: 'This project bridges my hands-on customer service background with modern software engineering standards: building a real digital product faithful to the identity of a centenary business, powered by clean architecture and cutting-edge web technologies.',
+        ctaBtn: 'Discuss this project →',
+        footerBack: '← Back to portfolio',
+        headerRepoBtn: 'View repository on GitHub ↗',
+        headerGalleryBtn: 'Explore real screenshots ↓',
+        docTitle: 'Cal Sardà · Real E-Commerce Web App',
+        docDesc: 'Cal Sardà — E-commerce web platform for a centenary culinary shop founded in 1930 with Angular 22 and SSR.'
+      }
+    };
+
+    const calsardaSetLanguage = (lang: 'es' | 'ca' | 'en') => {
+      calsardaButtons.forEach((b) => {
+        const active = b.dataset.language === lang;
+        b.setAttribute('aria-pressed', String(active));
+        b.classList.toggle('is-active', active);
+      });
+
+      const d = contentData[lang];
+      document.querySelector('.back-link')!.textContent = d.back;
+      document.querySelector('.project-eyebrow')!.textContent = d.eyebrow;
+      document.querySelector('.project-title')!.textContent = d.title;
+      document.querySelector('.lead')!.innerHTML = d.lead;
+
+      const urlBadge = document.querySelector('.browser-url .url-badge');
+      if (urlBadge) urlBadge.textContent = d.urlBadge;
+      const liveText = document.querySelector('.browser-actions .live-text');
+      if (liveText) liveText.textContent = d.liveText;
+      const bTitle = document.querySelector('.showcase-floating-badge strong');
+      if (bTitle) bTitle.textContent = d.badgeTitle;
+      const bDesc = document.querySelector('.showcase-floating-badge span');
+      if (bDesc) bDesc.textContent = d.badgeDesc;
+
+      const hRepo = document.querySelector('[data-header-repo-btn]');
+      if (hRepo) hRepo.textContent = d.headerRepoBtn;
+      const hGal = document.querySelector('[data-header-gallery-btn]');
+      if (hGal) hGal.textContent = d.headerGalleryBtn;
+
+      const gT = document.querySelector('[data-gallery-title]');
+      if (gT) gT.textContent = d.galleryTitle;
+      const gS = document.querySelector('[data-gallery-subtitle]');
+      if (gS) gS.textContent = d.gallerySubtitle;
+
+      document.querySelectorAll('.views-grid .view-card').forEach((card, idx) => {
+        const item = d.galleryCards[idx];
+        if (item) {
+          const badge = card.querySelector('.view-badge');
+          if (badge) badge.textContent = item.badge;
+          const title = card.querySelector('h4');
+          if (title) title.textContent = item.title;
+          const desc = card.querySelector('p');
+          if (desc) desc.textContent = item.desc;
+        }
+      });
+
+      const m1L = document.querySelector('[data-metric-1-label]');
+      if (m1L) m1L.textContent = d.metric1Label;
+      const m1D = document.querySelector('[data-metric-1-desc]');
+      if (m1D) m1D.textContent = d.metric1Desc;
+      const m2L = document.querySelector('[data-metric-2-label]');
+      if (m2L) m2L.textContent = d.metric2Label;
+      const m2D = document.querySelector('[data-metric-2-desc]');
+      if (m2D) m2D.textContent = d.metric2Desc;
+      const m3L = document.querySelector('[data-metric-3-label]');
+      if (m3L) m3L.textContent = d.metric3Label;
+      const m3D = document.querySelector('[data-metric-3-desc]');
+      if (m3D) m3D.textContent = d.metric3Desc;
+      const m4L = document.querySelector('[data-metric-4-label]');
+      if (m4L) m4L.textContent = d.metric4Label;
+      const m4D = document.querySelector('[data-metric-4-desc]');
+      if (m4D) m4D.textContent = d.metric4Desc;
+
+      const s1T = document.querySelector('[data-section-1-title]');
+      if (s1T) s1T.textContent = d.s1Title;
+      const s1I = document.querySelector('[data-section-1-intro]');
+      if (s1I) s1I.textContent = d.s1Intro;
+      const sProbT = document.querySelector('[data-status-problem-title]');
+      if (sProbT) sProbT.textContent = d.sProblemTitle;
+      const sSolT = document.querySelector('[data-status-solution-title]');
+      if (sSolT) sSolT.textContent = d.sSolutionTitle;
+
+      const probItems = document.querySelectorAll('[data-status-problem-list] li');
+      probItems.forEach((li, idx) => { if (d.sProblemList[idx]) li.textContent = d.sProblemList[idx]; });
+      const solItems = document.querySelectorAll('[data-status-solution-list] li');
+      solItems.forEach((li, idx) => { if (d.sSolutionList[idx]) li.textContent = d.sSolutionList[idx]; });
+
+      const s2T = document.querySelector('[data-section-2-title]');
+      if (s2T) s2T.textContent = d.s2Title;
+      const s2I = document.querySelector('[data-section-2-intro]');
+      if (s2I) s2I.textContent = d.s2Intro;
+
+      document.querySelectorAll('.arch-cards-grid .arch-card').forEach((card, idx) => {
+        const item = d.archCards[idx];
+        if (item) {
+          const h4 = card.querySelector('h4');
+          if (h4) h4.textContent = item.title;
+          card.querySelectorAll('li').forEach((li, lIdx) => {
+            if (item.items[lIdx]) li.innerHTML = item.items[lIdx];
+          });
+        }
+      });
+
+      const s3T = document.querySelector('[data-section-3-title]');
+      if (s3T) s3T.textContent = d.s3Title;
+      const s3I = document.querySelector('[data-section-3-intro]');
+      if (s3I) s3I.textContent = d.s3Intro;
+
+      const termCode = document.querySelector('[data-terminal-code]');
+      if (termCode) {
+        termCode.textContent = `${d.terminalComments[0]}
+git clone https://github.com/alexBarrera457/Prototipo-Cal-Sard-.git
+cd Prototipo-Cal-Sard-
+
+${d.terminalComments[1]}
+npm install
+
+${d.terminalComments[2]}
+npm start`;
+      }
+
+      const repoBtn = document.querySelector('[data-repo-btn]');
+      if (repoBtn) repoBtn.textContent = d.repoBtn;
+      const contBtn = document.querySelector('[data-contact-btn]');
+      if (contBtn) contBtn.textContent = d.contactBtn;
+
+      const s4T = document.querySelector('[data-section-4-title]');
+      if (s4T) s4T.textContent = d.s4Title;
+      const s4Text = document.querySelector('[data-section-4-text]');
+      if (s4Text) s4Text.textContent = d.s4Text;
+      const ctaBtn = document.querySelector('[data-cta-btn]');
+      if (ctaBtn) ctaBtn.textContent = d.ctaBtn;
+      const footBack = document.querySelector('[data-footer-back]');
+      if (footBack) footBack.textContent = d.footerBack;
+
+      document.title = d.docTitle;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', d.docDesc);
+      document.documentElement.lang = lang;
+      localStorage.setItem('portfolio-language', lang);
+    };
+
+    const storedLang = localStorage.getItem('portfolio-language');
+    const initLang = storedLang === 'ca' || storedLang === 'en' ? storedLang : 'es';
+    calsardaButtons.forEach((b) => b.addEventListener('click', () => calsardaSetLanguage((b.dataset.language || 'es') as 'es' | 'ca' | 'en')));
+    calsardaSetLanguage(initLang);
+  </script>
+
+  <style>
+    body.project-page {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+    }
+
+    .project-header {
+      padding: 6rem 0 2.8rem;
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 10% 15%, rgba(52, 120, 246, 0.07), transparent 35%),
+                  radial-gradient(circle at 90% 25%, rgba(143, 211, 182, 0.1), transparent 35%),
+                  var(--paper);
+    }
+
+    .project-header-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .header-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--coral-dark);
+      text-decoration: none;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.22);
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(52, 120, 246, 0.16);
+      border-color: var(--coral);
+      transform: translateX(-2px);
+    }
+
+    .header-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      max-width: 54rem;
+    }
+
+    .project-eyebrow {
+      align-self: flex-start;
+      margin: 0;
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--coral-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      background: rgba(52, 120, 246, 0.08);
+      border: 1px solid rgba(52, 120, 246, 0.18);
+    }
+
+    .project-title {
+      font: 400 clamp(2.8rem, 6.5vw, 5.2rem)/0.92 var(--serif);
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.68;
+      margin: 0;
+      max-width: 50rem;
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.25rem;
+    }
+
+    .stack-pill {
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--ink);
+      font: 600 0.72rem var(--mono);
+      letter-spacing: 0.04em;
+      box-shadow: 0 2px 6px rgba(19, 34, 56, 0.03);
+      backdrop-filter: blur(4px);
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    .cover-wrap {
+      padding: 2.5rem 0 1rem;
+    }
+
+    /* Browser Mockup Frame */
+    .browser-showcase {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: #1e293b;
+      box-shadow: 0 24px 60px -15px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(19, 34, 56, 0.06);
+      overflow: hidden;
+    }
+
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.4rem;
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font: 0.75rem var(--mono);
+      color: #94a3b8;
+    }
+
+    .browser-controls {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 50%;
+    }
+
+    .dot.close { background: #ef4444; }
+    .dot.min { background: #eab308; }
+    .dot.max { background: #22c55e; }
+
+    .browser-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+    }
+
+    .url-badge {
+      background: rgba(52, 120, 246, 0.25);
+      color: #93c5fd;
+      border: 1px solid rgba(52, 120, 246, 0.4);
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 500;
+    }
+
+    .browser-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #86efac;
+      font-size: 0.72rem;
+    }
+
+    .live-dot {
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .browser-screen {
+      position: relative;
+      background: #111;
+      line-height: 0;
+    }
+
+    .showcase-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      max-height: 680px;
+    }
+
+    .showcase-floating-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      color: #f8fafc;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      line-height: 1.35;
+    }
+
+    .floating-icon {
+      font-size: 1.4rem;
+    }
+
+    .showcase-floating-badge strong {
+      display: block;
+      font-size: 0.86rem;
+      color: #ffffff;
+    }
+
+    .showcase-floating-badge span {
+      font-size: 0.74rem;
+      color: #94a3b8;
+    }
+
+    /* Views Gallery Section */
+    .gallery-panel {
+      padding: 2.5rem;
+    }
+
+    .panel-header-row {
+      margin-bottom: 2rem;
+    }
+
+    .panel-header-row h2 {
+      margin: 0 0 0.5rem;
+    }
+
+    .panel-header-row p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem;
+    }
+
+    .view-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 20px rgba(19, 34, 56, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .view-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(19, 34, 56, 0.1);
+    }
+
+    .view-image-wrap {
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+
+    .view-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .view-card:hover .view-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    .view-badge {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      z-index: 2;
+      font: 600 0.68rem var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #93c5fd;
+      backdrop-filter: blur(6px);
+    }
+
+    .view-info {
+      padding: 1.4rem;
+    }
+
+    .view-info h4 {
+      font: 600 1.05rem var(--sans);
+      color: var(--ink);
+      margin: 0 0 0.5rem;
+    }
+
+    .view-info p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Content & Metrics */
+    .project-content {
+      padding: 2.5rem 0 5rem;
+      display: grid;
+      gap: 2.2rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 18px rgba(19, 34, 56, 0.04);
+    }
+
+    .metric-num {
+      font: 700 1.6rem var(--mono);
+      color: var(--coral);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-label {
+      font: 600 0.95rem var(--sans);
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .metric-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .project-panel {
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 2.2rem;
+      box-shadow: 0 4px 20px rgba(19, 34, 56, 0.03);
+    }
+
+    .project-panel h2 {
+      font: 400 clamp(1.8rem, 3.5vw, 2.5rem) var(--serif);
+      margin: 0 0 1rem;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .project-panel > p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0 0 1.5rem;
+      font-size: 0.98rem;
+    }
+
+    /* Status Grid */
+    .status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .status-box {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1.6rem;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .status-box.success {
+      border-color: rgba(52, 120, 246, 0.3);
+      background: rgba(52, 120, 246, 0.03);
+    }
+
+    .status-box h3 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+      color: var(--ink);
+    }
+
+    .bullet-list {
+      padding-left: 1.25rem;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .bullet-list li {
+      margin-bottom: 0.6rem;
+    }
+
+    /* Architecture Cards */
+    .arch-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .arch-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .arch-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .arch-icon {
+      font-size: 1.3rem;
+    }
+
+    .arch-header h4 {
+      font-size: 1rem;
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .arch-card code {
+      background: rgba(19, 34, 56, 0.06);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font: 0.78rem var(--mono);
+      color: var(--coral-dark);
+    }
+
+    /* Terminal Box */
+    .code-terminal {
+      background: #0f172a;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 1.2rem 0;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.1rem;
+      background: #1e293b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .terminal-bar .dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+    }
+
+    .terminal-bar .dot.red { background: #ef4444; }
+    .terminal-bar .dot.yellow { background: #eab308; }
+    .terminal-bar .dot.green { background: #22c55e; }
+
+    .terminal-title {
+      margin-left: 0.5rem;
+      font: 0.7rem var(--mono);
+      color: #94a3b8;
+    }
+
+    .code-terminal pre {
+      margin: 0;
+      padding: 1.1rem 1.3rem;
+      color: #f1f5f9;
+      font: 0.82rem/1.65 var(--mono);
+      overflow-x: auto;
+    }
+
+    .action-buttons-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 1.2rem;
+    }
+
+    .button.primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.85rem 1.6rem;
+      text-decoration: none;
+      font: 600 0.88rem var(--sans);
+      transition: all 0.25s ease;
+    }
+
+    .button.primary:hover {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--ink);
+      padding: 0.85rem 1.6rem;
+      text-decoration: none;
+      font: 600 0.88rem var(--sans);
+      transition: all 0.25s ease;
+    }
+
+    .button:hover {
+      border-color: var(--ink);
+      background: white;
+    }
+
+    .conclusion-panel {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(52, 120, 246, 0.05) 100%);
+      border: 1px solid rgba(52, 120, 246, 0.2);
+    }
+
+    .conclusion-cta {
+      margin-top: 1.5rem;
+    }
+
+    .project-footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0 3rem;
+    }
+
+    .project-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .project-footer span {
+      font: 600 1rem var(--serif);
+    }
+
+    .project-footer a {
+      color: var(--coral);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .project-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 990px) {
+      .views-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .arch-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .project-header {
+        padding: 5rem 0 2rem;
+      }
+      .browser-bar {
+        padding: 0.6rem 0.9rem;
+      }
+      .browser-actions {
+        display: none;
+      }
+      .browser-url {
+        font-size: 0.68rem;
+        padding: 0.25rem 0.6rem;
+      }
+      .showcase-floating-badge {
+        display: none;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-panel {
+        padding: 1.4rem;
+        border-radius: 16px;
+      }
+      .action-buttons-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .project-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</BaseLayout>
