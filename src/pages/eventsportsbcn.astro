@@ -715,8 +715,15 @@ ${d.terminalComments[2]}
       localStorage.setItem('portfolio-language', lang);
     };
 
-    const storedLang = localStorage.getItem('portfolio-language');
-    const initLang = storedLang === 'ca' || storedLang === 'en' ? storedLang : 'es';
+    const detectLang = (): 'es' | 'ca' | 'en' => {
+      const stored = localStorage.getItem('portfolio-language');
+      if (stored === 'ca' || stored === 'en' || stored === 'es') return stored;
+      const nav = (typeof navigator !== 'undefined' ? (navigator.language || (navigator as any).userLanguage || '') : '').toLowerCase();
+      if (nav.startsWith('ca')) return 'ca';
+      if (nav.startsWith('en')) return 'en';
+      return 'es';
+    };
+    const initLang = detectLang();
     buttons.forEach((b) => b.addEventListener('click', () => setLanguage((b.dataset.language || 'es') as 'es' | 'ca' | 'en')));
     setLanguage(initLang);
   </script>

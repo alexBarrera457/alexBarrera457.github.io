@@ -45,7 +45,7 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
       <div class="cv-contact">
         <span>Barcelona, España</span>
         <span>+34 605 16 70 05</span>
-        <a href="mailto:salexbarrera@gmail.com">salexbarrera@gmail.com</a>
+        <a href="mailto:salexbarrera@gmail.com" data-cv-mail>salexbarrera@gmail.com</a>
         <a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
       </div>
     </header>
@@ -207,6 +207,25 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
     document.querySelector('[data-preview-frame]')!.setAttribute('title', copy[16]);
     document.querySelector('.cv-preview-actions [data-close-preview]')!.textContent = copy[17];
     document.querySelector('[data-confirm-download]')!.textContent = copy[18];
+    
+    const mailtoTemplates: Record<'es' | 'ca' | 'en', { subject: string; body: string }> = {
+      es: {
+        subject: 'Contacto profesional — Àlex Barrera',
+        body: 'Hola Àlex,\n\nHe visto tu currículum y me gustaría contactar contigo sobre...\n\nUn saludo,'
+      },
+      ca: {
+        subject: 'Contacte professional — Àlex Barrera',
+        body: 'Hola Àlex,\n\nHe vist el teu currículum i m’agradaria contactar amb tu sobre...\n\nUna salutació,'
+      },
+      en: {
+        subject: 'Professional Opportunity — Àlex Barrera',
+        body: 'Hi Àlex,\n\nI reviewed your résumé and would like to get in touch regarding...\n\nBest regards,'
+      }
+    };
+    const t = mailtoTemplates[language] || mailtoTemplates.es;
+    const mailtoUrl = `mailto:salexbarrera@gmail.com?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+    document.querySelectorAll<HTMLAnchorElement>('[data-cv-mail]').forEach((a) => { a.href = mailtoUrl; });
+
     document.title = language === 'en' ? 'Résumé · Àlex Barrera Sardà' : language === 'ca' ? 'Currículum · Àlex Barrera Sardà' : 'Currículum · Àlex Barrera Sardà';
     const cvDescriptions = { es: 'Currículum de Àlex Barrera Sardà.', ca: 'Currículum d’Àlex Barrera Sardà.', en: 'Résumé of Àlex Barrera Sardà.' };
     document.querySelector('meta[name="description"]')?.setAttribute('content', cvDescriptions[language]);
@@ -214,8 +233,15 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
     cvLanguageButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
     localStorage.setItem('portfolio-language', language);
   };
-  const cvStoredLanguage = localStorage.getItem('portfolio-language');
-  const cvInitialLanguage = cvStoredLanguage === 'ca' || cvStoredLanguage === 'en' ? cvStoredLanguage : 'es';
+  const cvDetectLanguage = (): 'es' | 'ca' | 'en' => {
+    const stored = localStorage.getItem('portfolio-language');
+    if (stored === 'ca' || stored === 'en' || stored === 'es') return stored;
+    const nav = (typeof navigator !== 'undefined' ? (navigator.language || (navigator as any).userLanguage || '') : '').toLowerCase();
+    if (nav.startsWith('ca')) return 'ca';
+    if (nav.startsWith('en')) return 'en';
+    return 'es';
+  };
+  const cvInitialLanguage = cvDetectLanguage();
   cvLanguageButtons.forEach((button) => button.addEventListener('click', () => cvSetLanguage((button.dataset.language || 'es') as 'es' | 'ca' | 'en')));
   cvSetLanguage(cvInitialLanguage);
 

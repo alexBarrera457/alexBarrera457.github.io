@@ -169,8 +169,15 @@ import LanguageSwitcher from '../components/LanguageSwitcher.astro';
     });
   };
 
-  const savedLang = (localStorage.getItem('portfolio-language') as 'es' | 'ca' | 'en') || 'es';
-  applyLang(savedLang === 'ca' || savedLang === 'en' ? savedLang : 'es');
+  const detectLang = (): 'es' | 'ca' | 'en' => {
+    const stored = localStorage.getItem('portfolio-language');
+    if (stored === 'ca' || stored === 'en' || stored === 'es') return stored;
+    const nav = (typeof navigator !== 'undefined' ? (navigator.language || (navigator as any).userLanguage || '') : '').toLowerCase();
+    if (nav.startsWith('ca')) return 'ca';
+    if (nav.startsWith('en')) return 'en';
+    return 'es';
+  };
+  applyLang(detectLang());
 
   document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((btn) => {
     btn.addEventListener('click', () => {

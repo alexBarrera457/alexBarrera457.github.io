@@ -328,7 +328,7 @@ try {
               <div class="info-row"><span>Enfoque</span><span>Full-stack web</span></div>
               <div class="info-row"><span>Estado</span><span class="status">Buscando prácticas</span></div>
               <div class="info-row"><span>Idiomas</span><span>Catalán C1 · Castellano · Inglés B1</span></div>
-              <div class="info-row"><span>Email</span><span>salexbarrera@gmail.com</span></div>
+              <div class="info-row"><span>Email</span><a href="mailto:salexbarrera@gmail.com" data-info-mail style="color:var(--coral-dark);text-decoration:none;font-weight:600;">salexbarrera@gmail.com</a></div>
               <div class="info-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">Ver perfil ↗</a></div>
             </div>
           </div>
@@ -369,7 +369,7 @@ try {
             <h2>Hagamos algo <em>interesante.</em></h2>
             <p>¿Tienes una idea, una oportunidad o simplemente quieres saludar? Estoy abierto a proyectos, prácticas y conversaciones sobre desarrollo web.</p>
             <div class="actions contact-actions">
-              <a class="button primary" href="mailto:salexbarrera@gmail.com">Escríbeme →</a>
+              <a class="button primary" href="mailto:salexbarrera@gmail.com" data-contact-mail>Escríbeme →</a>
               <button type="button" class="button copy-email-btn" data-copy-email="salexbarrera@gmail.com" title="Copiar correo al portapapeles">
                 <span class="copy-text">Copiar email</span> <span class="copy-icon">📋</span>
               </button>
@@ -589,11 +589,45 @@ try {
         document.querySelectorAll<HTMLElement>('.copy-email-btn').forEach((el) => { el.setAttribute('title', copyTitle); });
         const toastMsg = document.getElementById('copy-toast-msg');
         if (toastMsg) toastMsg.textContent = language === 'en' ? 'Email copied to clipboard' : language === 'ca' ? 'Correu copiat al porta-retalls' : 'Email copiado al portapapeles';
+        
+        const smartMailto = getMailtoUrl(language);
+        document.querySelectorAll<HTMLAnchorElement>('[data-contact-mail], [data-info-mail]').forEach((a) => {
+          a.href = smartMailto;
+        });
+
         document.documentElement.lang = language;
         document.querySelectorAll('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.getAttribute('data-language') === language)));
         localStorage.setItem('portfolio-language', language);
       };
-      const getLanguage = (value: string | null): Language => value === 'ca' || value === 'en' ? value : 'es';
+
+      const mailtoTemplates: Record<Language, { subject: string; body: string }> = {
+        es: {
+          subject: 'Contacto profesional — Àlex Barrera',
+          body: 'Hola Àlex,\n\nHe visto tu portfolio y me gustaría contactar contigo sobre...\n\nUn saludo,'
+        },
+        ca: {
+          subject: 'Contacte professional — Àlex Barrera',
+          body: 'Hola Àlex,\n\nHe vist el teu portfoli i m’agradaria contactar amb tu sobre...\n\nUna salutació,'
+        },
+        en: {
+          subject: 'Professional Opportunity — Àlex Barrera',
+          body: 'Hi Àlex,\n\nI reviewed your portfolio and would like to get in touch regarding...\n\nBest regards,'
+        }
+      };
+
+      const getMailtoUrl = (lang: Language) => {
+        const t = mailtoTemplates[lang] || mailtoTemplates.es;
+        return `mailto:salexbarrera@gmail.com?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+      };
+
+      const getLanguage = (value: string | null): Language => {
+        if (value === 'ca' || value === 'en' || value === 'es') return value;
+        const nav = (typeof navigator !== 'undefined' ? (navigator.language || (navigator as any).userLanguage || '') : '').toLowerCase();
+        if (nav.startsWith('ca')) return 'ca';
+        if (nav.startsWith('en')) return 'en';
+        return 'es';
+      };
+
       const initialDataEl = document.getElementById('github-initial-data');
       if (initialDataEl?.textContent) {
         try {
@@ -687,7 +721,7 @@ try {
               if (toast) toast.classList.remove('show');
             }, 2200);
           } catch {
-            window.location.href = `mailto:${email}`;
+            window.location.href = getMailtoUrl(getLanguage(localStorage.getItem('portfolio-language')));
           }
         });
       });
