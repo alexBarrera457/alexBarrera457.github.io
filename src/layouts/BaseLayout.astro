@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import ImageLightbox from '../components/ImageLightbox.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
 
 interface Props {
   title?: string;
@@ -79,5 +80,14 @@ const {
   <body class={bodyClass}>
     <slot />
     <ImageLightbox />
+    <ScrollToTop />
+
+    <!-- Privacy-friendly Web Analytics (Zero Cookies / GDPR Compliant) -->
+    <script
+      is:inline
+      data-goatcounter="https://alexbarrera.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
   </body>
 </html>

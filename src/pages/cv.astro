@@ -25,22 +25,30 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
   bodyClass="cv-page"
 >
   <main class="cv-sheet">
-      <header class="cv-header">
-        <div class="cv-identity">
-          <img class="cv-photo" src="/images/profile.jpg" alt="Foto de Àlex Barrera Sardà" width="190" height="190" fetchpriority="high" decoding="async" />
-          <div>
-            <a class="cv-back" href="/">← Volver al portfolio</a>
-            <h1><span class="cv-name-line">Àlex Barrera</span><em>Sardà</em></h1>
-            <p class="cv-role">Desarrollador de Aplicaciones Web</p>
-          </div>
+    <div class="cv-top-bar">
+      <a class="cv-back" href="/">← Volver al portfolio</a>
+      <div class="cv-top-actions">
+        <LanguageSwitcher />
+        <button type="button" class="cv-btn-action" data-download-cv-top>Descargar CV ↓</button>
+        <button type="button" class="cv-btn-action cv-btn-primary" data-print-cv-top onclick="window.print()">Imprimir / PDF 🖨️</button>
+      </div>
+    </div>
+
+    <header class="cv-header">
+      <div class="cv-identity">
+        <img class="cv-photo" src="/images/profile.jpg" alt="Foto de Àlex Barrera Sardà" width="190" height="190" fetchpriority="high" decoding="async" />
+        <div>
+          <h1><span class="cv-name-line">Àlex Barrera</span><em>Sardà</em></h1>
+          <p class="cv-role">Desarrollador de Aplicaciones Web</p>
         </div>
-        <div class="cv-contact">
-          <span>Barcelona, España</span>
-          <span>+34 605 16 70 05</span>
-          <a href="mailto:salexbarrera@gmail.com">salexbarrera@gmail.com</a>
-          <a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        </div>
-      </header>
+      </div>
+      <div class="cv-contact">
+        <span>Barcelona, España</span>
+        <span>+34 605 16 70 05</span>
+        <a href="mailto:salexbarrera@gmail.com">salexbarrera@gmail.com</a>
+        <a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </header>
 
       <section class="cv-section cv-intro">
         <span class="cv-label">Objetivo profesional</span>
@@ -192,8 +200,8 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
     languageParagraphs.forEach((paragraph, index) => { if (detail.languages[index]) paragraph.textContent = detail.languages[index]; });
     const otherDetails = document.querySelector('.cv-columns aside .cv-section:last-child p');
     if (otherDetails) otherDetails.textContent = detail.other;
-    document.querySelector('[data-download-cv]')!.textContent = copy[12];
-    document.querySelector('[data-print-cv]')!.textContent = copy[13];
+    document.querySelectorAll('[data-download-cv], [data-download-cv-top]').forEach((btn) => { btn.textContent = copy[12]; });
+    document.querySelectorAll('[data-print-cv], [data-print-cv-top]').forEach((btn) => { btn.textContent = copy[13]; });
     document.querySelector('.cv-preview-header h2')!.textContent = copy[14];
     document.querySelector('[data-close-preview]')!.setAttribute('aria-label', copy[15]);
     document.querySelector('[data-preview-frame]')!.setAttribute('title', copy[16]);
@@ -212,6 +220,8 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
   cvSetLanguage(cvInitialLanguage);
 
   const downloadButton = document.querySelector<HTMLButtonElement>('[data-download-cv]');
+  const downloadTopButton = document.querySelector<HTMLButtonElement>('[data-download-cv-top]');
+  downloadTopButton?.addEventListener('click', () => downloadButton?.click());
   const previewDialog = document.querySelector<HTMLDialogElement>('[data-cv-preview]');
   const previewFrame = document.querySelector<HTMLIFrameElement>('[data-preview-frame]');
   const confirmDownload = document.querySelector<HTMLButtonElement>('[data-confirm-download]');
@@ -284,6 +294,12 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
 <style>
   .cv-page { background: var(--paper-deep); }
   .cv-sheet { width: min(920px, calc(100% - 2rem)); margin: 2rem auto; padding: 2.2rem; background: var(--paper); border-top: 8px solid var(--coral); box-shadow: 0 20px 60px rgba(19,34,56,.12); }
+  .cv-top-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.25rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .cv-top-actions { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+  .cv-btn-action { border: 1px solid var(--ink); border-radius: 999px; padding: .55rem .95rem; background: transparent; color: var(--ink); cursor: pointer; font: 500 .72rem var(--mono); transition: all .2s ease; }
+  .cv-btn-action:hover { background: var(--paper-deep); border-color: var(--coral); color: var(--coral-dark); transform: translateY(-1px); }
+  .cv-btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .cv-btn-primary:hover { background: var(--coral); border-color: var(--coral); color: #fff; }
   .cv-header { display: grid; grid-template-columns: minmax(0, 1fr) 190px; align-items: end; gap: 2.5rem; padding: 1.4rem 1.4rem 2rem; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, rgba(52,120,246,.08), rgba(143,211,182,.13)); }
   .cv-identity { display: flex; align-items: center; gap: 1.5rem; min-width: 0; }
   .cv-identity > div { order: 1; }
@@ -370,7 +386,7 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
   .cv-pdf-mode .cv-skills span { padding: .32rem .52rem; font-size: .61rem; }
   .cv-pdf-mode .cv-section > p + p { margin-top: .65rem; }
   .cv-pdf-mode .cv-footer { padding-top: 1.05rem; font-size: .66rem; }
-  .cv-pdf-mode .cv-back, .cv-pdf-mode .cv-actions { display: none; }
+  .cv-pdf-mode .cv-top-bar, .cv-pdf-mode .cv-back, .cv-pdf-mode .cv-actions { display: none !important; }
   .cv-pdf-mode h1 { color: var(--ink); opacity: 1; transform: none; animation: none !important; }
   .cv-pdf-mode h1 em { color: var(--coral); }
   .cv-pdf-mode * { transition: none !important; }
@@ -407,7 +423,7 @@ const softSkills = ['Trabajo en equipo', 'Resolución de problemas', 'Responsabi
     .cv-skills span { padding: .32rem .52rem; font-size: .61rem; }
     .cv-section > p + p { margin-top: .65rem; }
     .cv-footer { padding-top: 1.05rem; font-size: .66rem; }
-    .cv-back, .cv-actions, .cv-actions button, .cv-preview { display: none !important; }
+    .cv-top-bar, .cv-back, .cv-actions, .cv-actions button, .cv-preview { display: none !important; }
     .cv-section, .cv-entry, .cv-header { break-inside: avoid; }
     * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   }

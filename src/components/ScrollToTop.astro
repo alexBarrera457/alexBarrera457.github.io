@@ -1,0 +1,111 @@
+---
+---
+
+<button
+  type="button"
+  id="scroll-to-top"
+  class="scroll-to-top-btn"
+  aria-label="Volver arriba"
+  title="Volver arriba"
+>
+  <span class="scroll-arrow" aria-hidden="true">↑</span>
+</button>
+
+<script>
+  (() => {
+    const btn = document.getElementById('scroll-to-top');
+    if (!btn) return;
+
+    const toggleVisibility = () => {
+      if (window.scrollY > 350) {
+        btn.classList.add('is-visible');
+      } else {
+        btn.classList.remove('is-visible');
+      }
+    };
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+  })();
+</script>
+
+<style>
+  .scroll-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.1rem;
+    height: 3.1rem;
+    border-radius: 50%;
+    background: var(--paper, #fcfaf7);
+    color: var(--ink, #1e1e1e);
+    border: 1.5px solid var(--line, rgba(30, 30, 30, 0.15));
+    box-shadow: 0 10px 25px rgba(19, 34, 56, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.9);
+    transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    user-select: none;
+    outline: none;
+  }
+
+  .scroll-to-top-btn.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .scroll-to-top-btn:hover {
+    background: var(--coral, #ff6b4a);
+    color: #ffffff;
+    border-color: var(--coral, #ff6b4a);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 14px 30px rgba(255, 107, 74, 0.3);
+  }
+
+  .scroll-to-top-btn:focus-visible {
+    outline: 2px solid var(--coral, #ff6b4a);
+    outline-offset: 3px;
+  }
+
+  .scroll-arrow {
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+  }
+
+  .scroll-to-top-btn:hover .scroll-arrow {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .scroll-to-top-btn {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+    .scroll-arrow {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media print {
+    .scroll-to-top-btn {
+      display: none !important;
+    }
+  }
+</style>

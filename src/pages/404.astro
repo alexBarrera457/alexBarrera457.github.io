@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+---
+
+<BaseLayout
+  title="404 — Página no encontrada · Àlex Barrera"
+  description="La página que estás buscando no existe o ha sido movida."
+  canonicalUrl="https://alexbarrera457.github.io/404"
+>
+  <a class="skip-link" href="#error-content">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="logo" href="/">Àlex<span>.</span>Barrera</a>
+      <div class="nav-actions">
+        <a class="button small" href="/" data-nav-home>← Portada</a>
+        <LanguageSwitcher />
+      </div>
+    </nav>
+  </header>
+
+  <main id="error-content" class="error-container">
+    <div class="container error-grid">
+      <div class="error-visual">
+        <span class="error-code">404</span>
+        <div class="error-badge">
+          <span class="badge-dot"></span>
+          <span data-badge-text>Ruta no encontrada</span>
+        </div>
+      </div>
+
+      <div class="error-text">
+        <p class="eyebrow" data-eyebrow>Error en el enlace o dirección</p>
+        <h1 data-title>Parece que esta página no existe o ha sido <em>movida.</em></h1>
+        <p class="error-copy" data-copy>
+          La URL que has introducido no coincide con ningún documento activo en el portfolio. Puede que se haya reestructurado durante las últimas actualizaciones o que el enlace sea incorrecto.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="/" data-action-home>Volver a la portada <span>↗</span></a>
+          <a class="button" href="/cv" data-action-cv>Ver currículum <span>↗</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick destination projects -->
+    <section class="container error-suggestions">
+      <h2 data-suggestions-title>O puedes explorar directamente mis proyectos destacados:</h2>
+      <div class="suggestions-grid">
+        <a href="/cal-sarda" class="suggest-card">
+          <div class="suggest-meta">
+            <span class="suggest-tag">Angular 22 · SSR</span>
+            <span class="suggest-arrow">↗</span>
+          </div>
+          <h3>Cal Sardà</h3>
+          <p data-sarda-desc>Prototipo e-commerce de tienda real para comercio tradicional con catálogo gourmet y alérgenos.</p>
+        </a>
+
+        <a href="/eventsportsbcn" class="suggest-card">
+          <div class="suggest-meta">
+            <span class="suggest-tag">PHP · MySQL · MVC</span>
+            <span class="suggest-arrow">↗</span>
+          </div>
+          <h3>EventSportsBCN</h3>
+          <p data-sports-desc>Plataforma web de eventos deportivos con control de aforo y perfiles de usuario y gestor.</p>
+        </a>
+
+        <a href="/omni-nexus" class="suggest-card">
+          <div class="suggest-meta">
+            <span class="suggest-tag">Node.js · Express · IA</span>
+            <span class="suggest-arrow">↗</span>
+          </div>
+          <h3>OMNI // NEXUS</h3>
+          <p data-nexus-desc>Chat inteligente local con API REST, persistencia SQLite y herramientas contextuales.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 Àlex Barrera Sardà · Desarrollador de Aplicaciones Web</p>
+      <a href="/" data-footer-back>Volver al inicio ↑</a>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  const translations = {
+    es: {
+      navHome: '← Portada',
+      badge: 'Ruta no encontrada',
+      eyebrow: 'Error en el enlace o dirección',
+      title: 'Parece que esta página no existe o ha sido <em>movida.</em>',
+      copy: 'La URL que has introducido no coincide con ningún documento activo en el portfolio. Puede que se haya reestructurado durante las últimas actualizaciones o que el enlace sea incorrecto.',
+      actionHome: 'Volver a la portada ↗',
+      actionCv: 'Ver currículum ↗',
+      suggestionsTitle: 'O puedes explorar directamente mis proyectos destacados:',
+      sardaDesc: 'Prototipo e-commerce de tienda real para comercio tradicional con catálogo gourmet y alérgenos.',
+      sportsDesc: 'Plataforma web de eventos deportivos con control de aforo y perfiles de usuario y gestor.',
+      nexusDesc: 'Chat inteligente local con API REST, persistencia SQLite y herramientas contextuales.',
+      footerBack: 'Volver al inicio ↑',
+      pageTitle: '404 — Página no encontrada · Àlex Barrera'
+    },
+    ca: {
+      navHome: '← Portada',
+      badge: 'Ruta no trobada',
+      eyebrow: 'Error en l’enllaç o adreça',
+      title: 'Sembla que aquesta pàgina no existeix o ha estat <em>moguda.</em>',
+      copy: 'La URL que has introduït no coincideix amb cap document actiu al portfoli. Pot ser que s’hagi reestructurat durant les darreres actualitzacions o que l’enllaç sigui incorrecte.',
+      actionHome: 'Tornar a la portada ↗',
+      actionCv: 'Veure currículum ↗',
+      suggestionsTitle: 'O pots explorar directament els meus projectes destacats:',
+      sardaDesc: 'Prototip de comerç electrònic de botiga real per a comerç tradicional amb catàleg gurmet i al·lèrgens.',
+      sportsDesc: 'Plataforma web d’esdeveniments esportius amb control d’aforament i perfils d’usuari i gestor.',
+      nexusDesc: 'Xat intel·ligent local amb API REST, persistència SQLite i eines contextuals.',
+      footerBack: 'Tornar a l’inici ↑',
+      pageTitle: '404 — Pàgina no trobada · Àlex Barrera'
+    },
+    en: {
+      navHome: '← Home',
+      badge: 'Route not found',
+      eyebrow: 'Broken link or invalid URL',
+      title: 'It seems this page does not exist or has been <em>moved.</em>',
+      copy: 'The requested URL does not match any active document in this portfolio. It might have been reorganized during recent updates or the link may be outdated.',
+      actionHome: 'Back to homepage ↗',
+      actionCv: 'View résumé ↗',
+      suggestionsTitle: 'Or explore my featured projects directly:',
+      sardaDesc: 'E-commerce prototype for a centenary grocery shop with gourmet catalog and allergen management.',
+      sportsDesc: 'Web platform for sports event management and registrations with capacity control.',
+      nexusDesc: 'Local intelligent chat with REST API, SQLite persistence and contextual tools.',
+      footerBack: 'Back to top ↑',
+      pageTitle: '404 — Page not found · Àlex Barrera'
+    }
+  };
+
+  const applyLang = (lang: 'es' | 'ca' | 'en') => {
+    const t = translations[lang] || translations.es;
+    const navHome = document.querySelector('[data-nav-home]');
+    if (navHome) navHome.textContent = t.navHome;
+    const badge = document.querySelector('[data-badge-text]');
+    if (badge) badge.textContent = t.badge;
+    const eyebrow = document.querySelector('[data-eyebrow]');
+    if (eyebrow) eyebrow.textContent = t.eyebrow;
+    const title = document.querySelector('[data-title]');
+    if (title) title.innerHTML = t.title;
+    const copy = document.querySelector('[data-copy]');
+    if (copy) copy.textContent = t.copy;
+    const actionHome = document.querySelector('[data-action-home]');
+    if (actionHome) actionHome.textContent = t.actionHome;
+    const actionCv = document.querySelector('[data-action-cv]');
+    if (actionCv) actionCv.textContent = t.actionCv;
+    const suggestionsTitle = document.querySelector('[data-suggestions-title]');
+    if (suggestionsTitle) suggestionsTitle.textContent = t.suggestionsTitle;
+    const sardaDesc = document.querySelector('[data-sarda-desc]');
+    if (sardaDesc) sardaDesc.textContent = t.sardaDesc;
+    const sportsDesc = document.querySelector('[data-sports-desc]');
+    if (sportsDesc) sportsDesc.textContent = t.sportsDesc;
+    const nexusDesc = document.querySelector('[data-nexus-desc]');
+    if (nexusDesc) nexusDesc.textContent = t.nexusDesc;
+    const footerBack = document.querySelector('[data-footer-back]');
+    if (footerBack) footerBack.textContent = t.footerBack;
+    document.title = t.pageTitle;
+    document.documentElement.lang = lang;
+    localStorage.setItem('portfolio-language', lang);
+
+    document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(btn.dataset.language === lang));
+    });
+  };
+
+  const savedLang = (localStorage.getItem('portfolio-language') as 'es' | 'ca' | 'en') || 'es';
+  applyLang(savedLang === 'ca' || savedLang === 'en' ? savedLang : 'es');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-language]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = (btn.dataset.language || 'es') as 'es' | 'ca' | 'en';
+      applyLang(target);
+    });
+  });
+</script>
+
+<style>
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .button.small {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.72rem;
+  }
+
+  .error-container {
+    min-height: calc(100vh - 180px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 0 3rem;
+  }
+
+  .error-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .error-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .error-code {
+    font: 700 clamp(6rem, 16vw, 11rem) var(--serif);
+    line-height: 0.85;
+    color: var(--coral);
+    letter-spacing: -0.04em;
+    user-select: none;
+    text-shadow: 6px 8px 0 rgba(36, 37, 34, 0.08);
+  }
+
+  .error-badge {
+    margin-top: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    background: var(--paper-deep);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font: 600 0.72rem var(--mono);
+    color: var(--coral-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--coral);
+    border-radius: 50%;
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .error-text h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0.5rem 0 1.2rem;
+    color: var(--ink);
+  }
+
+  .error-text h1 em {
+    color: var(--coral);
+    font-style: italic;
+  }
+
+  .error-copy {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 36rem;
+    margin-bottom: 2rem;
+  }
+
+  .error-suggestions {
+    border-top: 1px solid var(--line);
+    padding-top: 3rem;
+  }
+
+  .error-suggestions h2 {
+    font: 600 1.1rem var(--mono);
+    color: var(--muted);
+    margin-bottom: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .suggest-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .suggest-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--coral);
+    box-shadow: 0 14px 30px rgba(19, 34, 56, 0.08);
+  }
+
+  .suggest-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .suggest-tag {
+    font: 600 0.68rem var(--mono);
+    color: var(--coral-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .suggest-arrow {
+    font-size: 1.1rem;
+    color: var(--muted);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .suggest-card:hover .suggest-arrow {
+    color: var(--coral);
+    transform: translate(2px, -2px);
+  }
+
+  .suggest-card h3 {
+    font: 600 1.35rem var(--serif);
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+
+  .suggest-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding: 2rem 0;
+    margin-top: 4rem;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: 0.75rem var(--mono);
+    color: var(--muted);
+  }
+
+  .footer-content a {
+    color: var(--coral-dark);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .error-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .suggestions-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .footer-content {
+      flex-direction: column;
+      gap: 0.8rem;
+      text-align: center;
+    }
+  }
+</style>
