@@ -55,7 +55,7 @@ const appViews = [
           {stack.map((item) => <span class="stack-pill">{item}</span>)}
         </div>
         <div class="header-actions">
-          <a class="button primary" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer" data-header-repo-btn>
+          <a class="button primary" href="https://github.com/alexBarrera457/OmniNexus" target="_blank" rel="noopener noreferrer" data-header-repo-btn>
             Ver repositorio en GitHub ↗
           </a>
           <a class="button" href="#capturas-reales" data-header-gallery-btn>
@@ -245,22 +245,23 @@ const appViews = [
           <span class="dot red"></span>
           <span class="dot yellow"></span>
           <span class="dot green"></span>
-          <span class="terminal-title">bash · omniroute-test · node v24</span>
+          <span class="terminal-title">bash · OmniNexus · node v24</span>
         </div>
-        <pre><code data-terminal-code># Instalar dependencias
+        <pre><code data-terminal-code># Clonar repositorio
+git clone https://github.com/alexBarrera457/OmniNexus.git
+cd OmniNexus
+
+# Instalar dependencias
 npm install
 
-# Ejecutar suite de pruebas (27 tests unitarios e integración)
+# Ejecutar suite de pruebas (27 tests con supertest y node:test)
 npm test
 
-# Iniciar servidor Express y frontend en http://127.0.0.1:3000
-npm start
-
-# Verificar salud del runtime y herramientas activas
-curl http://127.0.0.1:3000/api/health</code></pre>
+# Iniciar servidor Express modular en local
+npm start</code></pre>
       </div>
       <div class="action-buttons-row">
-        <a class="button primary" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer" data-repo-btn>
+        <a class="button primary" href="https://github.com/alexBarrera457/OmniNexus" target="_blank" rel="noopener noreferrer" data-repo-btn>
           Ver repositorio en GitHub ↗
         </a>
         <a class="button" href="/#contact" data-contact-btn>
@@ -365,12 +366,12 @@ curl http://127.0.0.1:3000/api/health</code></pre>
         ],
         s3Title: 'Repositorio y ejecución local',
         s3Intro: 'El proyecto cuenta con suite de tests, tooling de calidad (ESLint, Prettier) y puesta en marcha en un único comando:',
-        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalTitle: 'bash · OmniNexus · node v24',
         terminalComments: [
+          '# Clonar repositorio',
           '# Instalar dependencias',
-          '# Ejecutar suite de pruebas (27 tests unitarios e integración)',
-          '# Iniciar servidor Express y frontend en http://127.0.0.1:3000',
-          '# Verificar salud del runtime y herramientas activas'
+          '# Ejecutar suite de pruebas (27 tests con supertest y node:test)',
+          '# Iniciar servidor Express modular en local'
         ],
         repoBtn: 'Ver repositorio en GitHub ↗',
         contactBtn: 'Contactar conmigo →',
@@ -456,12 +457,12 @@ curl http://127.0.0.1:3000/api/health</code></pre>
         ],
         s3Title: 'Repositori i execució local',
         s3Intro: 'El projecte compta amb suite de tests, tooling de qualitat (ESLint, Prettier) i posada en marxa en una única comanda:',
-        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalTitle: 'bash · OmniNexus · node v24',
         terminalComments: [
+          '# Clonar repositori',
           '# Instal·lar dependències',
-          '# Executar suite de proves (27 tests unitaris i integració)',
-          '# Iniciar servidor Express i frontend a http://127.0.0.1:3000',
-          '# Verificar salut del runtime i eines actives'
+          '# Executar suite de proves (27 tests amb supertest i node:test)',
+          '# Iniciar servidor Express modular en local'
         ],
         repoBtn: 'Veure repositori a GitHub ↗',
         contactBtn: 'Contactar amb mi →',
@@ -547,12 +548,12 @@ curl http://127.0.0.1:3000/api/health</code></pre>
         ],
         s3Title: 'Repository and local execution',
         s3Intro: 'The codebase features an automated test suite, quality tooling (ESLint, Prettier), and single-command startup:',
-        terminalTitle: 'bash · omniroute-test · node v24',
+        terminalTitle: 'bash · OmniNexus · node v24',
         terminalComments: [
+          '# Clone repository',
           '# Install dependencies',
-          '# Run test suite (27 unit & integration tests)',
-          '# Start Express server and frontend on http://127.0.0.1:3000',
-          '# Check runtime health and active tools'
+          '# Run automated test suite (27 tests with supertest and node:test)',
+          '# Start modular Express local server'
         ],
         repoBtn: 'View repository on GitHub ↗',
         contactBtn: 'Contact me →',
@@ -672,16 +673,17 @@ curl http://127.0.0.1:3000/api/health</code></pre>
       const termCode = document.querySelector('[data-terminal-code]');
       if (termCode) {
         termCode.textContent = `${d.terminalComments[0]}
-npm install
+git clone https://github.com/alexBarrera457/OmniNexus.git
+cd OmniNexus
 
 ${d.terminalComments[1]}
-npm test
+npm install
 
 ${d.terminalComments[2]}
-npm start
+npm test
 
 ${d.terminalComments[3]}
-curl http://127.0.0.1:3000/api/health`;
+npm start`;
       }
 
       const repoBtn = document.querySelector('[data-repo-btn]');

@@ -106,8 +106,8 @@ const appViews = [
         <div class="showcase-floating-badge">
           <span class="floating-icon">🛒</span>
           <div>
-            <strong>Tienda Online Operativa</strong>
-            <span>450+ productos gastronómicos catalogados</span>
+            <strong data-badge-title>Prototipo de Tienda Online</strong>
+            <span data-badge-desc>455 productos reales catalogados con alérgenos</span>
           </div>
         </div>
       </div>
@@ -191,6 +191,35 @@ const appViews = [
             <li>Configurador de lotes y cestas gourmet con presupuesto cerrado para regalo.</li>
             <li>Sistema Click & Collect para preparar pedidos antes de la llegada del cliente.</li>
             <li>Página editorial que pone en valor los más de 90 años de historia de la familia.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Status & Technical Transparency -->
+    <section class="project-panel">
+      <h2 data-status-section-title>Alcance técnico y estado de implementación</h2>
+      <p data-status-section-intro>
+        Para garantizar rigor profesional, se detallan las funcionalidades operativas en este prototipo web y aquellas previstas para futuras fases comerciales:
+      </p>
+      <div class="status-grid">
+        <div class="status-box success">
+          <h3 data-scope-done-title>✅ Funcionalidades implementadas</h3>
+          <ul class="bullet-list" data-scope-done-list>
+            <li>Catálogo interactivo con 455 referencias reales organizadas en 10 familias gastronómicas.</li>
+            <li>Fichas individuales detalladas con ingredientes, alérgenos y formatos de compra.</li>
+            <li>Configurador interactivo de lotes y cestas gourmet con cálculo presupuestario en tiempo real.</li>
+            <li>Cesta reactiva mediante Angular Signals y desacople de almacenamiento compatible con SSR.</li>
+            <li>Renderizado en servidor (SSR) en Express 5 para velocidad de entrega e indexación SEO.</li>
+            <li>Diseño completamente responsive adaptado a móviles, tablets y ordenadores de escritorio.</li>
+          </ul>
+        </div>
+        <div class="status-box">
+          <h3 data-scope-pending-title>⏳ Fases previstas para producción</h3>
+          <ul class="bullet-list" data-scope-pending-list>
+            <li>Integración con pasarela de pago bancario real (Redsys / Stripe) para liquidación en línea.</li>
+            <li>Conexión bidireccional en tiempo real con el software de punto de venta (TPV/ERP) de la tienda física.</li>
+            <li>Panel de administración para gestión de inventario diario y aviso automático de rotura de stock.</li>
           </ul>
         </div>
       </div>
@@ -308,8 +337,8 @@ npm start</code></pre>
         lead: 'Plataforma web de comercio electrónico desarrollada con Angular 22 y Server-Side Rendering (SSR) para digitalizar el emblemático comercio tradicional centenario Cal Sardà (fundado en 1930 en Barcelona): catálogo con más de 450 referencias gastronómicas, gestión de lotes gourmet y pedidos Click & Collect.',
         urlBadge: 'Angular 22 · SSR Activo',
         liveText: 'Captura real de la app',
-        badgeTitle: 'Tienda Online Operativa',
-        badgeDesc: '450+ productos gastronómicos catalogados',
+        badgeTitle: 'Prototipo de Tienda Online',
+        badgeDesc: '455 productos reales catalogados con alérgenos',
         galleryTitle: 'Capturas reales de la aplicación',
         gallerySubtitle: 'Vistas reales del prototipo web compilado y renderizado en servidor (SSR), reflejando la identidad visual y funcional del negocio:',
         galleryCards: [
@@ -319,7 +348,7 @@ npm start</code></pre>
           { badge: 'Comercio de Proximidad', title: 'Galería de la Tienda Física', desc: 'Recorrido visual por el establecimiento de la calle Marina en el barrio de la Sagrada Família.' }
         ],
         metric1Label: 'Productos catalogados',
-        metric1Desc: 'Familias completas: cafés artesanos, conservas de mar, ibéricos y dulces.',
+        metric1Desc: 'Familias completas: cafés artesanos, conservas de mar, ibéricos y dulces (455 referencias).',
         metric2Label: 'Monorepo Modular',
         metric2Desc: 'Arquitectura con paquete compartido de dominio (@cal-sarda/domain) y SSR.',
         metric3Label: 'Historia y Comercio',
@@ -341,6 +370,23 @@ npm start</code></pre>
           'Configurador de lotes y cestas gourmet con presupuesto cerrado para regalo.',
           'Sistema Click & Collect para preparar pedidos antes de la llegada del cliente.',
           'Página editorial que pone en valor los más de 90 años de historia de la familia.'
+        ],
+        statusSectionTitle: 'Alcance técnico y estado de implementación',
+        statusSectionIntro: 'Para garantizar rigor profesional, se detallan las funcionalidades operativas en este prototipo web y aquellas previstas para futuras fases comerciales:',
+        scopeDoneTitle: '✅ Funcionalidades implementadas',
+        scopeDoneList: [
+          'Catálogo interactivo con 455 referencias reales organizadas en 10 familias gastronómicas.',
+          'Fichas individuales detalladas con ingredientes, alérgenos y formatos de compra.',
+          'Configurador interactivo de lotes y cestas gourmet con cálculo presupuestario en tiempo real.',
+          'Cesta reactiva mediante Angular Signals y desacople de almacenamiento compatible con SSR.',
+          'Renderizado en servidor (SSR) en Express 5 para velocidad de entrega e indexación SEO.',
+          'Diseño completamente responsive adaptado a móviles, tablets y ordenadores de escritorio.'
+        ],
+        scopePendingTitle: '⏳ Fases previstas para producción',
+        scopePendingList: [
+          'Integración con pasarela de pago bancario real (Redsys / Stripe) para liquidación en línea.',
+          'Conexión bidireccional en tiempo real con el software de punto de venta (TPV/ERP) de la tienda física.',
+          'Panel de administración para gestión de inventario diario y aviso automático de rotura de stock.'
         ],
         s2Title: 'Arquitectura de software y estándares de ingeniería',
         s2Intro: 'Desarrollado como un monorepo modular siguiendo principios de Deep Modules (interfaces estrechas respaldadas por implementaciones ricas) y separación de responsabilidades:',
@@ -399,8 +445,8 @@ npm start</code></pre>
         lead: 'Plataforma web de comerç electrònic desenvolupada amb Angular 22 i Server-Side Rendering (SSR) per digitalitzar l’emblemàtic comerç tradicional centenari Cal Sardà (fundat el 1930 a Barcelona): catàleg amb més de 450 referències gastronòmiques, gestió de lots gurmet i comandes Click & Collect.',
         urlBadge: 'Angular 22 · SSR Actiu',
         liveText: 'Captura real de l’app',
-        badgeTitle: 'Botiga Online Operativa',
-        badgeDesc: '450+ productes gastronòmics catalogats',
+        badgeTitle: 'Prototip de Botiga Online',
+        badgeDesc: '455 productes reals catalogats amb al·lèrgens',
         galleryTitle: 'Captures reals de l’aplicació',
         gallerySubtitle: 'Vistes reals del prototip web compilat i renderitzat en servidor (SSR), reflectint la identitat visual i funcional del negoci:',
         galleryCards: [
@@ -410,7 +456,7 @@ npm start</code></pre>
           { badge: 'Comerç de Proximitat', title: 'Galeria de la Botiga Física', desc: 'Recorregut visual per l’establiment del carrer Marina al barri de la Sagrada Família.' }
         ],
         metric1Label: 'Productes catalogats',
-        metric1Desc: 'Famílies completes: cafès artesans, conserves de mar, ibèrics i dolços.',
+        metric1Desc: 'Famílies completes: cafès artesans, conserves de mar, ibèrics i dolços (455 referències).',
         metric2Label: 'Monorepo Modular',
         metric2Desc: 'Arquitectura amb paquet compartit de domini (@cal-sarda/domain) i SSR.',
         metric3Label: 'Història i Comerç',
@@ -432,6 +478,23 @@ npm start</code></pre>
           'Configurador de lots i cistelles gurmet amb pressupost tancat per a regal.',
           'Sistema Click & Collect per preparar comandes abans de l’arribada del client.',
           'Pàgina editorial que posa en valor els més de 90 anys d’història familiar.'
+        ],
+        statusSectionTitle: 'Abast tècnic i estat d’implementació',
+        statusSectionIntro: 'Per garantir rigor professional, es detallen les funcionalitats operatives en aquest prototip web i aquelles previstes per a futures fases comercials:',
+        scopeDoneTitle: '✅ Funcionalitats implementades',
+        scopeDoneList: [
+          'Catàleg interactiu amb 455 referències reals organitzades en 10 famílies gastronòmiques.',
+          'Fitxes individuals detallades amb ingredients, al·lèrgens i formats de compra.',
+          'Configurador interactiu de lots i paneres gurmet amb càlcul pressupostari en temps real.',
+          'Cistella reactiva mitjançant Angular Signals i desacoblament d’emmagatzematge compatible amb SSR.',
+          'Renderitzat en servidor (SSR) a Express 5 per a velocitat de lliurament i indexació SEO.',
+          'Disseny completament responsive adaptat a mòbils, tauletes i ordinadors d’escriptori.'
+        ],
+        scopePendingTitle: '⏳ Fases previstes per a producció',
+        scopePendingList: [
+          'Integració amb passarel·la de pagament bancari real (Redsys / Stripe) per a liquidació en línia.',
+          'Connexió bidireccional en temps real amb el programari de punt de venda (TPV/ERP) de la botiga física.',
+          'Panell d’administració per a gestió d’inventari diari i avís automàtic de trencament d’estoc.'
         ],
         s2Title: 'Arquitectura de programari i estàndards d’enginyeria',
         s2Intro: 'Desenvolupat com un monorepo modular seguint principis de Deep Modules (interfícies estretes recolzades per implementacions riques) i separació de responsabilitats:',
@@ -490,8 +553,8 @@ npm start</code></pre>
         lead: 'E-commerce web platform engineered with Angular 22 and Server-Side Rendering (SSR) to digitalize centenary traditional culinary shop Cal Sardà (founded in 1930 in Barcelona): catalog with over 450 gourmet items, gift basket management, and Click & Collect pickup orders.',
         urlBadge: 'Angular 22 · Active SSR',
         liveText: 'Real app screenshot',
-        badgeTitle: 'Live Online Store',
-        badgeDesc: '450+ gourmet products cataloged',
+        badgeTitle: 'Online Store Prototype',
+        badgeDesc: '455 verified products cataloged with allergens',
         galleryTitle: 'Real Application Screenshots',
         gallerySubtitle: 'Actual screenshots from the compiled web prototype rendered via SSR, reflecting the authentic visual identity and features of the business:',
         galleryCards: [
@@ -501,7 +564,7 @@ npm start</code></pre>
           { badge: 'Neighborhood Retail', title: 'Physical Store Gallery', desc: 'Visual walkthrough of the establishment on Carrer Marina in the Sagrada Família neighborhood.' }
         ],
         metric1Label: 'Cataloged products',
-        metric1Desc: 'Complete categories: artisan coffees, sea preserves, Iberian cured meats and sweets.',
+        metric1Desc: 'Complete categories: artisan coffees, sea preserves, Iberian cured meats and sweets (455 items).',
         metric2Label: 'Modular Monorepo',
         metric2Desc: 'Architecture with shared domain package (@cal-sarda/domain) and SSR.',
         metric3Label: 'Heritage & Retail',
@@ -523,6 +586,23 @@ npm start</code></pre>
           'Customizable gourmet gift basket configurator with fixed gift pricing.',
           'Click & Collect system allowing staff to assemble orders ahead of customer arrival.',
           'Editorial heritage page celebrating the family’s 90+ years of neighborhood history.'
+        ],
+        statusSectionTitle: 'Technical Scope & Implementation Status',
+        statusSectionIntro: 'To guarantee professional engineering rigor, here is a clear breakdown of features operational in this web prototype versus upcoming production phases:',
+        scopeDoneTitle: '✅ Implemented Features',
+        scopeDoneList: [
+          'Interactive catalog with 455 verified real products across 10 gourmet categories.',
+          'Detailed product sheets with ingredients, allergens, and packaging formats.',
+          'Interactive hamper & gourmet gift basket builder with real-time budget calculation.',
+          'Reactive cart powered by Angular Signals with SSR-compatible storage decoupling.',
+          'Server-Side Rendering (SSR) via Express 5 for fast delivery and SEO indexing.',
+          'Fully responsive design adapted to smartphones, tablets, and desktop workstations.'
+        ],
+        scopePendingTitle: '⏳ Planned Production Phases',
+        scopePendingList: [
+          'Live payment gateway integration (Redsys / Stripe) for online settlement.',
+          'Real-time bidirectional synchronization with physical store POS/ERP systems.',
+          'Merchant admin portal for daily stock adjustment and automated low-stock alerts.'
         ],
         s2Title: 'Software architecture & engineering standards',
         s2Intro: 'Engineered as a modular monorepo applying Deep Modules principles (narrow interfaces backed by rich implementations) and clear separation of concerns:',
@@ -650,6 +730,19 @@ npm start</code></pre>
       probItems.forEach((li, idx) => { if (d.sProblemList[idx]) li.textContent = d.sProblemList[idx]; });
       const solItems = document.querySelectorAll('[data-status-solution-list] li');
       solItems.forEach((li, idx) => { if (d.sSolutionList[idx]) li.textContent = d.sSolutionList[idx]; });
+
+      const statusSectionTitleEl = document.querySelector('[data-status-section-title]');
+      if (statusSectionTitleEl) statusSectionTitleEl.textContent = d.statusSectionTitle;
+      const statusSectionIntroEl = document.querySelector('[data-status-section-intro]');
+      if (statusSectionIntroEl) statusSectionIntroEl.textContent = d.statusSectionIntro;
+      const scopeDoneTitleEl = document.querySelector('[data-scope-done-title]');
+      if (scopeDoneTitleEl) scopeDoneTitleEl.textContent = d.scopeDoneTitle;
+      const scopeDoneItems = document.querySelectorAll('[data-scope-done-list] li');
+      scopeDoneItems.forEach((li, idx) => { if (d.scopeDoneList[idx]) li.textContent = d.scopeDoneList[idx]; });
+      const scopePendingTitleEl = document.querySelector('[data-scope-pending-title]');
+      if (scopePendingTitleEl) scopePendingTitleEl.textContent = d.scopePendingTitle;
+      const scopePendingItems = document.querySelectorAll('[data-scope-pending-list] li');
+      scopePendingItems.forEach((li, idx) => { if (d.scopePendingList[idx]) li.textContent = d.scopePendingList[idx]; });
 
       const s2T = document.querySelector('[data-section-2-title]');
       if (s2T) s2T.textContent = d.s2Title;

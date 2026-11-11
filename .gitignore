@@ -19,3 +19,9 @@ yarn-error.log*
 pnpm-debug.log*
 
 public/images/backup/
+
+# Internal audit reports and preview assets
+INFORME_AUDITORIA_Y_MEJORAS.md
+public/informe.html
+public/screenshots/
+

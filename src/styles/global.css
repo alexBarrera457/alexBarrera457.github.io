@@ -269,7 +269,23 @@ h1 em { color: var(--coral); font-style: italic; }
 .screen-pills { display: flex; gap: .35rem; margin-top: 1rem; }
 .screen-pills i { width: 28px; height: 12px; border-radius: 999px; background: var(--sage); }
 
-.github-intro { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin: -1.4rem 0 2rem 2.4rem; }
+/* Experiencia profesional diferenciada */
+.experience-block { margin-bottom: 3.5rem; }
+.experience-intro { max-width: 38rem; color: var(--muted); margin: -1.4rem 0 2rem 2.4rem; font-size: 1rem; }
+.experience-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+.experience-card { padding: 1.5rem; background: rgba(255,255,255,.32); border: 1px solid var(--line); border-top: 3px solid var(--coral); border-radius: var(--radius); display: flex; flex-direction: column; transition: transform .25s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.experience-card:hover { transform: translateY(-3px); background: var(--paper-deep); border-color: var(--coral); box-shadow: 0 10px 24px rgba(19,34,56,.06); }
+.experience-card.is-current { border-top-color: var(--coral-dark); background: rgba(255,255,255,.6); box-shadow: 0 8px 24px rgba(32,86,181,.07); }
+.experience-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; font: .68rem var(--mono); color: var(--coral-dark); letter-spacing: .08em; text-transform: uppercase; }
+.experience-badge { padding: .15rem .55rem; border-radius: 999px; background: rgba(52,120,246,.12); color: var(--coral-dark); font-size: .62rem; font-weight: 500; }
+.experience-card h3 { font: 500 1.5rem var(--serif); margin-bottom: .2rem; color: var(--ink); }
+.experience-role { font: 600 .86rem var(--sans); color: var(--ink); margin-bottom: .65rem; }
+.experience-card p { color: var(--muted); font-size: .86rem; line-height: 1.55; }
+.activity-divider { margin: 3.5rem 0 2rem; display: flex; align-items: center; gap: 1rem; }
+.activity-divider span { font: .72rem var(--mono); color: var(--coral-dark); letter-spacing: .12em; text-transform: uppercase; }
+.activity-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.github-intro { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin: 0 0 2rem; }
 .github-intro p { max-width: 36rem; color: var(--muted); }
 .github-repositories { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .github-repository { min-height: 230px; display: flex; flex-direction: column; align-items: flex-start; padding: 1.4rem; border: 1px solid var(--line); border-top: 3px solid var(--coral); background: rgba(255,255,255,.24); }
@@ -331,6 +347,7 @@ footer { display: flex; justify-content: space-between; padding: 1.5rem 0 2rem; 
 
 @media (max-width: 850px) {
   .hero-grid, .project, .about-grid { grid-template-columns: 1fr; }
+  .experience-cards { grid-template-columns: 1fr; }
   .hero-grid { gap: 2rem; }
   .hero-art { min-height: 380px; max-width: 430px; width: 100%; margin: auto; }
   .skills { grid-template-columns: repeat(3, 1fr); }
@@ -360,7 +377,7 @@ footer { display: flex; justify-content: space-between; padding: 1.5rem 0 2rem; 
   .section-heading { align-items: flex-start; gap: .65rem; margin-bottom: 2rem; }
   .section-heading h2 { font-size: clamp(2rem, 11vw, 3rem); }
   .section-heading::after { margin-top: .7rem; }
-  .section-intro { margin-left: 0; font-size: .95rem; }
+  .section-intro, .experience-intro { margin-left: 0; font-size: .95rem; }
   .skills { grid-template-columns: repeat(2, 1fr); }
   .skill { min-height: 120px; padding: .8rem; }
   .skill:nth-child(2n) { transform: none; }

@@ -76,6 +76,9 @@ const appViews = [
             Explorar capturas reales ↓
           </a>
         </div>
+        <p class="demo-notice" data-demo-notice>
+          ℹ️ <em>Proyecto desarrollado para ejecución en entorno local LAMP/XAMPP. Sin demo pública desplegada en la nube; código completo e instrucciones en el repositorio.</em>
+        </p>
       </div>
     </div>
   </header>
@@ -314,6 +317,7 @@ mysql -u root -p eventsportsbcn &lt; Model/Model.sql
         badgeDesc: 'Gestión de eventos, torneos y aforo en Barcelona',
         headerRepoBtn: 'Ver repositorio en GitHub ↗',
         headerGalleryBtn: 'Explorar capturas reales ↓',
+        demoNotice: 'ℹ️ <em>Proyecto desarrollado para ejecución en entorno local LAMP/XAMPP. Sin demo pública desplegada en la nube; código completo e instrucciones en el repositorio.</em>',
         galleryTitle: 'Capturas reales de la aplicación',
         gallerySubtitle: 'Vistas reales de la plataforma deportiva capturadas en entorno local, reflejando el flujo integral desde el usuario deportista hasta el gestor deportivo:',
         galleryCards: [
@@ -405,6 +409,7 @@ mysql -u root -p eventsportsbcn &lt; Model/Model.sql
         badgeDesc: 'Gestió d\'esdeveniments, tornejos i aforament a Barcelona',
         headerRepoBtn: 'Veure repositori a GitHub ↗',
         headerGalleryBtn: 'Explorar captures reals ↓',
+        demoNotice: 'ℹ️ <em>Projecte desenvolupat per a execució en entorn local LAMP/XAMPP. Sense demo pública desplegada al núvol; codi complet i instruccions al repositori.</em>',
         galleryTitle: 'Captures reals de l\'aplicació',
         gallerySubtitle: 'Vistes reals de la plataforma esportiva capturades en entorn local, reflectint el flux complet des de l\'esportista fins al gestor esportiu:',
         galleryCards: [
@@ -496,6 +501,7 @@ mysql -u root -p eventsportsbcn &lt; Model/Model.sql
         badgeDesc: 'Events, tournaments, and capacity management in Barcelona',
         headerRepoBtn: 'View repository on GitHub ↗',
         headerGalleryBtn: 'Explore real screenshots ↓',
+        demoNotice: 'ℹ️ <em>Project developed for local LAMP/XAMPP execution. No public cloud demo deployed; full source code and setup instructions in the repository.</em>',
         galleryTitle: 'Real application screenshots',
         gallerySubtitle: 'Authentic views of the sports platform captured in a local environment, demonstrating the end-to-end workflow from athletes to sports managers:',
         galleryCards: [
@@ -608,6 +614,8 @@ mysql -u root -p eventsportsbcn &lt; Model/Model.sql
       if (hRepo) hRepo.textContent = d.headerRepoBtn;
       const hGallery = document.querySelector('[data-header-gallery-btn]');
       if (hGallery) hGallery.textContent = d.headerGalleryBtn;
+      const demoNot = document.querySelector('[data-demo-notice]');
+      if (demoNot) demoNot.innerHTML = d.demoNotice;
 
       const galTitle = document.querySelector('[data-gallery-title]');
       if (galTitle) galTitle.textContent = d.galleryTitle;
@@ -843,6 +851,17 @@ ${d.terminalComments[2]}
       gap: 0.85rem;
       align-items: center;
       margin-top: 0.5rem;
+    }
+
+    .demo-notice {
+      margin-top: 0.4rem;
+      font: 0.76rem var(--mono);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .demo-notice em {
+      font-style: normal;
     }
 
     .cover-wrap {

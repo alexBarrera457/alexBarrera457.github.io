@@ -3,53 +3,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 
 const skills = [
+  // Frontend
+  ['/icons/javascript.svg', 'JavaScript', 'frontend', 'frontend'],
+  ['/icons/angular.svg', 'Angular', 'frontend', 'frontend'],
+  ['/icons/react.svg', 'React', 'frontend', 'frontend'],
+  ['/icons/html5.svg', 'HTML5', 'frontend', 'frontend'],
+  ['/icons/css3.svg', 'CSS3', 'frontend', 'frontend'],
+  // Backend
   ['/icons/java.svg', 'Java', 'backend', 'backend'],
   ['/icons/php.svg', 'PHP', 'backend', 'backend'],
   ['/icons/symfony.svg', 'Symfony', 'framework', 'backend'],
   ['/icons/laravel.svg', 'Laravel', 'framework', 'backend'],
-  ['/icons/javascript.svg', 'JavaScript', 'frontend', 'frontend'],
-  ['/icons/react.svg', 'React', 'frontend', 'frontend'],
-  ['/icons/angular.svg', 'Angular', 'frontend', 'frontend'],
-  ['/icons/html5.svg', 'HTML5', 'frontend', 'frontend'],
-  ['/icons/css3.svg', 'CSS3', 'frontend', 'frontend'],
+  // Bases de datos
   ['/icons/mysql.svg', 'MySQL', 'database', 'database'],
   ['/icons/mongodb.svg', 'MongoDB', 'database', 'database'],
+  // Herramientas y entorno de desarrollo
   ['/icons/git.svg', 'Git', 'tooling', 'tools'],
   ['/icons/github.svg', 'GitHub', 'tooling', 'tools'],
   ['/icons/vscode.svg', 'VS Code', 'tooling', 'tools'],
   ['/icons/netbeans.svg', 'NetBeans', 'IDE', 'tools']
 ];
 
-const marqueeItems = ['Java', 'PHP', 'Symfony', 'Laravel', 'React', 'Angular', 'MySQL', 'Git'];
+const marqueeItems = ['Angular', 'React', 'JavaScript', 'PHP', 'Symfony', 'Laravel', 'Java', 'MySQL', 'Node.js', 'Git'];
 
 const defaultRepos = [
   {
     name: 'Prototipo-Cal-Sard-',
     html_url: 'https://github.com/alexBarrera457/Prototipo-Cal-Sard-',
-    description: 'Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà con Angular 22 y SSR.',
+    description: 'Prototipo e-commerce para digitalizar el comercio centenario Cal Sardà con Angular 22, SSR y 455 referencias catalogadas.',
     language: 'TypeScript',
     updated_at: '2026-10-05T17:27:17Z'
   },
   {
-    name: 'alexBarrera457.github.io',
-    html_url: 'https://github.com/alexBarrera457/alexBarrera457.github.io',
-    description: 'Portfolio personal y profesional desarrollado con Astro, TypeScript y diseño moderno adaptativo.',
-    language: 'Astro',
-    updated_at: '2026-10-06T20:25:34Z'
-  },
-  {
-    name: 'MP0613_RA3_POO_Bank',
-    html_url: 'https://github.com/alexBarrera457/MP0613_RA3_POO_Bank',
-    description: 'Práctica académica de Programación Orientada a Objetos en PHP simulando operaciones bancarias.',
-    language: 'PHP',
-    updated_at: '2026-10-06T15:45:00Z'
-  },
-  {
     name: 'OmniNexus',
     html_url: 'https://github.com/alexBarrera457/OmniNexus',
-    description: 'Interfaz experimental de chat inteligente con backend Express, SQLite y enrutamiento de herramientas.',
+    description: 'Capa local de asistencia inteligente con backend modular Express 5, persistencia SQLite WAL y 27 tests unitarios.',
     language: 'JavaScript',
     updated_at: '2026-09-24T16:03:07Z'
+  },
+  {
+    name: 'ProjectEventSportsBCN',
+    html_url: 'https://github.com/alexBarrera457/ProjectEventSportsBCN',
+    description: 'Plataforma web MVC en PHP 8 y MySQL para inscripción y gestión de eventos deportivos con control de aforo.',
+    language: 'PHP',
+    updated_at: '2026-10-07T22:44:00Z'
+  },
+  {
+    name: 'alexBarrera457.github.io',
+    html_url: 'https://github.com/alexBarrera457/alexBarrera457.github.io',
+    description: 'Portfolio personal y profesional desarrollado con Astro, TypeScript y diseño responsivo trilingüe.',
+    language: 'Astro',
+    updated_at: '2026-10-06T20:25:34Z'
   }
 ];
 
@@ -78,7 +82,7 @@ try {
 
 <BaseLayout
   title="Àlex Barrera — Desarrollador web"
-  description="Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona."
+  description="Portfolio de Àlex Barrera Sardà, desarrollador web junior y estudiante de 2º DAW en Stucom Barcelona con experiencia en Altia."
   ogImage="https://alexbarrera457.github.io/images/profile.jpg"
   canonicalUrl="https://alexbarrera457.github.io/"
 >
@@ -103,9 +107,9 @@ try {
       <section class="hero" id="hero">
         <div class="container hero-grid">
           <div>
-            <p class="eyebrow">2º DAW · Stucom Barcelona · 2026</p>
+            <p class="eyebrow">2º DAW · Stucom Barcelona · Altia</p>
             <h1>Ideas que se vuelven <em>interfaz.</em></h1>
-            <p class="hero-copy">Soy Àlex, estudiante de DAW y desarrollador web en formación. Me interesa crear productos digitales funcionales, bien diseñados y pensados para resolver problemas reales con una base técnica sólida.</p>
+            <p class="hero-copy">Soy Àlex, desarrollador web junior cursando 2º de DAW en Stucom Barcelona y vinculado profesionalmente a Altia. Me enfoco en construir aplicaciones web funcionales, bien diseñadas y pensadas para resolver problemas reales con una base técnica sólida.</p>
             <div class="actions">
               <a class="button primary" href="#projects">Ver mi trabajo <span>↗</span></a>
               <a class="button" href="/cv" target="_blank" rel="noopener noreferrer">Ver currículum <span>↗</span></a>
@@ -123,7 +127,7 @@ try {
               <img class="profile-photo" src="/images/profile.jpg" alt="Foto de perfil de Àlex Barrera" width="400" height="400" fetchpriority="high" decoding="async" />
               <span class="profile-fallback">AB</span>
             </div>
-            <div class="art-note"><strong>Disponible</strong>para nuevas oportunidades</div>
+            <div class="art-note"><strong>Altia</strong>Desarrollador web junior</div>
           </div>
         </div>
       </section>
@@ -179,21 +183,21 @@ try {
 
           <article class="project project-eventsports reveal">
             <div class="project-copy">
-              <span class="project-label">Featured build · 2026</span>
+              <span class="project-label">Proyecto académico · 2026</span>
               <h3>EventSportsBCN</h3>
-              <p>Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.</p>
+              <p>Plataforma web full-stack para el descubrimiento, inscripción y gestión de torneos y eventos deportivos en Barcelona, construida con arquitectura MVC en PHP 8 y control de aforo en tiempo real.</p>
               <div class="project-tags">
-                <span class="project-tag">PHP</span>
+                <span class="project-tag">PHP 8</span>
                 <span class="project-tag">MySQL</span>
                 <span class="project-tag">JavaScript</span>
                 <span class="project-tag">Arquitectura MVC</span>
                 <span class="project-tag">Responsive</span>
               </div>
               <ul class="feature-list">
-                <li>Autenticación para usuarios y gestores.</li>
-                <li>Control de aforo e inscripciones.</li>
-                <li>Panel de administración de eventos.</li>
-                <li>MySQL, PHP, JavaScript y diseño responsive.</li>
+                <li>Autenticación y perfiles segregados: Deportista y Organizador (Manager).</li>
+                <li>Control de aforo en tiempo real con integridad referencial en base de datos.</li>
+                <li>Panel de administración CRUD para publicación y gestión integral de eventos.</li>
+                <li>Estructura MVC limpia con consultas preparadas PDO y filtrado reactivo.</li>
               </ul>
               <div class="actions">
                 <a class="button primary" href="/eventsportsbcn" data-eventsports-info-btn>Más información ↗</a>
@@ -215,19 +219,19 @@ try {
             <div class="project-copy">
               <span class="project-label">Proyecto personal · 2026</span>
               <h3>Cal Sardà</h3>
-              <p>Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà (fundado en 1930). Desarrollado como proyecto personal para digitalizar la experiencia de compra: catálogo interactivo de productos gourmet, alérgenos, gestión de cestas y pedidos de recogida y entrega.</p>
+              <p>Prototipo de comercio electrónico para digitalizar la presencia y operativa de la charcutería y colmado centenario Cal Sardà (fundado en 1930 en Barcelona): catálogo de más de 450 referencias gastronómicas, gestión de alérgenos, lotes gourmet y flujo simulado Click & Collect.</p>
               <div class="project-tags">
                 <span class="project-tag">Angular 22</span>
-                <span class="project-tag">SSR / Express</span>
+                <span class="project-tag">SSR / Express 5</span>
                 <span class="project-tag">TypeScript</span>
                 <span class="project-tag">Domain-Driven</span>
                 <span class="project-tag">E-Commerce</span>
               </div>
               <ul class="feature-list">
-                <li>Desarrollado con Angular 22, SSR y arquitectura modular orientada al dominio.</li>
-                <li>Catálogo gastronómico interactivo con filtros, categorías y control de alérgenos.</li>
-                <li>Gestión de cesta de compra y flujo de pedidos para recogida en tienda o envío.</li>
-                <li>Modelado riguroso de entidades (obrador, lotes, productos y pedidos).</li>
+                <li>Desarrollado con Angular 22, SSR en Express 5 y paquete compartido @cal-sarda/domain.</li>
+                <li>Catálogo gastronómico interactivo con 455 productos reales, familias y control de alérgenos.</li>
+                <li>Módulo de configuración y encargo de lotes y cestas gourmet personalizadas.</li>
+                <li>Gestión de cesta reactiva (Signals) con flujo de recogida en tienda Click & Collect.</li>
               </ul>
               <div class="actions">
                 <a class="button primary" href="/cal-sarda" data-calsarda-info-btn>Más información ↗</a>
@@ -247,24 +251,25 @@ try {
 
           <article class="project project-secondary reveal" style="margin-top: 2rem; border: 1px solid rgba(255,255,255,.18); box-shadow: 0 22px 40px rgba(19,34,56,.18);">
             <div class="project-copy">
-              <span class="project-label">En curso · 2026</span>
+              <span class="project-label">Proyecto personal · 2026</span>
               <h3>OMNI // NEXUS</h3>
-              <p>Proyecto experimental de chat inteligente local que combina una interfaz web con historial de conversaciones, memoria opcional y herramientas de búsqueda, cálculo y respuesta contextual. Está en desarrollo y me permite explorar la integración entre IA, backend y experiencia de usuario.</p>
+              <p>Capa local de asistencia inteligente con interfaz web reactiva y backend modular en Express 5. Integra persistencia en SQLite con WAL mode, enrutador de herramientas locales (cálculo seguro, reloj y búsqueda web) y suite de 27 tests automatizados.</p>
               <div class="project-tags">
                 <span class="project-tag">Node.js</span>
-                <span class="project-tag">Express</span>
-                <span class="project-tag">SQLite</span>
-                <span class="project-tag">REST API</span>
-                <span class="project-tag">IA Local / OpenAI API</span>
+                <span class="project-tag">Express 5</span>
+                <span class="project-tag">SQLite WAL</span>
+                <span class="project-tag">Deep Modules</span>
+                <span class="project-tag">IA Local / Tools</span>
               </div>
               <ul class="feature-list">
-                <li>Backend Express con API REST y SQLite.</li>
-                <li>Diseño visual de panel de control y feedback de estado.</li>
-                <li>Integración con proveedores compatibles con OpenAI.</li>
-                <li>Desarrollo continuo con IA, lógica propia y enfoque práctico.</li>
+                <li>Backend modular en Express 5 con API REST, seguridad Helmet y modo DEMO offline.</li>
+                <li>Persistencia ACID en SQLite con WAL mode para historial de chat y memoria.</li>
+                <li>Routing de herramientas seguras sin eval() (calculadora matemática y reloj de sistema).</li>
+                <li>Suite de 27 tests automatizados unitarios y de integración con supertest y node:test.</li>
               </ul>
               <div class="actions">
                 <a class="button primary" href="/omni-nexus" data-nexus-info-btn>Más información ↗</a>
+                <a class="button" href="https://github.com/alexBarrera457/OmniNexus" target="_blank" rel="noopener noreferrer" data-nexus-github-btn>Ver en GitHub ↗</a>
               </div>
             </div>
             <div class="project-visual project-visual-secondary nexus-preview" aria-label="Previsualización de la interfaz OMNI // NEXUS">
@@ -292,9 +297,49 @@ try {
       <section class="section github-section" id="experience">
         <div class="container">
           <div class="section-heading reveal"><span class="number">03</span><h2>Experiencia y actividad</h2></div>
+          
+          <div class="experience-block reveal">
+            <p class="experience-intro" data-experience-intro>Mi trayectoria laboral combinando desarrollo de software y experiencia en atención directa y gestión:</p>
+            <div class="experience-cards">
+              <article class="experience-card is-current">
+                <div class="experience-meta">
+                  <span data-exp-altia-dates>2026 · Actualidad</span>
+                  <span class="experience-badge" data-exp-altia-badge>En activo</span>
+                </div>
+                <h3>Altia</h3>
+                <div class="experience-role" data-exp-altia-role>Desarrollador Web Junior</div>
+                <p data-exp-altia-desc>Vinculación profesional y desarrollo web en entorno tecnológico, colaborando en proyectos de software y aplicando estándares de calidad, trabajo en equipo y buenas prácticas de ingeniería.</p>
+              </article>
+
+              <article class="experience-card">
+                <div class="experience-meta">
+                  <span data-exp-canguro-dates>2025 · 6 meses</span>
+                  <span class="experience-badge" data-exp-canguro-badge>Atención directa</span>
+                </div>
+                <h3>Canguro</h3>
+                <div class="experience-role" data-exp-canguro-role>Cuidador de niños</div>
+                <p data-exp-canguro-desc>Desarrollo de empatía, responsabilidad, puntualidad y resolución de imprevistos mediante la atención y el cuidado organizado de menores.</p>
+              </article>
+
+              <article class="experience-card">
+                <div class="experience-meta">
+                  <span data-exp-sarda-dates>2024 · 5 meses</span>
+                  <span class="experience-badge" data-exp-sarda-badge>Comercio local</span>
+                </div>
+                <h3>Cal Sardà</h3>
+                <div class="experience-role" data-exp-sarda-role>Dependiente en tienda física</div>
+                <p data-exp-sarda-desc>Atención al cliente en mostrador y gestión de encargos en comercio tradicional centenario de Barcelona. Base de conocimiento para diseñar su posterior plataforma de software.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="activity-divider reveal">
+            <span data-activity-label>Actividad y proyectos en GitHub</span>
+          </div>
+
           <div class="github-intro reveal">
-            <p>Una selección de mi actividad pública en GitHub: proyectos, tecnologías y trabajo reciente.</p>
-            <a class="button" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer">Ver perfil en GitHub ↗</a>
+            <p data-github-intro-p>Una selección de mi actividad pública en GitHub: proyectos personales, académicos y código abierto.</p>
+            <a class="button" href="https://github.com/alexBarrera457" target="_blank" rel="noopener noreferrer" data-github-profile-btn>Ver perfil en GitHub ↗</a>
           </div>
           <div class="github-repositories reveal" data-github-repositories>
             {buildRepos.map((repo) => (
@@ -318,15 +363,16 @@ try {
           <div class="section-heading reveal"><span class="number">04</span><h2>Un poco sobre mí</h2></div>
           <div class="about-grid reveal">
             <div class="about-copy">
-              <p>Estoy cursando <strong>Desarrollo de Aplicaciones Web</strong> en Stucom Barcelona y me apasiona construir soluciones completas, desde la lógica de negocio hasta la experiencia final del usuario.</p>
-              <p>He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB y VS Code</strong>, además de diseño responsive, gestión de bases de datos y resolución de problemas en proyectos web reales.</p>
-              <p>Actualmente estoy buscando una oportunidad de <strong>prácticas</strong> para seguir creciendo como desarrollador, aportar valor en un equipo y aprender de proyectos profesionales reales.</p>
+              <p>Estoy cursando el segundo año de <strong>Desarrollo de Aplicaciones Web (DAW)</strong> en Stucom Barcelona y cuento con experiencia profesional en <strong>Altia</strong> como desarrollador web junior.</p>
+              <p>Mi enfoque es el desarrollo <strong>full-stack</strong>: disfruto diseñando arquitecturas backend limpias y modelando datos con <strong>PHP, Java, Node.js, MySQL y MongoDB</strong>, así como construyendo interfaces web modernas, fluidas y responsivas con <strong>JavaScript, TypeScript, Angular, React y Astro</strong>.</p>
+              <p>Valoro el código bien estructurado, el aprendizaje constante de nuevas tecnologías y la colaboración en equipo para convertir problemas reales en soluciones digitales de calidad.</p>
             </div>
             <div class="info-card">
               <div class="info-row"><span>Ubicación</span><span>Barcelona, España</span></div>
               <div class="info-row"><span>Estudios</span><span>DAW · Stucom · 2º</span></div>
+              <div class="info-row"><span>Empresa</span><span>Altia</span></div>
               <div class="info-row"><span>Enfoque</span><span>Full-stack web</span></div>
-              <div class="info-row"><span>Estado</span><span class="status">Buscando prácticas</span></div>
+              <div class="info-row"><span>Estado</span><span class="status">En activo · Altia</span></div>
               <div class="info-row"><span>Idiomas</span><span>Catalán C1 · Castellano · Inglés B1</span></div>
               <div class="info-row"><span>Email</span><a href="mailto:salexbarrera@gmail.com" data-info-mail style="color:var(--coral-dark);text-decoration:none;font-weight:600;">salexbarrera@gmail.com</a></div>
               <div class="info-row"><span>LinkedIn</span><a href="https://www.linkedin.com/in/%C3%A0lex-barrera-sard%C3%A0-35b088397/" target="_blank" rel="noopener noreferrer">Ver perfil ↗</a></div>
@@ -336,15 +382,15 @@ try {
             <div>
               <span class="project-label">Perfil profesional</span>
               <h3>¿Quieres conocer mi recorrido?</h3>
-              <p>Consulta mi formación, tecnologías y proyecto destacado en una versión preparada para imprimir.</p>
+              <p>Consulta mi formación, experiencia laboral en Altia y proyectos destacados en una versión preparada para imprimir.</p>
             </div>
             <a class="button primary" href="/cv" target="_blank" rel="noopener noreferrer">Ver currículum ↗</a>
           </div>
           <div class="cv-highlights reveal">
             <article>
               <span class="cv-highlight-label">Experiencia</span>
-              <h3>Canguro · 2025</h3>
-              <p>6 meses como cuidador de niños.</p>
+              <h3>Altia · 2026</h3>
+              <p>Desarrollador Web Junior en activo.</p>
               <h3>Cal Sardà · 2024</h3>
               <p>5 meses como dependiente.</p>
             </article>
@@ -357,7 +403,7 @@ try {
             <article>
               <span class="cv-highlight-label">Fortalezas</span>
               <h3>Cómo trabajo</h3>
-              <p>Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.</p>
+              <p>Trabajo en equipo, iniciativa técnica, constancia y resolución de problemas.</p>
             </article>
           </div>
         </div>
@@ -367,7 +413,7 @@ try {
         <div class="container">
           <div class="contact-card reveal">
             <h2>Hagamos algo <em>interesante.</em></h2>
-            <p>¿Tienes una idea, una oportunidad o simplemente quieres saludar? Estoy abierto a proyectos, prácticas y conversaciones sobre desarrollo web.</p>
+            <p>¿Tienes una propuesta técnica, un proyecto en mente o simplemente quieres conectar? Estoy abierto a compartir ideas y colaborar en desarrollo web.</p>
             <div class="actions contact-actions">
               <a class="button primary" href="mailto:salexbarrera@gmail.com" data-contact-mail>Escríbeme →</a>
               <button type="button" class="button copy-email-btn" data-copy-email="salexbarrera@gmail.com" title="Copiar correo al portapapeles">
@@ -394,88 +440,172 @@ try {
       const translations = {
         es: {
           navStack: 'Stack', navProjects: 'Proyectos', navExperience: 'Experiencia', navAbout: 'Sobre mí', navContact: 'Contacto', menu: 'Menú', skip: 'Saltar al contenido',
-          eyebrow: '2º DAW · Stucom Barcelona · 2026', heroTitle: 'Ideas que se vuelven <em>interfaz.</em>',
-          heroCopy: 'Soy Àlex, estudiante de DAW y desarrollador web en formación. Me interesa crear productos digitales funcionales, bien diseñados y pensados para resolver problemas reales con una base técnica sólida.',
-          work: 'Ver mi trabajo ↗', cv: 'Ver currículum ↗', talk: 'Hablemos →', available: '<strong>Disponible</strong>para nuevas oportunidades',
+          eyebrow: '2º DAW · Stucom Barcelona · Altia', heroTitle: 'Ideas que se vuelven <em>interfaz.</em>',
+          heroCopy: 'Soy Àlex, desarrollador web junior cursando 2º de DAW en Stucom Barcelona y vinculado profesionalmente a Altia. Me enfoco en construir aplicaciones web funcionales, bien diseñadas y pensadas para resolver problemas reales con una base técnica sólida.',
+          work: 'Ver mi trabajo ↗', cv: 'Ver currículum ↗', talk: 'Hablemos →', available: '<strong>Altia</strong>Desarrollador web junior',
           stackTitle: 'Mi caja de herramientas', stackIntro: 'Tecnologías que uso para pensar, construir y llevar una idea desde la base de datos hasta el navegador.',
-          projectsTitle: 'Proyectos en curso', eventLabel: 'Proyecto destacado · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack para descubrir y gestionar eventos deportivos en Barcelona, construida con arquitectura MVC y roles de usuario diferenciados.',
-          calsardaLabel: 'Proyecto personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototipo de tienda real para el comercio tradicional y charcutería centenaria Cal Sardà (fundado en 1930). Desarrollado como proyecto personal para digitalizar la experiencia de compra: catálogo interactivo de productos gourmet, alérgenos, gestión de cestas y pedidos de recogida y entrega.',
-          nexusLabel: 'En curso · 2026', nexusCopy: 'Proyecto experimental de chat inteligente local que combina una interfaz web con historial de conversaciones, memoria opcional y herramientas de búsqueda, cálculo y respuesta contextual. Está en desarrollo y me permite explorar la integración entre IA, backend y experiencia de usuario.',
-          experienceTitle: 'Experiencia y actividad', experienceIntro: 'Una selección de mi actividad pública en GitHub: proyectos, tecnologías y trabajo reciente.', experienceButton: 'Ver perfil en GitHub ↗', loadingGithub: 'Cargando actividad de GitHub...', aboutTitle: 'Un poco sobre mí', about1: 'Estoy cursando <strong>Desarrollo de Aplicaciones Web</strong> en Stucom Barcelona y me apasiona construir soluciones completas, desde la lógica de negocio hasta la experiencia final del usuario.',
-          about2: 'He trabajado con <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB y VS Code</strong>, además de diseño responsive, gestión de bases de datos y resolución de problemas en proyectos web reales.',
-          about3: 'Actualmente estoy buscando una oportunidad de <strong>prácticas</strong> para seguir creciendo como desarrollador, aportar valor en un equipo y aprender de proyectos profesionales reales.',
-          profileLabel: 'Perfil profesional', profileTitle: '¿Quieres conocer mi recorrido?', profileCopy: 'Consulta mi formación, tecnologías y proyecto destacado en una versión preparada para imprimir.', profileButton: 'Ver currículum ↗',
-          contactTitle: 'Hagamos algo <em>interesante.</em>', contactCopy: '¿Tienes una idea, una oportunidad o simplemente quieres saludar? Estoy abierto a proyectos, prácticas y conversaciones sobre desarrollo web.', write: 'Escríbeme →', footer: 'Hecho con Astro · Barcelona'
+          projectsTitle: 'Proyectos en curso', eventLabel: 'Proyecto académico · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Plataforma web full-stack para el descubrimiento, inscripción y gestión de torneos y eventos deportivos en Barcelona, construida con arquitectura MVC en PHP 8 y control de aforo en tiempo real.',
+          calsardaLabel: 'Proyecto personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototipo de comercio electrónico para digitalizar la presencia y operativa de la charcutería y colmado centenario Cal Sardà (fundado en 1930 en Barcelona): catálogo de más de 450 referencias gastronómicas, gestión de alérgenos, lotes gourmet y flujo simulado Click & Collect.',
+          nexusLabel: 'Proyecto personal · 2026', nexusCopy: 'Capa local de asistencia inteligente con interfaz web reactiva y backend modular en Express 5. Integra persistencia en SQLite con WAL mode, enrutador de herramientas locales (cálculo seguro, reloj y búsqueda web) y suite de 27 tests automatizados.',
+          experienceTitle: 'Experiencia y actividad', experienceIntro: 'Mi trayectoria laboral combinando desarrollo de software y experiencia en atención directa y gestión:', experienceButton: 'Ver perfil en GitHub ↗', loadingGithub: 'Cargando actividad de GitHub...', aboutTitle: 'Un poco sobre mí',
+          about1: 'Estoy cursando el segundo año de <strong>Desarrollo de Aplicaciones Web (DAW)</strong> en Stucom Barcelona y cuento con experiencia profesional en <strong>Altia</strong> como desarrollador web junior.',
+          about2: 'Mi enfoque es el desarrollo <strong>full-stack</strong>: disfruto diseñando arquitecturas backend limpias y modelando datos con <strong>PHP, Java, Node.js, MySQL y MongoDB</strong>, así como construyendo interfaces web modernas, fluidas y responsivas con <strong>JavaScript, TypeScript, Angular, React y Astro</strong>.',
+          about3: 'Valoro el código bien estructurado, el aprendizaje constante de nuevas tecnologías y la colaboración en equipo para convertir problemas reales en soluciones digitales de calidad.',
+          profileLabel: 'Perfil profesional', profileTitle: '¿Quieres conocer mi recorrido?', profileCopy: 'Consulta mi formación, experiencia laboral en Altia y proyectos destacados en una versión preparada para imprimir.', profileButton: 'Ver currículum ↗',
+          contactTitle: 'Hagamos algo <em>interesante.</em>', contactCopy: '¿Tienes una propuesta técnica, un proyecto en mente o simplemente quieres conectar? Estoy abierto a compartir ideas y colaborar en desarrollo web.', write: 'Escríbeme →', footer: 'Hecho con Astro · Barcelona'
         },
         ca: {
           navStack: 'Tecnologies', navProjects: 'Projectes', navExperience: 'Experiència', navAbout: 'Sobre mi', navContact: 'Contacte', menu: 'Menú', skip: 'Saltar al contingut',
-          eyebrow: '2n DAW · Stucom Barcelona · 2026', heroTitle: 'Idees que es tornen <em>interfície.</em>',
-          heroCopy: 'Soc l’Àlex, estudiant de DAW i desenvolupador web en formació. M’interessa crear productes digitals funcionals, ben dissenyats i pensats per resoldre problemes reals amb una base tècnica sòlida.',
-          work: 'Veure la meva feina ↗', cv: 'Veure currículum ↗', talk: 'Parlem →', available: '<strong>Disponible</strong>per a noves oportunitats',
+          eyebrow: '2n DAW · Stucom Barcelona · Altia', heroTitle: 'Idees que es tornen <em>interfície.</em>',
+          heroCopy: 'Soc l’Àlex, desenvolupador web junior cursant 2n de DAW a Stucom Barcelona i vinculat professionalment a Altia. M’enfoco a construir aplicacions web funcionals, ben dissenyades i pensades per resoldre problemes reals amb una base tècnica sòlida.',
+          work: 'Veure la meva feina ↗', cv: 'Veure currículum ↗', talk: 'Parlem →', available: '<strong>Altia</strong>Desenvolupador web junior',
           stackTitle: 'La meva caixa d’eines', stackIntro: 'Tecnologies que faig servir per pensar, construir i portar una idea des de la base de dades fins al navegador.',
-          projectsTitle: 'Projectes en curs', eventLabel: 'Projecte destacat · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Una plataforma full-stack per descobrir i gestionar esdeveniments esportius a Barcelona, construïda amb arquitectura MVC i rols d’usuari diferenciats.',
-          calsardaLabel: 'Projecte personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototip de botiga real per al comerç tradicional i xarcuteria centenària Cal Sardà (fundat el 1930). Desenvolupat com a projecte personal per digitalitzar l’experiència de compra: catàleg interactiu de productes gurmet, al·lèrgens, gestió de cistelles i comandes de recollida i lliurament.',
-          nexusLabel: 'En curs · 2026', nexusCopy: 'Projecte experimental de xat intel·ligent local que combina una interfície web amb historial de converses, memòria opcional i eines de cerca, càlcul i resposta contextual. Està en desenvolupament i em permet explorar la integració entre IA, backend i experiència d’usuari.',
-          experienceTitle: 'Experiència i activitat', experienceIntro: 'Una selecció de la meva activitat pública a GitHub: projectes, tecnologies i treball recent.', experienceButton: 'Veure el perfil a GitHub ↗', loadingGithub: 'Carregant activitat de GitHub...', aboutTitle: 'Una mica sobre mi', about1: 'Estic cursant <strong>Desenvolupament d’Aplicacions Web</strong> a Stucom Barcelona i m’apassiona construir solucions completes, des de la lògica de negoci fins a l’experiència final de l’usuari.',
-          about2: 'He treballat amb <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB i VS Code</strong>, a més de disseny responsive, gestió de bases de dades i resolució de problemes en projectes web reals.',
-          about3: 'Actualment busco una oportunitat de <strong>pràctiques</strong> per continuar creixent com a desenvolupador, aportar valor a un equip i aprendre de projectes professionals reals.',
-          profileLabel: 'Perfil professional', profileTitle: 'Vols conèixer el meu recorregut?', profileCopy: 'Consulta la meva formació, tecnologies i projecte destacat en una versió preparada per imprimir.', profileButton: 'Veure currículum ↗',
-          contactTitle: 'Fem alguna cosa <em>interessant.</em>', contactCopy: 'Tens una idea, una oportunitat o simplement vols saludar? Estic obert a projectes, pràctiques i converses sobre desenvolupament web.', write: 'Escriu-me →', footer: 'Fet amb Astro · Barcelona'
+          projectsTitle: 'Projectes en curs', eventLabel: 'Projecte acadèmic · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'Plataforma web full-stack per al descobriment, inscripció i gestió de tornejos i esdeveniments esportius a Barcelona, construïda amb arquitectura MVC en PHP 8 i control d’aforament en temps real.',
+          calsardaLabel: 'Projecte personal · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Prototip de comerç electrònic per digitalitzar la presència i operativa de la xarcuteria i queviures centenari Cal Sardà (fundat el 1930 a Barcelona): catàleg de més de 450 referències gastronòmiques, gestió d’al·lèrgens, lots gurmet i flux simulat Click & Collect.',
+          nexusLabel: 'Projecte personal · 2026', nexusCopy: 'Capa local d’assistència intel·ligent amb interfície web reactiva i backend modular a Express 5. Integra persistència a SQLite amb WAL mode, enrutador d’eines locals (càlcul segur, rellotge i cerca web) i suite de 27 tests automatitzats.',
+          experienceTitle: 'Experiència i activitat', experienceIntro: 'La meva trajectòria laboral combinant desenvolupament de programari i experiència en atenció directa i gestió:', experienceButton: 'Veure el perfil a GitHub ↗', loadingGithub: 'Carregant activitat de GitHub...', aboutTitle: 'Una mica sobre mi',
+          about1: 'Estic cursant el segon any de <strong>Desenvolupament d’Aplicacions Web (DAW)</strong> a Stucom Barcelona i compto amb experiència professional a <strong>Altia</strong> com a desenvolupador web junior.',
+          about2: 'El meu enfocament és el desenvolupament <strong>full-stack</strong>: gaudeixo dissenyant arquitectures backend netes i modelant dades amb <strong>PHP, Java, Node.js, MySQL i MongoDB</strong>, així com construint interfícies web modernes, fluides i responsives amb <strong>JavaScript, TypeScript, Angular, React i Astro</strong>.',
+          about3: 'Valoro el codi ben estructurat, l’aprenentatge constant de noves tecnologies i la col·laboració en equip per convertir problemes reals en solucions digitals de qualitat.',
+          profileLabel: 'Perfil professional', profileTitle: 'Vols conèixer el meu recorregut?', profileCopy: 'Consulta la meva formació, experiència laboral a Altia i projectes destacats en una versió preparada per imprimir.', profileButton: 'Veure currículum ↗',
+          contactTitle: 'Fem alguna cosa <em>interessant.</em>', contactCopy: 'Tens una proposta tècnica, un projecte en ment o simplement vols connectar? Estic obert a compartir idees i col·laborar en desenvolupament web.', write: 'Escriu-me →', footer: 'Fet amb Astro · Barcelona'
         },
         en: {
           navStack: 'Stack', navProjects: 'Projects', navExperience: 'Experience', navAbout: 'About me', navContact: 'Contact', menu: 'Menu', skip: 'Skip to content',
-          eyebrow: '2nd Web Development · Stucom Barcelona · 2026', heroTitle: 'Ideas that become <em>interfaces.</em>',
-          heroCopy: 'I’m Àlex, a web development student and developer in training. I enjoy creating functional, well-designed digital products built to solve real problems on a solid technical foundation.',
-          work: 'See my work ↗', cv: 'View résumé ↗', talk: 'Let’s talk →', available: '<strong>Available</strong>for new opportunities',
+          eyebrow: '2nd Web Development · Stucom Barcelona · Altia', heroTitle: 'Ideas that become <em>interfaces.</em>',
+          heroCopy: 'I’m Àlex, a junior web developer studying 2nd-year Web Development at Stucom Barcelona and working at Altia. I focus on building functional, well-crafted web applications designed to solve real problems on a solid technical foundation.',
+          work: 'See my work ↗', cv: 'View résumé ↗', talk: 'Let’s talk →', available: '<strong>Altia</strong>Junior web developer',
           stackTitle: 'My toolbox', stackIntro: 'Technologies I use to think, build and take an idea from the database to the browser.',
-          projectsTitle: 'Projects in progress', eventLabel: 'Featured build · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'A full-stack platform for discovering and managing sports events in Barcelona, built with MVC architecture and differentiated user roles.',
-          calsardaLabel: 'Personal project · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'Real store prototype for the centenary traditional gourmet charcuterie and grocery store Cal Sardà (founded in 1930). Developed as a personal project to digitalize the shopping experience: interactive gourmet catalog, allergen filters, basket management, and pickup or delivery orders.',
-          nexusLabel: 'In progress · 2026', nexusCopy: 'An experimental local intelligent chat project combining a web interface with conversation history, optional memory, and search, calculation and contextual response tools. It is in development and lets me explore the integration of AI, backend and user experience.',
-          experienceTitle: 'Experience and activity', experienceIntro: 'A selection of my public GitHub activity: projects, technologies and recent work.', experienceButton: 'View GitHub profile ↗', loadingGithub: 'Loading GitHub activity...', aboutTitle: 'A little about me', about1: 'I’m studying <strong>Web Application Development</strong> at Stucom Barcelona and I enjoy building complete solutions, from business logic to the final user experience.',
-          about2: 'I have worked with <strong>Java, PHP, Symfony, Laravel, React, Angular, SQL, MongoDB and VS Code</strong>, as well as responsive design, database management and problem-solving in real web projects.',
-          about3: 'I’m currently looking for an <strong>internship</strong> opportunity to keep growing as a developer, contribute to a team and learn from real professional projects.',
-          profileLabel: 'Professional profile', profileTitle: 'Want to know my journey?', profileCopy: 'Explore my education, technologies and featured project in a print-ready version.', profileButton: 'View résumé ↗',
-          contactTitle: 'Let’s make something <em>interesting.</em>', contactCopy: 'Have an idea, an opportunity or simply want to say hello? I’m open to projects, internships and conversations about web development.', write: 'Write to me →', footer: 'Built with Astro · Barcelona'
+          projectsTitle: 'Projects in progress', eventLabel: 'Academic project · 2026', eventTitle: 'EventSportsBCN', eventCopy: 'A full-stack web platform for discovering, registering, and managing sports tournaments and events in Barcelona, built with MVC architecture in PHP 8 and real-time capacity control.',
+          calsardaLabel: 'Personal project · 2026', calsardaTitle: 'Cal Sardà', calsardaCopy: 'E-commerce prototype to digitalize the presence and operations of the centenary gourmet charcuterie and grocery store Cal Sardà (founded in 1930 in Barcelona): catalog of over 450 gastronomic items, allergen controls, gourmet baskets, and a simulated Click & Collect flow.',
+          nexusLabel: 'Personal project · 2026', nexusCopy: 'A local intelligent assistance layer with a reactive web UI and a modular Express 5 backend. It features SQLite persistence in WAL mode, local tool routing (safe math parser, clock, and web search), and an automated suite of 27 tests.',
+          experienceTitle: 'Experience and activity', experienceIntro: 'My professional career combining software development with direct customer service and management experience:', experienceButton: 'View GitHub profile ↗', loadingGithub: 'Loading GitHub activity...', aboutTitle: 'A little about me',
+          about1: 'I am in my second year of <strong>Web Application Development (DAW)</strong> at Stucom Barcelona and work as a junior web developer at <strong>Altia</strong>.',
+          about2: 'My focus is <strong>full-stack development</strong>: I enjoy designing clean backend architectures and modeling data with <strong>PHP, Java, Node.js, MySQL and MongoDB</strong>, as well as building modern, smooth and responsive web interfaces with <strong>JavaScript, TypeScript, Angular, React and Astro</strong>.',
+          about3: 'I value well-structured code, continuous learning of new technologies, and team collaboration to turn real-world challenges into high-quality digital solutions.',
+          profileLabel: 'Professional profile', profileTitle: 'Want to know my journey?', profileCopy: 'Explore my education, professional experience at Altia and featured projects in a print-ready version.', profileButton: 'View résumé ↗',
+          contactTitle: 'Let’s make something <em>interesting.</em>', contactCopy: 'Have a technical proposal, a project in mind, or simply want to connect? I’m open to exchanging ideas and collaborating on web development.', write: 'Write to me →', footer: 'Built with Astro · Barcelona'
         }
       };
       const portfolioDetails = {
         es: {
-          eventFeatures: ['Autenticación para usuarios y gestores.', 'Control de aforo e inscripciones.', 'Panel de administración de eventos.', 'MySQL, PHP, JavaScript y diseño responsive.'],
-          calsardaFeatures: ['Desarrollado con Angular 22, SSR y arquitectura modular orientada al dominio.', 'Catálogo gastronómico interactivo con filtros, categorías y control de alérgenos.', 'Gestión de cesta de compra y flujo de pedidos para recogida en tienda o envío.', 'Modelado riguroso de entidades (obrador, lotes, productos y pedidos).'],
-          nexusFeatures: ['Backend Express con API REST y SQLite.', 'Diseño visual de panel de control y feedback de estado.', 'Integración con proveedores compatibles con OpenAI.', 'Desarrollo continuo con IA, lógica propia y enfoque práctico.'],
-          eventTags: ['PHP', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
-          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Arquitectura Modular'],
-          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'IA Local / OpenAI API'],
-          eventInfoBtn: 'Más información ↗', eventGithubBtn: 'Ver en GitHub ↗', calsardaInfoBtn: 'Más información ↗', calsardaGithubBtn: 'Ver en GitHub ↗', nexusButton: 'Más información ↗',
-          infoLabels: ['Ubicación', 'Estudios', 'Enfoque', 'Estado', 'Idiomas', 'Email', 'LinkedIn'],
-          infoValues: ['Barcelona, España', 'DAW · Stucom · 2º', 'Full-stack web', 'Buscando prácticas', 'Catalán C1 · Castellano · Inglés B1', 'salexbarrera@gmail.com', 'Ver perfil ↗'],
-          highlights: ['Experiencia', 'Canguro · 2025', '6 meses como cuidador de niños.', 'Cal Sardà · 2024', '5 meses como dependiente.', 'Certificaciones', 'Inteligencia Artificial', 'Python y Hugging Face Transformers · Cibernarium, 2025.', 'Prompting y cartografía de herramientas de IA · Cibernarium, 2025.', 'Fortalezas', 'Cómo trabajo', 'Trabajo en equipo, empatía, responsabilidad y buena gestión del tiempo.'],
+          eventFeatures: [
+            'Autenticación y perfiles segregados: Deportista y Organizador (Manager).',
+            'Control de aforo en tiempo real con integridad referencial en base de datos.',
+            'Panel de administración CRUD para publicación y gestión integral de eventos.',
+            'Estructura MVC limpia con consultas preparadas PDO y filtrado reactivo.'
+          ],
+          calsardaFeatures: [
+            'Desarrollado con Angular 22, SSR en Express 5 y paquete compartido @cal-sarda/domain.',
+            'Catálogo gastronómico interactivo con 455 productos reales, familias y control de alérgenos.',
+            'Módulo de configuración y encargo de lotes y cestas gourmet personalizadas.',
+            'Gestión de cesta reactiva (Signals) con flujo de recogida en tienda Click & Collect.'
+          ],
+          nexusFeatures: [
+            'Backend modular en Express 5 con API REST, seguridad Helmet y modo DEMO offline.',
+            'Persistencia ACID en SQLite con WAL mode para historial de chat y memoria.',
+            'Routing de herramientas seguras sin eval() (calculadora matemática y reloj de sistema).',
+            'Suite de 27 tests automatizados unitarios y de integración con supertest y node:test.'
+          ],
+          eventTags: ['PHP 8', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR / Express 5', 'TypeScript', 'Domain-Driven', 'E-Commerce'],
+          nexusTags: ['Node.js', 'Express 5', 'SQLite WAL', 'Deep Modules', 'IA Local / Tools'],
+          eventInfoBtn: 'Más información ↗', eventGithubBtn: 'Ver en GitHub ↗', calsardaInfoBtn: 'Más información ↗', calsardaGithubBtn: 'Ver en GitHub ↗', nexusButton: 'Más información ↗', nexusGithubBtn: 'Ver en GitHub ↗',
+          expIntro: 'Mi trayectoria laboral combinando desarrollo de software y experiencia en atención directa y gestión:',
+          expAltiaRole: 'Desarrollador Web Junior',
+          expAltiaBadge: 'En activo',
+          expAltiaDesc: 'Vinculación profesional y desarrollo web en entorno tecnológico, colaborando en proyectos de software y aplicando estándares de calidad, trabajo en equipo y buenas prácticas de ingeniería.',
+          expCanguroRole: 'Cuidador de niños',
+          expCanguroBadge: 'Atención directa',
+          expCanguroDesc: 'Desarrollo de empatía, responsabilidad, puntualidad y resolución de imprevistos mediante la atención y el cuidado organizado de menores.',
+          expSardaRole: 'Dependiente en tienda física',
+          expSardaBadge: 'Comercio local',
+          expSardaDesc: 'Atención al cliente en mostrador y gestión de encargos en comercio tradicional centenario de Barcelona. Base de conocimiento para diseñar su posterior plataforma de software.',
+          activityLabel: 'Actividad y proyectos en GitHub',
+          githubIntroP: 'Una selección de mi actividad pública en GitHub: proyectos personales, académicos y código abierto.',
+          infoLabels: ['Ubicación', 'Estudios', 'Empresa', 'Enfoque', 'Estado', 'Idiomas', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, España', 'DAW · Stucom · 2º', 'Altia', 'Full-stack web', 'En activo · Altia', 'Catalán C1 · Castellano · Inglés B1', 'salexbarrera@gmail.com', 'Ver perfil ↗'],
+          highlights: ['Experiencia', 'Altia · 2026', 'Desarrollador Web Junior en activo.', 'Cal Sardà · 2024', '5 meses como dependiente.', 'Certificaciones', 'Inteligencia Artificial', 'Python y Hugging Face Transformers · Cibernarium, 2025.', 'Prompting y cartografía de herramientas de IA · Cibernarium, 2025.', 'Fortalezas', 'Cómo trabajo', 'Trabajo en equipo, iniciativa técnica, constancia y resolución de problemas.'],
           nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR']
         },
         ca: {
-          eventFeatures: ['Autenticació per a usuaris i gestors.', 'Control d’aforament i inscripcions.', 'Panell d’administració d’esdeveniments.', 'MySQL, PHP, JavaScript i disseny responsive.'],
-          calsardaFeatures: ['Desenvolupat amb Angular 22, SSR i arquitectura modular orientada al domini.', 'Catàleg gastronòmic interactiu amb filtres, categories i control d’al·lèrgens.', 'Gestió de cistella de compra i flux de comandes per a recollida a botiga o lliurament.', 'Modelatge rigorós d’entitats (obrador, lots, productes i comandes).'],
-          nexusFeatures: ['Backend Express amb API REST i SQLite.', 'Disseny visual de panell de control i feedback d’estat.', 'Integració amb proveïdors compatibles amb OpenAI.', 'Desenvolupament continu amb IA, lògica pròpia i enfocament pràctic.'],
-          eventTags: ['PHP', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
-          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Arquitectura Modular'],
-          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'IA Local / OpenAI API'],
-          eventInfoBtn: 'Més informació ↗', eventGithubBtn: 'Veure a GitHub ↗', calsardaInfoBtn: 'Més informació ↗', calsardaGithubBtn: 'Veure a GitHub ↗', nexusButton: 'Més informació ↗',
-          infoLabels: ['Ubicació', 'Estudis', 'Enfocament', 'Estat', 'Idiomes', 'Email', 'LinkedIn'],
-          infoValues: ['Barcelona, Espanya', 'DAW · Stucom · 2n', 'Full-stack web', 'Buscant pràctiques', 'Català C1 · Castellà · Anglès B1', 'salexbarrera@gmail.com', 'Veure perfil ↗'],
-          highlights: ['Experiència', 'Cangur · 2025', '6 mesos com a cuidador d’infants.', 'Cal Sardà · 2024', '5 mesos com a dependent.', 'Certificacions', 'Intel·ligència Artificial', 'Python i Hugging Face Transformers · Cibernarium, 2025.', 'Prompting i cartografia d’eines d’IA · Cibernarium, 2025.', 'Punts forts', 'Com treballo', 'Treball en equip, empatia, responsabilitat i bona gestió del temps.'],
+          eventFeatures: [
+            'Autenticació i perfils segregats: Esportista i Organitzador (Manager).',
+            'Control d’aforament en temps real amb integritat referencial a la base de dades.',
+            'Panell d’administració CRUD per a publicació i gestió integral d’esdeveniments.',
+            'Estructura MVC neta amb consultes preparades PDO i filtratge reactiu.'
+          ],
+          calsardaFeatures: [
+            'Desenvolupat amb Angular 22, SSR a Express 5 i paquet compartit @cal-sarda/domain.',
+            'Catàleg gastronòmic interactiu amb 455 productes reals, famílies i control d’al·lèrgens.',
+            'Mòdul de configuració i encàrrec de lots i paneres gurmet personalitzades.',
+            'Gestió de cistella reactiva (Signals) amb flux de recollida a botiga Click & Collect.'
+          ],
+          nexusFeatures: [
+            'Backend modular a Express 5 amb API REST, seguretat Helmet i mode DEMO offline.',
+            'Persistència ACID a SQLite amb WAL mode per a historial de xat i memòria.',
+            'Routing d’eines segures sense eval() (calculadora matemàtica i rellotge de sistema).',
+            'Suite de 27 tests automatitzats unitaris i d’integració amb supertest i node:test.'
+          ],
+          eventTags: ['PHP 8', 'MySQL', 'JavaScript', 'Arquitectura MVC', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR / Express 5', 'TypeScript', 'Domain-Driven', 'E-Commerce'],
+          nexusTags: ['Node.js', 'Express 5', 'SQLite WAL', 'Deep Modules', 'IA Local / Tools'],
+          eventInfoBtn: 'Més informació ↗', eventGithubBtn: 'Veure a GitHub ↗', calsardaInfoBtn: 'Més informació ↗', calsardaGithubBtn: 'Veure a GitHub ↗', nexusButton: 'Més informació ↗', nexusGithubBtn: 'Veure a GitHub ↗',
+          expIntro: 'La meva trajectòria laboral combinant desenvolupament de programari i experiència en atenció directa i gestió:',
+          expAltiaRole: 'Desenvolupador Web Junior',
+          expAltiaBadge: 'En actiu',
+          expAltiaDesc: 'Vinculació professional i desenvolupament web en entorn tecnològic, col·laborant en projectes de programari i aplicant estàndards de qualitat, treball en equip i bones pràctiques d’enginyeria.',
+          expCanguroRole: 'Cuidador d’infants',
+          expCanguroBadge: 'Atenció directa',
+          expCanguroDesc: 'Desenvolupament d’empatia, responsabilitat, puntualitat i resolució d’imprevistos mitjançant l’atenció i la cura organitzada de menors.',
+          expSardaRole: 'Dependent a botiga física',
+          expSardaBadge: 'Comerç local',
+          expSardaDesc: 'Atenció al client al taulell i gestió d’encàrrecs en comerç tradicional centenari de Barcelona. Base de coneixement per dissenyar la seva posterior plataforma de programari.',
+          activityLabel: 'Activitat i projectes a GitHub',
+          githubIntroP: 'Una selecció de la meva activitat pública a GitHub: projectes personals, acadèmics i codi obert.',
+          infoLabels: ['Ubicació', 'Estudis', 'Empresa', 'Enfocament', 'Estat', 'Idiomes', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, Espanya', 'DAW · Stucom · 2n', 'Altia', 'Full-stack web', 'En actiu · Altia', 'Català C1 · Castellà · Anglès B1', 'salexbarrera@gmail.com', 'Veure perfil ↗'],
+          highlights: ['Experiència', 'Altia · 2026', 'Desenvolupador Web Junior en actiu.', 'Cal Sardà · 2024', '5 mesos com a dependent.', 'Certificacions', 'Intel·ligència Artificial', 'Python i Hugging Face Transformers · Cibernarium, 2025.', 'Prompting i cartografia d’eines d’IA · Cibernarium, 2025.', 'Punts forts', 'Com treballo', 'Treball en equip, iniciativa tècnica, constància i resolució de problemes.'],
           nexusKicker: 'LA TEVA CAPA D’INTEL·LIGÈNCIA LOCAL', nexusTitle: 'Pensa en <em>sistemes.</em>', nexusPills: ['CERCA WEB', 'MEMÒRIA', 'CALCULADORA']
         },
         en: {
-          eventFeatures: ['Authentication for users and managers.', 'Capacity and registration management.', 'Event administration panel.', 'MySQL, PHP, JavaScript and responsive design.'],
-          calsardaFeatures: ['Built with Angular 22, SSR and domain-driven modular architecture.', 'Interactive gourmet catalog with filters, categories and allergen controls.', 'Shopping basket management and checkout workflow for pickup or delivery.', 'Rigorous entity modeling (artisan workshop, batches, products and orders).'],
-          nexusFeatures: ['Express backend with REST API and SQLite.', 'Visual control-panel design and status feedback.', 'Integration with OpenAI-compatible providers.', 'Ongoing development with AI, custom logic and a practical focus.'],
-          eventTags: ['PHP', 'MySQL', 'JavaScript', 'MVC Architecture', 'Responsive'],
-          calsardaTags: ['Angular 22', 'SSR', 'Express', 'TypeScript', 'Modular Architecture'],
-          nexusTags: ['Node.js', 'Express', 'SQLite', 'REST API', 'Local AI / OpenAI API'],
-          eventInfoBtn: 'More information ↗', eventGithubBtn: 'View on GitHub ↗', calsardaInfoBtn: 'More information ↗', calsardaGithubBtn: 'View on GitHub ↗', nexusButton: 'More information ↗',
-          infoLabels: ['Location', 'Education', 'Focus', 'Status', 'Languages', 'Email', 'LinkedIn'],
-          infoValues: ['Barcelona, Spain', 'Web Development · Stucom · 2nd year', 'Full-stack web', 'Looking for an internship', 'Catalan C1 · Spanish · English', 'salexbarrera@gmail.com', 'View profile ↗'],
-          highlights: ['Experience', 'Childcare · 2025', '6 months in childcare.', 'Cal Sardà · 2024', '5 months as a shop assistant.', 'Certifications', 'Artificial Intelligence', 'Python and Hugging Face Transformers · Cibernarium, 2025.', 'Prompting and mapping AI tools · Cibernarium, 2025.', 'Strengths', 'How I work', 'Teamwork, empathy, responsibility and good time management.'],
+          eventFeatures: [
+            'Authentication and segregated profiles: Athlete and Organizer (Manager).',
+            'Real-time capacity control with relational database referential integrity.',
+            'CRUD administration dashboard for publishing and managing sports events.',
+            'Clean MVC structure in PHP 8 with PDO prepared statements and reactive filters.'
+          ],
+          calsardaFeatures: [
+            'Built with Angular 22, SSR in Express 5 and the shared @cal-sarda/domain package.',
+            'Interactive gourmet catalog with 455 verified products, categories, and allergen controls.',
+            'Custom configuration module for gourmet gift batches and baskets.',
+            'Reactive cart management (Signals) with a simulated Click & Collect pickup flow.'
+          ],
+          nexusFeatures: [
+            'Modular Express 5 backend with REST API, Helmet security, and offline DEMO mode.',
+            'ACID SQLite persistence in WAL mode for chat history and user memory.',
+            'Safe tool routing without eval() (mathematical parser and system clock).',
+            'Automated test suite of 27 unit and integration tests with supertest and node:test.'
+          ],
+          eventTags: ['PHP 8', 'MySQL', 'JavaScript', 'MVC Architecture', 'Responsive'],
+          calsardaTags: ['Angular 22', 'SSR / Express 5', 'TypeScript', 'Domain-Driven', 'E-Commerce'],
+          nexusTags: ['Node.js', 'Express 5', 'SQLite WAL', 'Deep Modules', 'Local AI / Tools'],
+          eventInfoBtn: 'More information ↗', eventGithubBtn: 'View on GitHub ↗', calsardaInfoBtn: 'More information ↗', calsardaGithubBtn: 'View on GitHub ↗', nexusButton: 'More information ↗', nexusGithubBtn: 'View on GitHub ↗',
+          expIntro: 'My professional career combining software development with direct customer service and management experience:',
+          expAltiaRole: 'Junior Web Developer',
+          expAltiaBadge: 'Active',
+          expAltiaDesc: 'Professional role and web development in a technology environment, collaborating on software projects and applying quality standards, teamwork, and engineering best practices.',
+          expCanguroRole: 'Childcare Worker',
+          expCanguroBadge: 'Direct care',
+          expCanguroDesc: 'Development of empathy, responsibility, punctuality, and problem-solving through organized childcare.',
+          expSardaRole: 'Shop Assistant in physical store',
+          expSardaBadge: 'Local commerce',
+          expSardaDesc: 'Customer service at the counter and order coordination in a centenary traditional Barcelona store. Direct foundation for designing its subsequent software platform.',
+          activityLabel: 'Activity and projects on GitHub',
+          githubIntroP: 'A curated selection of my public GitHub activity: personal, academic, and open-source projects.',
+          infoLabels: ['Location', 'Education', 'Company', 'Focus', 'Status', 'Languages', 'Email', 'LinkedIn'],
+          infoValues: ['Barcelona, Spain', 'Web Development · Stucom · 2nd year', 'Altia', 'Full-stack web', 'Active · Altia', 'Catalan C1 · Spanish · English', 'salexbarrera@gmail.com', 'View profile ↗'],
+          highlights: ['Experience', 'Altia · 2026', 'Junior Web Developer currently active.', 'Cal Sardà · 2024', '5 months as a shop assistant.', 'Certifications', 'Artificial Intelligence', 'Python and Hugging Face Transformers · Cibernarium, 2025.', 'Prompting and mapping AI tools · Cibernarium, 2025.', 'Strengths', 'How I work', 'Teamwork, technical initiative, perseverance and problem-solving.'],
           nexusKicker: 'YOUR LOCAL INTELLIGENCE LAYER', nexusTitle: 'Think in <em>systems.</em>', nexusPills: ['WEB SEARCH', 'MEMORY', 'CALCULATOR']
         }
       };
@@ -545,7 +675,11 @@ try {
         const menuToggle = document.querySelector('.menu-toggle');
         if (menuToggle?.firstChild) menuToggle.firstChild.textContent = `${menuToggleLabel} `;
         const pageTitles = { es: 'Àlex Barrera — Desarrollador web', ca: 'Àlex Barrera — Desenvolupador web', en: 'Àlex Barrera — Web developer' };
-        const pageDescriptions = { es: 'Portfolio de Àlex Barrera Sardà, estudiante de segundo de DAW y desarrollador de aplicaciones web en Barcelona.', ca: 'Portfoli d’Àlex Barrera Sardà, estudiant de segon de DAW i desenvolupador d’aplicacions web a Barcelona.', en: 'Portfolio of Àlex Barrera Sardà, second-year web development student and web developer in Barcelona.' };
+        const pageDescriptions = {
+          es: 'Portfolio de Àlex Barrera Sardà, desarrollador web junior y estudiante de 2º DAW en Stucom Barcelona con experiencia en Altia.',
+          ca: 'Portfoli d’Àlex Barrera Sardà, desenvolupador web junior i estudiant de 2n de DAW a Stucom Barcelona amb experiència a Altia.',
+          en: 'Portfolio of Àlex Barrera Sardà, junior web developer and 2nd-year Web Development student at Stucom Barcelona with experience at Altia.'
+        };
         document.title = pageTitles[language];
         document.querySelector('meta[name="description"]')?.setAttribute('content', pageDescriptions[language]);
         document.querySelectorAll('.project-eventsports .feature-list li').forEach((item, index) => { item.textContent = detail.eventFeatures[index]; });
@@ -559,8 +693,38 @@ try {
         if (calsardaInfoBtn) calsardaInfoBtn.textContent = detail.calsardaInfoBtn;
         const calsardaGithubBtn = document.querySelector<HTMLElement>('[data-calsarda-github-btn]');
         if (calsardaGithubBtn) calsardaGithubBtn.textContent = detail.calsardaGithubBtn;
-        const nexusBtn = document.querySelector('.project-secondary .project-copy .button');
+        const nexusBtn = document.querySelector<HTMLElement>('[data-nexus-info-btn]');
         if (nexusBtn) nexusBtn.textContent = detail.nexusButton;
+        const nexusGithubBtn = document.querySelector<HTMLElement>('[data-nexus-github-btn]');
+        if (nexusGithubBtn) nexusGithubBtn.textContent = detail.nexusGithubBtn;
+
+        const expIntroEl = document.querySelector<HTMLElement>('[data-experience-intro]');
+        if (expIntroEl) expIntroEl.textContent = detail.expIntro;
+        const expAltiaRoleEl = document.querySelector<HTMLElement>('[data-exp-altia-role]');
+        if (expAltiaRoleEl) expAltiaRoleEl.textContent = detail.expAltiaRole;
+        const expAltiaBadgeEl = document.querySelector<HTMLElement>('[data-exp-altia-badge]');
+        if (expAltiaBadgeEl) expAltiaBadgeEl.textContent = detail.expAltiaBadge;
+        const expAltiaDescEl = document.querySelector<HTMLElement>('[data-exp-altia-desc]');
+        if (expAltiaDescEl) expAltiaDescEl.textContent = detail.expAltiaDesc;
+
+        const expCanguroRoleEl = document.querySelector<HTMLElement>('[data-exp-canguro-role]');
+        if (expCanguroRoleEl) expCanguroRoleEl.textContent = detail.expCanguroRole;
+        const expCanguroBadgeEl = document.querySelector<HTMLElement>('[data-exp-canguro-badge]');
+        if (expCanguroBadgeEl) expCanguroBadgeEl.textContent = detail.expCanguroBadge;
+        const expCanguroDescEl = document.querySelector<HTMLElement>('[data-exp-canguro-desc]');
+        if (expCanguroDescEl) expCanguroDescEl.textContent = detail.expCanguroDesc;
+
+        const expSardaRoleEl = document.querySelector<HTMLElement>('[data-exp-sarda-role]');
+        if (expSardaRoleEl) expSardaRoleEl.textContent = detail.expSardaRole;
+        const expSardaBadgeEl = document.querySelector<HTMLElement>('[data-exp-sarda-badge]');
+        if (expSardaBadgeEl) expSardaBadgeEl.textContent = detail.expSardaBadge;
+        const expSardaDescEl = document.querySelector<HTMLElement>('[data-exp-sarda-desc]');
+        if (expSardaDescEl) expSardaDescEl.textContent = detail.expSardaDesc;
+
+        const activityLabelEl = document.querySelector<HTMLElement>('[data-activity-label]');
+        if (activityLabelEl) activityLabelEl.textContent = detail.activityLabel;
+        const githubIntroPEl = document.querySelector<HTMLElement>('[data-github-intro-p]');
+        if (githubIntroPEl) githubIntroPEl.textContent = detail.githubIntroP;
         const filterLabels = {
           es: { all: 'Todos', frontend: 'Frontend', backend: 'Backend', database: 'Bases de datos', tools: 'Herramientas' },
           ca: { all: 'Tots', frontend: 'Frontend', backend: 'Backend', database: 'Bases de dades', tools: 'Eines' },
